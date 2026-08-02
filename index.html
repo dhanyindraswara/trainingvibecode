@@ -1368,7 +1368,7 @@ belum jelas sebelum menulis.</div>
         <div class="dlabel">Sudah menyala · kita tinggal menyambung</div>
         <svg class="mg" style="max-width:425px" viewBox="0 0 560 210" aria-hidden="true">
           <rect x="6" y="6" width="548" height="198" rx="6" fill="none" stroke="var(--gold)" stroke-dasharray="6 5" opacity=".65"/>
-          <text x="20" y="24" style="font-family:var(--mono);font-size:10px;fill:var(--gold-ink);letter-spacing:.16em">DOCKER</text>
+          <text x="20" y="24" style="font-family:var(--mono);font-size:10px;fill:var(--gold-ink);letter-spacing:.16em">SERVER CHL · 103.59.160.126</text>
           <path class="gs" style="stroke:var(--gold-ink);stroke-width:1.4" d="M232,78 C170,78 150,110 150,132"/>
           <path class="gs" style="stroke:var(--gold-ink);stroke-width:1.4" d="M328,78 C390,78 410,110 410,132"/>
           <circle class="gf" r="4"><animateMotion dur="2.2s" repeatCount="indefinite" path="M232,78 C170,78 150,110 150,132"/></circle>
@@ -1380,37 +1380,84 @@ belum jelas sebelum menulis.</div>
           <text x="280" y="74" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">Next.js</text>
           <rect x="72" y="130" width="156" height="52" rx="3" fill="#fff" stroke="var(--line)"/>
           <text x="150" y="150" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">MySQL</text>
-          <text x="150" y="165" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">unit · user · dokumen</text>
-          <text x="150" y="177" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">percakapan</text>
+          <text x="150" y="165" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">chl_kelompok_[n] · :23316</text>
+          <text x="150" y="177" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">unit · dokumen · percakapan</text>
           <rect x="332" y="130" width="156" height="52" rx="3" fill="#fff" stroke="var(--line)"/>
           <text x="410" y="150" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">MinIO</text>
-          <text x="410" y="165" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">PDF · shop drawing</text>
-          <text x="410" y="177" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">foto · S3-compatible</text>
+          <text x="410" y="165" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">chl-kelompok-[n] · :29010</text>
+          <text x="410" y="177" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">PDF · foto · S3-compatible</text>
           <text x="132" y="108" style="font-family:var(--mono);font-size:9.5px;fill:var(--gold-ink)">row</text>
           <text x="392" y="108" style="font-family:var(--mono);font-size:9.5px;fill:var(--teal)">object</text>
         </svg>
       </div>
       <ul class="clean sm" data-a="rise" style="--i:6">
-        <li>Environment sudah menyala. Masukkan kredensial, lalu minta Claude Code menyambungkannya.</li>
+        <li>Setiap kelompok punya satu database MySQL dan satu bucket MinIO yang <strong>terisolasi</strong> — sudah menyala di server CHL.</li>
+        <li>Kredensial ada di lembar <em>ACCESS</em> per kelompok. Jangan dibagikan ke kelompok lain, jangan pernah masuk repo.</li>
         <li>Jangan simpan file di dalam database. Simpan kunci objeknya, isinya biar di MinIO.</li>
       </ul>
     </div>
     <div>
       <div class="card" data-a="rise" style="--i:7;padding:18px 20px">
-        <span class="tag">Tenggat yang menempel di tahap ini</span>
-        <div class="stat" style="font-size:34px">14 hari<small>dari akhir training sampai migrasi ke produksi</small></div>
-        <div class="rule" style="margin:18px 0 14px"></div>
-        <p class="sub" style="font-size:14.5px">Dua minggu itu disengaja: cukup panjang untuk mengurus server, cukup pendek supaya tim masih ingat apa yang dibangun. Lewat hari ke-14, aplikasinya mati pelan-pelan di laptop seseorang.</p>
-        <div class="rule" style="margin:14px 0 12px"></div>
-        <span class="tag">Tunjuk pemiliknya</span>
-        <p class="sub" style="font-size:14.5px">Sebelum pulang, satu orang bernama jelas per tim memegang tanggal migrasi. Bukan departemen — orang.</p>
+        <span class="tag">Akses kelompok · endpoint bersama</span>
+        <div class="code" style="margin-top:6px">Host MySQL     <span class="hl">103.59.160.126</span> : <span class="hl">23316</span>
+API MinIO      http://103.59.160.126:<span class="hl">29010</span>
+Konsol MinIO   http://103.59.160.126:<span class="hl">29011</span>
+Region S3      us-east-1 · path-style: true
+
+Database/user  chl_kelompok_<span class="cm">[1–6]</span>
+Bucket/key     chl-kelompok-<span class="cm">[1–6]</span>
+Password       <span class="cm">di lembar ACCESS kelompokmu</span></div>
+        <p class="sub" style="margin-top:12px;font-size:13.5px">Username MySQL = nama database. Access key MinIO = nama bucket. Password dan secret key dibagikan per kelompok — tidak ada di deck ini, dan memang tidak boleh ada.</p>
+        <div class="rule" style="margin:12px 0 10px"></div>
+        <span class="tag">Tenggat tetap menempel</span>
+        <p class="sub" style="font-size:13.5px"><strong>14 hari</strong> dari akhir training sampai migrasi ke server produksi CHL. Satu orang bernama jelas per tim memegang tanggalnya.</p>
       </div>
     </div>
   </div>
   <div class="minimap" data-a="fade" style="--i:11"><span class="mm done">Persiapan</span><span class="mm done">01 PRD</span><span class="mm done">02 Design</span><span class="mm done">03 Code</span><span class="mm done">04 GitHub</span><span class="mm on">05 Data</span><span class="mm">06 AI</span></div>
 </section>
 
-<!-- 34 · STAGE 06 -->
+<!-- 34 · STAGE 05 · PRAKTIK KONEKSI -->
+<section class="slide" data-act="Sesi 03" data-title="Tahap 05 — Praktik koneksi">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">05</span><div><p class="eyebrow" style="margin:0 0 4px">Praktik · Database &amp; Storage</p><h2 style="margin:0">Nempel kredensial di Claude Code</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="split">
+    <div>
+      <ul class="clean sm" data-a="rise" style="--i:2;margin-top:6px">
+        <li><strong>1 · Tulis <span class="mono">.env.local</span></strong> — di root project. Salin template di kanan, ganti <span class="mono">[n]</span> dengan nomor kelompokmu.</li>
+        <li><strong>2 · Isi kredensial</strong> — password MySQL dan secret key MinIO dari lembar <em>ACCESS</em> kelompokmu. Diketik langsung — jangan difoto, jangan dikirim ke grup chat.</li>
+        <li><strong>3 · Amankan dulu</strong> — pastikan <span class="mono">.env*</span> ada di <span class="mono">.gitignore</span> <em>sebelum</em> commit pertama, bukan sesudahnya.</li>
+        <li><strong>4 · Prompt Claude Code</strong> — pakai prompt di kanan bawah. Biarkan Claude yang menulis kode koneksinya; kita yang pegang kredensialnya.</li>
+        <li><strong>5 · Buktikan</strong> — jalankan app, buka <span class="mono">/api/health</span>. MySQL dan MinIO dua-duanya <em>ok</em> dulu, baru lanjut bikin schema.</li>
+      </ul>
+      <div class="callout" data-a="rise" style="--i:4;margin-top:10px">
+        <span class="k">Kalau gagal connect</span>
+        <p>Tempel pesan errornya utuh ke Claude Code. Jangan diceritakan ulang, jangan ganti-ganti kredensial secara acak — cek dulu nomor kelompok dan port-nya.</p>
+      </div>
+    </div>
+    <div>
+      <div class="card" data-a="rise" style="--i:3;padding:18px 20px">
+        <span class="tag">.env.local — template</span>
+        <div class="code" style="margin-top:6px"><span class="cm"># ganti [n] dengan nomor kelompok (1–6)</span>
+DATABASE_URL="mysql://chl_kelompok_<span class="hl">[n]</span>:<span class="hl">[password]</span>@103.59.160.126:23316/chl_kelompok_<span class="hl">[n]</span>"
+
+S3_ENDPOINT="http://103.59.160.126:29010"
+S3_REGION="us-east-1"
+S3_BUCKET="chl-kelompok-<span class="hl">[n]</span>"
+S3_ACCESS_KEY="chl-kelompok-<span class="hl">[n]</span>"
+S3_SECRET_KEY="<span class="hl">[secret key]</span>"
+S3_FORCE_PATH_STYLE="true"</div>
+      </div>
+      <div class="callout teal" data-a="rise" style="--i:5;margin-top:12px">
+        <span class="k">Prompt untuk Claude Code</span>
+        <p style="font-size:13.5px;line-height:1.5">"Baca <span class="mono">.env.local</span>. Sambungkan app ini ke MySQL (<span class="mono">mysql2</span>) dan MinIO (AWS SDK S3, <span class="mono">forcePathStyle: true</span>). Buat <span class="mono">GET /api/health</span> yang mengetes <span class="mono">SELECT 1</span> dan <span class="mono">ListObjects</span>, balas status keduanya."</p>
+      </div>
+    </div>
+  </div>
+  <div class="minimap" data-a="fade" style="--i:7"><span class="mm done">Persiapan</span><span class="mm done">01 PRD</span><span class="mm done">02 Design</span><span class="mm done">03 Code</span><span class="mm done">04 GitHub</span><span class="mm on">05 Data</span><span class="mm">06 AI</span></div>
+</section>
+
+<!-- 35 · STAGE 06 -->
 <section class="slide" data-act="Sesi 03" data-title="Tahap 06 — Integrasi AI">
   <div class="stagehead" data-a="left" style="--i:0"><span class="sn">06</span><div><p class="eyebrow" style="margin:0 0 4px">Tahap · Integrasi</p><h2 style="margin:0">Pasang kecerdasannya</h2></div></div>
   <div class="rule" style="--i:1"></div>
@@ -1480,7 +1527,7 @@ belum jelas sebelum menulis.</div>
   <div class="minimap" data-a="fade" style="--i:7"><span class="mm done">Persiapan</span><span class="mm done">01 PRD</span><span class="mm done">02 Design</span><span class="mm done">03 Code</span><span class="mm done">04 GitHub</span><span class="mm done">05 Data</span><span class="mm on">06 AI</span></div>
 </section>
 
-<!-- 35 · RAG BERGERAK -->
+<!-- 36 · RAG BERGERAK -->
 <section class="slide" data-act="Sesi 03" data-title="RAG dilihat bergerak">
   <p class="eyebrow" data-a="left" style="--i:0">Tahap 06 · Visual</p>
   <h2 data-a="rise" style="--i:1">Perjalanan satu dokumen, dari upload sampai jawaban.</h2>
@@ -1575,7 +1622,7 @@ belum jelas sebelum menulis.</div>
   <div class="minimap" data-a="fade" style="--i:7"><span class="mm done">Persiapan</span><span class="mm done">01 PRD</span><span class="mm done">02 Design</span><span class="mm done">03 Code</span><span class="mm done">04 GitHub</span><span class="mm done">05 Data</span><span class="mm on">06 AI</span></div>
 </section>
 
-<!-- 35 · SATU STACK -->
+<!-- 37 · SATU STACK -->
 <section class="slide" data-act="Sesi 03" data-title="Satu stack">
   <p class="eyebrow" data-a="left" style="--i:0">Aturan yang menembus semua tahap</p>
   <h2 data-a="rise" style="--i:1">Satu framework. Disebut sekali. Diulang di mana-mana.</h2>
@@ -1594,7 +1641,7 @@ belum jelas sebelum menulis.</div>
   </div>
 </section>
 
-<!-- 36 · FAILURE -->
+<!-- 38 · FAILURE -->
 <section class="slide" data-act="Sesi 03" data-title="Cara gagalnya">
   <p class="eyebrow" data-a="left" style="--i:0">Belajar dari pengalaman tim lain</p>
   <h2 data-a="rise" style="--i:1">Lima cara tim kehilangan hari ini.</h2>
@@ -1615,7 +1662,7 @@ belum jelas sebelum menulis.</div>
   </div>
 </section>
 
-<!-- 37 · SETELAHNYA -->
+<!-- 39 · SETELAHNYA -->
 <section class="slide" data-act="Sesi 03" data-title="14 hari setelahnya">
   <p class="eyebrow" data-a="left" style="--i:0">Apa yang terjadi setelah ini</p>
   <h2 data-a="rise" style="--i:1">Dua minggu yang menentukan hari ini berarti atau tidak.</h2>
@@ -1638,7 +1685,7 @@ belum jelas sebelum menulis.</div>
   </div>
 </section>
 
-<!-- 38 · RECAP -->
+<!-- 40 · RECAP -->
 <section class="slide" data-act="Penutup" data-title="Rangkuman">
   <p class="eyebrow" data-a="left" style="--i:0">Bawa pulang lima hal ini</p>
   <h2 data-a="rise" style="--i:1">Kalau isi hari ini memudar, ini yang harus tersisa.</h2>
@@ -1654,7 +1701,7 @@ belum jelas sebelum menulis.</div>
   </div>
 </section>
 
-<!-- 39 · CLOSE -->
+<!-- 41 · CLOSE -->
 <section class="slide cover" data-act="Penutup" data-title="Sekarang bangun">
   <img class="cover-orn" src="data:image/png;base64,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" alt="">
   <p class="eyebrow" data-a="left" style="--i:0">Sekian teorinya</p>
@@ -1671,7 +1718,7 @@ belum jelas sebelum menulis.</div>
   <div id="rail"><div id="railfill"></div></div>
   <div id="hudbar">
     <span id="hudleft">Cipta Harmoni Lestari — Bangun Aplikasi Integrasi AI dengan Claude</span>
-    <span id="hudright"><b id="cur">1</b> / <span id="tot">39</span></span>
+    <span id="hudright"><b id="cur">1</b> / <span id="tot">41</span></span>
   </div>
 </nav>
 <div id="help">← → geser &nbsp;·&nbsp; O semua slide &nbsp;·&nbsp; F layar penuh</div>
