@@ -18,29 +18,29 @@
 
   <p class="eyebrow">Bangun Aplikasi Integrasi AI dengan Claude</p>
   <h1>Persiapan Training</h1>
-  <p class="lede">Selamat datang! Sebelum hari H, isi form persiapan dan pre-test di bawah. Materi bisa dibuka kapan saja. Setiap langkah cukup satu klik.</p>
+  <p class="lede">Selamat datang! Untuk sekarang, cukup <strong>isi Form Persiapan</strong> dulu. Pre-test dan materi dibuka <strong>Kamis</strong>, post-test menyusul setelah training.</p>
   <div class="rule"></div>
 
   <div class="menu">
-    <a class="tile" href="persiapan.html">
+    <a class="tile" data-key="persiapan" href="persiapan.html">
       <span class="n">01</span>
       <h3>Form Persiapan</h3>
       <p>Konfirmasi akun & alat, lalu tulis satu masalah nyata dari divisimu.</p>
       <span class="go">Isi sekarang →</span>
     </a>
-    <a class="tile" href="pretest.html">
+    <a class="tile" data-key="pretest" href="pretest.html">
       <span class="n">02</span>
       <h3>Pre-Test</h3>
       <p>Beberapa pertanyaan singkat sebelum training dimulai. Santai saja.</p>
       <span class="go">Mulai pre-test →</span>
     </a>
-    <a class="tile locked" href="posttest.html">
+    <a class="tile" data-key="posttest" href="posttest.html">
       <span class="n">03</span>
-      <h3>Post-Test <span class="lock">🔒</span></h3>
+      <h3>Post-Test</h3>
       <p>Diisi setelah training selesai, untuk mengukur apa yang bertambah.</p>
-      <span class="go">Dibuka Jumat →</span>
+      <span class="go">Mulai post-test →</span>
     </a>
-    <a class="tile teal" href="../">
+    <a class="tile teal" data-key="materi" href="../">
       <span class="n">04</span>
       <h3>Buka Materi</h3>
       <p>Deck 41 slide: model AI, peta persaingan, dan build day langkah demi langkah.</p>
@@ -50,5 +50,29 @@
 
   <p class="foot">Training by INSYNTIVE · Cipta Harmoni Lestari · 2026</p>
 </div>
+
+<script>
+// ============================================================
+//  JADWAL BUKA — hapus barisnya (atau set null) untuk membuka.
+//  Yang tidak terdaftar di sini = terbuka. "persiapan" selalu terbuka.
+// ============================================================
+(function(){
+  var TERKUNCI = {
+    pretest:  "Kamis",
+    posttest: "Jumat",
+    materi:   "Kamis",
+  };
+  document.querySelectorAll(".tile").forEach(function(t){
+    var hari = TERKUNCI[t.getAttribute("data-key")];
+    if(!hari) return;
+    t.classList.add("locked");
+    t.removeAttribute("href");
+    var h3 = t.querySelector("h3");
+    if(h3 && !h3.querySelector(".lock")) h3.insertAdjacentHTML("beforeend", ' <span class="lock">🔒</span>');
+    var go = t.querySelector(".go");
+    if(go) go.textContent = "Dibuka " + hari;
+  });
+})();
+</script>
 </body>
 </html>
