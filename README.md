@@ -31,7 +31,7 @@ Tiap tahap di Sesi 03 punya diagram beranimasi **INPUT → DIOLAH OLEH → OUTPU
 ## Yang disiapkan peserta sebelum hari H
 
 1. Akun **GitHub** sudah dibuat dan bisa login
-2. Akun **Claude Max 5×** — bukan paket Pro — sudah login di aplikasi desktop
+2. Akun **Claude Max 5×** — bukan paket Pro — bisa login di **Claude web** (claude.ai). Cukup satu akun per kelompok
 3. Laptop dan koneksi internet yang stabil sepanjang hari
 4. **Satu masalah nyata** dari departemen sendiri, ditulis dalam tiga kalimat
 
