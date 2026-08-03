@@ -1,10 +1,12 @@
 // ============================================================
-//  Lapisan koneksi Firestore — dipakai bersama oleh semua form
-//  (persiapan, pretest, posttest). Biasanya tidak perlu diubah.
+//  Lapisan Firebase — dipakai bersama form & dashboard admin.
+//  Firestore untuk data, Authentication untuk login admin.
+//  Biasanya tidak perlu diubah.
 // ============================================================
 import { firebaseConfig } from "./firebase-config.js";
 
 const VERSI = "10.12.5";
+const cdn = (m) => `https://www.gstatic.com/firebasejs/${VERSI}/firebase-${m}.js`;
 
 // true kalau firebase-config.js sudah diisi (bukan placeholder GANTI_*)
 export function konfigurasiTerisi() {
@@ -12,42 +14,70 @@ export function konfigurasiTerisi() {
     !firebaseConfig.projectId.startsWith("GANTI");
 }
 
-// Init ditunda sampai benar-benar dibutuhkan (saat submit pertama).
-// Halaman jadi ringan dan tidak menyentuh internet sampai perlu.
-let dbPromise = null;
-function getDb() {
+// App di-init sekali, ditunda sampai benar-benar dibutuhkan.
+let appPromise = null;
+function getApp() {
   if (!konfigurasiTerisi()) {
-    throw new Error(
-      "Firebase belum dikonfigurasi. Isi form/firebase-config.js dulu."
-    );
+    throw new Error("Firebase belum dikonfigurasi. Isi form/firebase-config.js dulu.");
   }
-  if (!dbPromise) {
-    dbPromise = (async () => {
-      const { initializeApp } = await import(
-        `https://www.gstatic.com/firebasejs/${VERSI}/firebase-app.js`
-      );
-      const { getFirestore } = await import(
-        `https://www.gstatic.com/firebasejs/${VERSI}/firebase-firestore.js`
-      );
-      return getFirestore(initializeApp(firebaseConfig));
+  if (!appPromise) {
+    appPromise = (async () => {
+      const { initializeApp } = await import(cdn("app"));
+      return initializeApp(firebaseConfig);
     })();
   }
-  return dbPromise;
+  return appPromise;
 }
 
-// Simpan satu baris ke sebuah koleksi.
-//   simpanData("peserta",  { nama, divisi, ... })
-//   simpanData("pretest",  { nama, divisi, jawaban })
-//   simpanData("posttest", { nama, divisi, jawaban })
-// Mengembalikan ID dokumen yang baru dibuat.
+async function getDb() {
+  const app = await getApp();
+  const { getFirestore } = await import(cdn("firestore"));
+  return getFirestore(app);
+}
+
+// ---------- Tulis (dipakai form peserta) ----------
 export async function simpanData(namaKoleksi, data) {
   const db = await getDb();
-  const { collection, addDoc, serverTimestamp } = await import(
-    `https://www.gstatic.com/firebasejs/${VERSI}/firebase-firestore.js`
-  );
+  const { collection, addDoc, serverTimestamp } = await import(cdn("firestore"));
   const ref = await addDoc(collection(db, namaKoleksi), {
     ...data,
     dibuat: serverTimestamp(),
   });
   return ref.id;
+}
+
+// ---------- Baca & hapus (dipakai dashboard admin, butuh login) ----------
+export async function ambilSemua(namaKoleksi) {
+  const db = await getDb();
+  const { collection, getDocs } = await import(cdn("firestore"));
+  const snap = await getDocs(collection(db, namaKoleksi));
+  const baris = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+  // urutkan terbaru dulu berdasarkan timestamp 'dibuat'
+  baris.sort((a, b) => (b.dibuat?.seconds || 0) - (a.dibuat?.seconds || 0));
+  return baris;
+}
+
+export async function hapusDok(namaKoleksi, id) {
+  const db = await getDb();
+  const { doc, deleteDoc } = await import(cdn("firestore"));
+  await deleteDoc(doc(db, namaKoleksi, id));
+}
+
+// ---------- Autentikasi admin ----------
+export async function pantauAuth(callback) {
+  const app = await getApp();
+  const { getAuth, onAuthStateChanged } = await import(cdn("auth"));
+  onAuthStateChanged(getAuth(app), callback);
+}
+
+export async function masuk(email, sandi) {
+  const app = await getApp();
+  const { getAuth, signInWithEmailAndPassword } = await import(cdn("auth"));
+  await signInWithEmailAndPassword(getAuth(app), email, sandi);
+}
+
+export async function keluar() {
+  const app = await getApp();
+  const { getAuth, signOut } = await import(cdn("auth"));
+  await signOut(getAuth(app));
 }

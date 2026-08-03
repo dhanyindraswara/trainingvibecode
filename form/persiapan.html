@@ -18,7 +18,7 @@
 
   <p class="eyebrow">Langkah 01</p>
   <h1>Form Persiapan</h1>
-  <p class="lede">Isi data diri, konfirmasi yang sudah kamu siapkan, dan tulis satu masalah nyata dari divisimu. Perkiraan 3 menit.</p>
+  <p class="lede">Kenalan dulu, konfirmasi yang sudah kamu siapkan, lalu ceritakan pekerjaan berulang dan harapanmu dari training. Perkiraan 4 menit.</p>
 
   <div class="card">
     <div id="banner" class="banner warn" style="display:none">
@@ -32,17 +32,16 @@
       </div>
 
       <div class="field">
-        <label for="divisi">Divisi / Departemen <span style="color:var(--danger)">*</span></label>
+        <label for="kelompok">Kelompok <span style="color:var(--danger)">*</span></label>
+        <select id="kelompok" name="kelompok" required>
+          <option value="" disabled selected>Pilih kelompok…</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="divisi">Divisi / Departemen kamu <span style="color:var(--danger)">*</span></label>
         <input type="text" id="divisi" name="divisi" required list="divisi-list" placeholder="mis. Sales, Produksi, Finance">
-        <datalist id="divisi-list">
-          <option value="Sales &amp; Marketing"></option>
-          <option value="Produksi"></option>
-          <option value="Engineering / Drafting"></option>
-          <option value="Finance &amp; Accounting"></option>
-          <option value="HR &amp; GA"></option>
-          <option value="IT"></option>
-          <option value="Manajemen"></option>
-        </datalist>
+        <datalist id="divisi-list"></datalist>
       </div>
 
       <div class="field">
@@ -53,15 +52,33 @@
 
       <div class="q">
         <p class="qt">Yang sudah disiapkan <span class="req">*</span></p>
-        <label class="opt"><input type="checkbox" name="siap" value="Akun GitHub siap"><span>Akun GitHub sudah dibuat dan bisa login</span></label>
-        <label class="opt"><input type="checkbox" name="siap" value="Claude Max login"><span>Akun Claude Max 5× sudah login di aplikasi desktop</span></label>
-        <label class="opt"><input type="checkbox" name="siap" value="Laptop &amp; internet"><span>Laptop dan koneksi internet stabil untuk seharian</span></label>
+        <label class="opt"><input type="checkbox" name="siap" value="Akun GitHub"><span>Akun GitHub sudah dibuat dan bisa login</span></label>
+        <label class="opt"><input type="checkbox" name="siap" value="Claude Max"><span>Akun Claude Max 5× sudah login di aplikasi desktop</span></label>
+        <label class="opt"><input type="checkbox" name="siap" value="Laptop & internet"><span>Laptop dan koneksi internet stabil untuk seharian</span></label>
       </div>
 
       <div class="field">
-        <label for="masalah">Satu masalah nyata dari divisimu <span style="color:var(--danger)">*</span></label>
-        <span class="hint">Tiga kalimat: apa masalahnya, siapa yang terdampak, dan seberapa sering terjadi.</span>
-        <textarea id="masalah" name="masalah" required placeholder="Contoh: Staf penjualan menjawab 12 pertanyaan unit yang sama lewat WhatsApp, puluhan kali sehari, dari daftar harga yang sudah tertinggal beberapa versi."></textarea>
+        <label for="task">Pekerjaan / tugas yang paling berulang <span style="color:var(--danger)">*</span></label>
+        <span class="hint">Tugas repetitif yang paling menyita waktu di divisimu. Contoh: menjawab pertanyaan harga yang sama berulang kali, rekap data manual, bikin laporan rutin.</span>
+        <textarea id="task" name="task" required placeholder="Ceritakan singkat…"></textarea>
+      </div>
+
+      <div class="q">
+        <p class="qt">Proses itu melibatkan divisi apa saja?</p>
+        <span class="hint" style="display:block;margin:-4px 0 10px">Boleh pilih lebih dari satu.</span>
+        <div id="divisi-terlibat"></div>
+      </div>
+
+      <div class="field">
+        <label for="ekspektasi">Ekspektasi kamu dari training ini <span style="color:var(--danger)">*</span></label>
+        <span class="hint">Apa yang kamu harap bisa kamu bawa pulang setelah training?</span>
+        <textarea id="ekspektasi" name="ekspektasi" required placeholder="Harapanmu…"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="menu">Menu / aplikasi yang ingin dibangun kelompokmu</label>
+        <span class="hint">Kalau sudah ada bayangan. Kosongkan kalau belum — nanti dibentuk di hari H.</span>
+        <textarea id="menu" name="menu" placeholder="mis. aplikasi tanya-jawab harga unit untuk tim sales"></textarea>
       </div>
 
       <button type="submit" class="btn" id="submit">Kirim persiapan</button>
@@ -82,27 +99,51 @@
 
 <script type="module">
 import { simpanData, konfigurasiTerisi } from "./firebase.js";
+import { DIVISI, KELOMPOK, KELOMPOK_LABEL } from "./opsi.js";
+
+// isi pilihan kelompok
+const sel = document.getElementById("kelompok");
+KELOMPOK.forEach(k => {
+  const o = document.createElement("option");
+  o.value = k; o.textContent = KELOMPOK_LABEL[k];
+  sel.appendChild(o);
+});
+// isi datalist divisi
+const dl = document.getElementById("divisi-list");
+DIVISI.forEach(d => { const o = document.createElement("option"); o.value = d; dl.appendChild(o); });
+// isi checkbox divisi terlibat
+const dt = document.getElementById("divisi-terlibat");
+DIVISI.forEach(d => {
+  const l = document.createElement("label"); l.className = "opt";
+  l.innerHTML = `<input type="checkbox" name="divisiTerlibat" value="${d}"><span>${d}</span>`;
+  dt.appendChild(l);
+});
 
 if (!konfigurasiTerisi()) document.getElementById("banner").style.display = "flex";
 
 // sorot pilihan yang tercentang
-document.querySelectorAll(".opt input").forEach(cb => {
-  const sync = () => cb.closest(".opt").classList.toggle("checked", cb.checked);
-  cb.addEventListener("change", sync); sync();
+document.addEventListener("change", (e) => {
+  if (e.target.matches(".opt input[type=checkbox]")) {
+    e.target.closest(".opt").classList.toggle("checked", e.target.checked);
+  }
 });
 
 const form = document.getElementById("form");
 const btn = document.getElementById("submit");
+const nilai = (n) => [...form.querySelectorAll(`input[name=${n}]:checked`)].map(c => c.value);
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const siap = [...form.querySelectorAll('input[name=siap]:checked')].map(c => c.value);
   const data = {
     nama: form.nama.value.trim(),
+    kelompok: form.kelompok.value,
     divisi: form.divisi.value.trim(),
     github: form.github.value.trim(),
-    siap,
-    masalah: form.masalah.value.trim(),
+    siap: nilai("siap"),
+    task: form.task.value.trim(),
+    divisiTerlibat: nilai("divisiTerlibat"),
+    ekspektasi: form.ekspektasi.value.trim(),
+    menu: form.menu.value.trim(),
   };
 
   btn.disabled = true; btn.textContent = "Mengirim…";
