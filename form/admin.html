@@ -52,6 +52,13 @@
 
     <div class="panel">
       <div class="panel-head">
+        <div><h2>Analisa Persiapan</h2><p class="cap">Pain point · proses · ide menu — dikelompokkan per kelompok</p></div>
+      </div>
+      <div class="analisa" id="analisa"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
         <div><h2>Data Peserta</h2><p class="cap" id="cap-peserta">Form persiapan</p></div>
         <button class="btn-sm solid" id="csv-peserta">⬇ Download CSV</button>
       </div>
@@ -142,6 +149,8 @@ function render() {
   const pd = hitung(peserta, p => p.divisi || "—");
   bars($("bars-divisi"), Object.entries(pd).map(([l,v]) => ({l,v})).sort((a,b)=>b.v-a.v));
 
+  renderAnalisa();
+
   // tabel peserta
   tabel($("tbl-peserta"),
     ["Nama","Kelompok","Divisi","GitHub","Kesiapan","Task repetitif","Divisi terlibat","Ekspektasi","Menu"],
@@ -168,6 +177,38 @@ function render() {
 function wrapCell(v) {
   const s = String(v ?? "").trim();
   return s ? `<span>${esc(s)}</span>` : `<span class="muted">—</span>`;
+}
+
+// -------- Analisa persiapan: kartu per orang, dikelompokkan per kelompok --------
+function pfield(label, val, cls) {
+  const s = String(val ?? "").trim();
+  return `<div class="pfield ${cls||''}"><span class="plabel">${label}</span>${
+    s ? `<p>${esc(s)}</p>` : `<p class="none">— belum diisi</p>`}</div>`;
+}
+
+function kartuPeserta(p) {
+  const meta = [p.divisi, p.github ? "@"+p.github : ""].filter(Boolean).map(esc).join(" · ");
+  return `<div class="pcard">
+    <div class="pcard-h"><span class="nm">${esc(p.nama)}</span><span class="dv">${meta}</span></div>
+    ${pfield("Pain point / task repetitif", p.task, "pain")}
+    ${pfield("Proses melibatkan divisi", (p.divisiTerlibat||[]).join(", "))}
+    ${pfield("Ekspektasi", p.ekspektasi)}
+    ${pfield("Ide menu / aplikasi", p.menu)}
+  </div>`;
+}
+
+function renderAnalisa() {
+  const grup = {};
+  peserta.forEach(p => { const k = p.kelompok || "—"; (grup[k] = grup[k] || []).push(p); });
+  const urut = [...KELOMPOK, "—"].filter(k => grup[k] && grup[k].length);
+  const html = urut.map(k => {
+    const label = k === "—" ? "Tanpa kelompok" : KELOMPOK_LABEL[k];
+    return `<div class="kel-group">
+      <div class="kel-head"><h3>${esc(label)}</h3><span class="cnt">${grup[k].length} peserta</span></div>
+      <div class="pcards">${grup[k].map(kartuPeserta).join("")}</div>
+    </div>`;
+  }).join("");
+  $("analisa").innerHTML = html || `<p class="empty">Belum ada data persiapan yang masuk.</p>`;
 }
 
 function tabel(el, cols, rows) {
