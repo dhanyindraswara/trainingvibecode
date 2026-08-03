@@ -31,17 +31,21 @@ service cloud.firestore {
         && request.resource.data.nama.size() > 0
         && request.resource.data.nama.size() < 300;
     }
-    function admin() { return request.auth != null; }
-    match /peserta/{id}  { allow create: if valid(); allow read, delete: if admin(); allow update: if false; }
-    match /pretest/{id}  { allow create: if valid(); allow read, delete: if admin(); allow update: if false; }
-    match /posttest/{id} { allow create: if valid(); allow read, delete: if admin(); allow update: if false; }
+    match /peserta/{id}  { allow create: if valid(); allow read: if true; allow update, delete: if false; }
+    match /pretest/{id}  { allow create: if valid(); allow read: if true; allow update, delete: if false; }
+    match /posttest/{id} { allow create: if valid(); allow read: if true; allow update, delete: if false; }
   }
 }
 ```
 
-Artinya: siapa pun boleh **mengirim** (create), tapi hanya **admin yang sudah
-login** (`admin()`) yang bisa membaca/menghapus. Peserta tidak bisa mengintip
-data siapa pun lewat browser — hanya panitia yang punya akun.
+Artinya: siapa pun boleh **mengirim** (create) dan **membaca** (read), tapi tidak
+bisa mengubah/menghapus. Dashboard `admin.html` tidak perlu login.
+
+> ⚠️ **Konsekuensi:** karena `read` terbuka, data peserta (nama, divisi, task,
+> ekspektasi) bisa ditarik siapa saja yang tahu cara lewat API Firebase —
+> bukan hanya lewat link admin. Ini keputusan yang diambil sadar demi
+> kemudahan. Kalau nanti mau dikunci lagi, ganti `allow read: if true` jadi
+> `allow read: if request.auth != null` dan aktifkan Authentication.
 
 ## 4 · Daftarkan web app & ambil config
 
@@ -73,23 +77,10 @@ export const firebaseConfig = {
 Simpan, commit, push. Begitu tayang di Pages, form langsung menyimpan ke
 Firestore. Banner peringatan kuning otomatis hilang setelah config terisi.
 
-## 6 · Aktifkan login admin (untuk dashboard)
+## 6 · Melihat & mengunduh jawaban
 
-Dashboard `admin.html` hanya bisa diakses panitia yang login. Aktifkan
-Authentication satu kali:
-
-1. Firebase Console → **Build → Authentication → Get started**.
-2. Tab **Sign-in method** → pilih **Email/Password** → **Enable** → **Save**.
-3. Tab **Users** → **Add user** → isi email + password tiap anggota tim yang
-   boleh melihat data. (Tidak ada pendaftaran mandiri — akun hanya dibuat di
-   sini, jadi peserta tidak bisa masuk.)
-4. Pastikan Firestore Rules sudah versi terbaru (langkah 3, ada fungsi
-   `admin()`), supaya akun yang login bisa membaca data.
-
-## 7 · Melihat & mengunduh jawaban
-
-- **Dashboard (disarankan):** buka `…/form/admin.html`, login dengan akun di
-  atas. Ada ringkasan per kelompok/divisi, kesiapan, tabel lengkap, dan tombol
+- **Dashboard (disarankan):** buka `…/form/admin.html` — langsung tampil, tanpa
+  login. Ada ringkasan per kelompok/divisi, kesiapan, tabel lengkap, dan tombol
   **Download CSV** untuk `peserta` dan `pretest`.
 - **Mentah:** Firebase Console → **Firestore Database → Data** → koleksi
   `peserta`, `pretest`, `posttest`.

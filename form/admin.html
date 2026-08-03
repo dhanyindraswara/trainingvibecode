@@ -16,29 +16,6 @@
   <!-- ============ MEMUAT ============ -->
   <div id="loading" class="loading">Memuat…</div>
 
-  <!-- ============ LOGIN ============ -->
-  <div id="login" class="login" style="display:none">
-    <div class="top"><span>Cipta Harmoni Lestari</span><span class="ins">INSYNTIVE</span></div>
-    <p class="eyebrow">Area Internal</p>
-    <h1 style="font-size:32px">Dashboard Admin</h1>
-    <p class="lede" style="margin-bottom:20px">Khusus panitia. Masuk dengan akun yang didaftarkan tim.</p>
-    <div class="card">
-      <form id="login-form">
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" required autocomplete="username" placeholder="email@chl.co.id">
-        </div>
-        <div class="field">
-          <label for="sandi">Password</label>
-          <input type="password" id="sandi" required autocomplete="current-password" placeholder="••••••••">
-        </div>
-        <button type="submit" class="btn" id="login-btn">Masuk</button>
-        <p class="err" id="login-err"></p>
-      </form>
-    </div>
-    <p class="foot"><a class="back" href="./">← Kembali ke menu peserta</a></p>
-  </div>
-
   <!-- ============ DASHBOARD ============ -->
   <div id="dash" style="display:none">
     <div class="adminbar">
@@ -47,9 +24,8 @@
         <h1 style="font-size:30px;margin:0">Dashboard</h1>
       </div>
       <div style="display:flex;gap:8px;align-items:center">
-        <span class="who" id="who"></span>
+        <a class="btn-sm" href="./">← Menu peserta</a>
         <button class="btn-sm" id="refresh">↻ Muat ulang</button>
-        <button class="btn-sm" id="logout">Keluar</button>
       </div>
     </div>
 
@@ -95,60 +71,34 @@
 </div>
 
 <script type="module">
-import { pantauAuth, masuk, keluar, ambilSemua, konfigurasiTerisi } from "./firebase.js";
+import { ambilSemua, konfigurasiTerisi } from "./firebase.js";
 import { DIVISI, KELOMPOK, KELOMPOK_LABEL } from "./opsi.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;" }[c]));
-const show = (which) => {
-  $("loading").style.display = which === "loading" ? "block" : "none";
-  $("login").style.display   = which === "login" ? "block" : "none";
-  $("dash").style.display    = which === "dash" ? "block" : "none";
-};
 
 let peserta = [], pretest = [];
 
-// -------- Auth --------
 if (!konfigurasiTerisi()) {
-  show("login");
-  $("login-err").textContent = "Firebase belum dikonfigurasi (firebase-config.js).";
+  $("loading").textContent = "Firebase belum dikonfigurasi (firebase-config.js).";
 } else {
-  show("loading");
-  pantauAuth(async (user) => {
-    if (user) {
-      $("who").textContent = user.email;
-      show("dash");
-      await muat();
-    } else {
-      show("login");
-    }
-  });
+  muat();
 }
 
-$("login-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const btn = $("login-btn");
-  btn.disabled = true; btn.textContent = "Masuk…"; $("login-err").textContent = "";
-  try {
-    await masuk($("email").value.trim(), $("sandi").value);
-  } catch (err) {
-    $("login-err").textContent = "Gagal masuk. Cek email/password. (" + (err.code || err.message) + ")";
-  } finally {
-    btn.disabled = false; btn.textContent = "Masuk";
-  }
-});
-
-$("logout").addEventListener("click", () => keluar());
 $("refresh").addEventListener("click", () => muat());
 
 // -------- Muat & render --------
 async function muat() {
-  $("stats").innerHTML = `<div class="loading" style="grid-column:1/-1">Mengambil data…</div>`;
+  $("loading").style.display = "block";
+  $("loading").textContent = "Memuat…";
+  $("dash").style.display = "none";
   try {
     [peserta, pretest] = await Promise.all([ambilSemua("peserta"), ambilSemua("pretest")]);
     render();
+    $("loading").style.display = "none";
+    $("dash").style.display = "block";
   } catch (err) {
-    $("stats").innerHTML = `<div class="empty" style="grid-column:1/-1">Gagal memuat: ${esc(err.message)}</div>`;
+    $("loading").textContent = "Gagal memuat: " + err.message;
   }
 }
 
@@ -163,6 +113,8 @@ function bars(el, rows) {
   ).join("") || `<p class="empty">Belum ada data.</p>`;
 }
 
+const kel = (k) => k ? (KELOMPOK_LABEL[k]?.replace(/ \(.*/, "") || k) : "—";
+
 function render() {
   const total = peserta.length;
   const lengkap = peserta.filter(p => (p.siap||[]).length >= 3).length;
@@ -176,7 +128,7 @@ function render() {
 
   // per kelompok
   const pk = hitung(peserta, p => p.kelompok);
-  bars($("bars-kelompok"), KELOMPOK.map(k => ({ l: KELOMPOK_LABEL[k].replace(/ \(.*/,""), v: pk[k]||0 })));
+  bars($("bars-kelompok"), KELOMPOK.map(k => ({ l: KELOMPOK_LABEL[k].replace(/ \(.*/, ""), v: pk[k]||0 })));
 
   // kesiapan
   const cek = (v) => peserta.filter(p => (p.siap||[]).includes(v)).length;
@@ -191,7 +143,6 @@ function render() {
   bars($("bars-divisi"), Object.entries(pd).map(([l,v]) => ({l,v})).sort((a,b)=>b.v-a.v));
 
   // tabel peserta
-  const kel = (k) => k ? (KELOMPOK_LABEL[k]?.replace(/ \(.*/,"") || k) : "—";
   tabel($("tbl-peserta"),
     ["Nama","Kelompok","Divisi","GitHub","Kesiapan","Task repetitif","Divisi terlibat","Ekspektasi","Menu"],
     peserta.map(p => [
@@ -216,7 +167,7 @@ function render() {
 
 function wrapCell(v) {
   const s = String(v ?? "").trim();
-  return s ? `<span class="wrapv">${esc(s)}</span>` : `<span class="muted">—</span>`;
+  return s ? `<span>${esc(s)}</span>` : `<span class="muted">—</span>`;
 }
 
 function tabel(el, cols, rows) {
@@ -236,7 +187,7 @@ function unduhCSV(nama, cols, rows) {
   a.href = URL.createObjectURL(blob); a.download = nama; a.click();
   URL.revokeObjectURL(a.href);
 }
-const kelPlain = (k) => k ? (KELOMPOK_LABEL[k]?.replace(/ \(.*/,"") || k) : "";
+const kelPlain = (k) => k ? (KELOMPOK_LABEL[k]?.replace(/ \(.*/, "") || k) : "";
 
 $("csv-peserta").addEventListener("click", () => {
   unduhCSV("peserta.csv",
