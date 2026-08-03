@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Form Persiapan — Training CHL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="./">← Menu</a>
+    <span class="ins">INSYNTIVE</span>
+  </div>
+
+  <p class="eyebrow">Langkah 01</p>
+  <h1>Form Persiapan</h1>
+  <p class="lede">Isi data diri, konfirmasi yang sudah kamu siapkan, dan tulis satu masalah nyata dari divisimu. Perkiraan 3 menit.</p>
+
+  <div class="card">
+    <div id="banner" class="banner warn" style="display:none">
+      <span>⚠️</span><span><b>Firebase belum dikonfigurasi.</b> Jawaban belum akan tersimpan sampai <code>form/firebase-config.js</code> diisi.</span>
+    </div>
+
+    <form id="form">
+      <div class="field">
+        <label for="nama">Nama lengkap <span style="color:var(--danger)">*</span></label>
+        <input type="text" id="nama" name="nama" required autocomplete="name" placeholder="Nama kamu">
+      </div>
+
+      <div class="field">
+        <label for="divisi">Divisi / Departemen <span style="color:var(--danger)">*</span></label>
+        <input type="text" id="divisi" name="divisi" required list="divisi-list" placeholder="mis. Sales, Produksi, Finance">
+        <datalist id="divisi-list">
+          <option value="Sales &amp; Marketing"></option>
+          <option value="Produksi"></option>
+          <option value="Engineering / Drafting"></option>
+          <option value="Finance &amp; Accounting"></option>
+          <option value="HR &amp; GA"></option>
+          <option value="IT"></option>
+          <option value="Manajemen"></option>
+        </datalist>
+      </div>
+
+      <div class="field">
+        <label for="github">Username GitHub</label>
+        <span class="hint">Untuk didaftarkan ke repo tim. Kosongkan kalau belum punya.</span>
+        <input type="text" id="github" name="github" autocomplete="off" placeholder="mis. dhanyindraswara">
+      </div>
+
+      <div class="q">
+        <p class="qt">Yang sudah disiapkan <span class="req">*</span></p>
+        <label class="opt"><input type="checkbox" name="siap" value="Akun GitHub siap"><span>Akun GitHub sudah dibuat dan bisa login</span></label>
+        <label class="opt"><input type="checkbox" name="siap" value="Claude Max login"><span>Akun Claude Max 5× sudah login di aplikasi desktop</span></label>
+        <label class="opt"><input type="checkbox" name="siap" value="Laptop &amp; internet"><span>Laptop dan koneksi internet stabil untuk seharian</span></label>
+      </div>
+
+      <div class="field">
+        <label for="masalah">Satu masalah nyata dari divisimu <span style="color:var(--danger)">*</span></label>
+        <span class="hint">Tiga kalimat: apa masalahnya, siapa yang terdampak, dan seberapa sering terjadi.</span>
+        <textarea id="masalah" name="masalah" required placeholder="Contoh: Staf penjualan menjawab 12 pertanyaan unit yang sama lewat WhatsApp, puluhan kali sehari, dari daftar harga yang sudah tertinggal beberapa versi."></textarea>
+      </div>
+
+      <button type="submit" class="btn" id="submit">Kirim persiapan</button>
+      <p class="note">Data hanya dipakai untuk menyiapkan training. Tidak dibagikan ke luar.</p>
+    </form>
+
+    <div class="done" id="done">
+      <div class="mark">✓</div>
+      <h2>Terkirim. Terima kasih!</h2>
+      <p>Sampai jumpa besok. Kalau ada waktu, lanjut isi pre-test.</p>
+      <a href="pretest.html">Lanjut ke Pre-Test →</a><br><br>
+      <a href="./">← Kembali ke menu</a>
+    </div>
+  </div>
+
+  <p class="foot">Training by INSYNTIVE · Cipta Harmoni Lestari · 2026</p>
+</div>
+
+<script type="module">
+import { simpanData, konfigurasiTerisi } from "./firebase.js";
+
+if (!konfigurasiTerisi()) document.getElementById("banner").style.display = "flex";
+
+// sorot pilihan yang tercentang
+document.querySelectorAll(".opt input").forEach(cb => {
+  const sync = () => cb.closest(".opt").classList.toggle("checked", cb.checked);
+  cb.addEventListener("change", sync); sync();
+});
+
+const form = document.getElementById("form");
+const btn = document.getElementById("submit");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const siap = [...form.querySelectorAll('input[name=siap]:checked')].map(c => c.value);
+  const data = {
+    nama: form.nama.value.trim(),
+    divisi: form.divisi.value.trim(),
+    github: form.github.value.trim(),
+    siap,
+    masalah: form.masalah.value.trim(),
+  };
+
+  btn.disabled = true; btn.textContent = "Mengirim…";
+  try {
+    await simpanData("peserta", data);
+    form.style.display = "none";
+    document.getElementById("done").style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } catch (err) {
+    btn.disabled = false; btn.textContent = "Kirim persiapan";
+    alert("Gagal mengirim: " + err.message + "\n\nCek koneksi internet, lalu coba lagi.");
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-Test — Training CHL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="back" href="./">← Menu</a>
+    <span class="ins">INSYNTIVE</span>
+  </div>
+
+  <p class="eyebrow">Langkah 02</p>
+  <h1>Pre-Test</h1>
+  <p class="lede">Sebelum training dimulai. Tidak dinilai benar-salah — ini cuma potret titik awal. Jawab sejujurnya.</p>
+
+  <div class="card">
+    <div id="banner" class="banner warn" style="display:none">
+      <span>⚠️</span><span><b>Firebase belum dikonfigurasi.</b> Jawaban belum akan tersimpan sampai <code>form/firebase-config.js</code> diisi.</span>
+    </div>
+
+    <form id="form">
+      <div class="field">
+        <label for="nama">Nama lengkap <span style="color:var(--danger)">*</span></label>
+        <input type="text" id="nama" name="nama" required autocomplete="name" placeholder="Nama kamu">
+      </div>
+      <div class="field">
+        <label for="divisi">Divisi / Departemen <span style="color:var(--danger)">*</span></label>
+        <input type="text" id="divisi" name="divisi" required placeholder="mis. Sales, Produksi, Finance">
+      </div>
+
+      <div id="soal"></div>
+
+      <button type="submit" class="btn" id="submit">Kirim pre-test</button>
+      <p class="note">Untuk edit pertanyaan: ubah array SOAL di dalam file ini.</p>
+    </form>
+
+    <div class="done" id="done">
+      <div class="mark">✓</div>
+      <h2>Pre-test terkirim!</h2>
+      <p>Sampai jumpa di training. Post-test menyusul setelah sesi selesai.</p>
+      <a href="./">← Kembali ke menu</a>
+    </div>
+  </div>
+
+  <p class="foot">Training by INSYNTIVE · Cipta Harmoni Lestari · 2026</p>
+</div>
+
+<script type="module">
+import { simpanData, konfigurasiTerisi } from "./firebase.js";
+
+// ============================================================
+//  EDIT DI SINI — daftar pertanyaan pre-test.
+//  Tipe "pilihan" = satu jawaban. Tipe "isian" = teks bebas.
+// ============================================================
+const SOAL = [
+  { id:"q1", tipe:"pilihan", teks:"Seberapa sering kamu memakai AI (ChatGPT, Claude, Gemini) untuk kerja?",
+    opsi:["Belum pernah","Sesekali","Hampir tiap hari"] },
+  { id:"q2", tipe:"pilihan", teks:"Pengalaman coding / membuat aplikasi?",
+    opsi:["Sama sekali belum","Sedikit / pernah coba","Cukup terbiasa"] },
+  { id:"q3", tipe:"pilihan", teks:"Sudah pernah pakai GitHub?",
+    opsi:["Belum tahu itu apa","Pernah dengar, belum pakai","Sudah pernah pakai"] },
+  { id:"q4", tipe:"pilihan", teks:"Paham istilah 'database' dan 'menyimpan file di storage'?",
+    opsi:["Belum","Sedikit","Paham"] },
+  { id:"q5", tipe:"isian", teks:"Satu hal yang paling kamu harap bisa setelah training ini." },
+];
+// ============================================================
+
+const wrap = document.getElementById("soal");
+SOAL.forEach((s, i) => {
+  const q = document.createElement("div"); q.className = "q";
+  const label = `${i+1}. ${s.teks}`;
+  if (s.tipe === "isian") {
+    q.innerHTML = `<p class="qt">${label} <span class="req">*</span></p>
+      <textarea name="${s.id}" required placeholder="Tulis jawabanmu…"></textarea>`;
+  } else {
+    const opts = s.opsi.map(o =>
+      `<label class="opt"><input type="radio" name="${s.id}" value="${o}" required><span>${o}</span></label>`
+    ).join("");
+    q.innerHTML = `<p class="qt">${label} <span class="req">*</span></p>${opts}`;
+  }
+  wrap.appendChild(q);
+});
+
+if (!konfigurasiTerisi()) document.getElementById("banner").style.display = "flex";
+
+document.addEventListener("change", (e) => {
+  if (e.target.matches(".opt input[type=radio]")) {
+    e.target.closest(".q").querySelectorAll(".opt").forEach(o => o.classList.remove("checked"));
+    e.target.closest(".opt").classList.add("checked");
+  }
+});
+
+const form = document.getElementById("form");
+const btn = document.getElementById("submit");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const jawaban = {};
+  SOAL.forEach(s => {
+    const el = form.elements[s.id];
+    jawaban[s.id] = el.value;
+  });
+  const data = { nama: form.nama.value.trim(), divisi: form.divisi.value.trim(), jawaban };
+
+  btn.disabled = true; btn.textContent = "Mengirim…";
+  try {
+    await simpanData("pretest", data);
+    form.style.display = "none";
+    document.getElementById("done").style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } catch (err) {
+    btn.disabled = false; btn.textContent = "Kirim pre-test";
+    alert("Gagal mengirim: " + err.message + "\n\nCek koneksi internet, lalu coba lagi.");
+  }
+});
+</script>
+</body>
+</html>

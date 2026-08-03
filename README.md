@@ -76,6 +76,17 @@ Konvensi nama: database/user MySQL = `chl_kelompok_[n]`, bucket/access key MinIO
 
 Kalau gagal connect: tempel pesan errornya utuh ke Claude Code, dan cek ulang nomor kelompok serta port-nya.
 
+## Form persiapan & tes peserta
+
+Hub satu-pintu untuk peserta ada di folder [`form/`](form/) — tayang di
+`https://dhanyindraswara.github.io/trainingvibecode/form/`. Empat tombol: **Form
+Persiapan · Pre-Test · Post-Test · Buka Materi**. Jawaban tersimpan ke Cloud
+Firestore (situs statik, tanpa server).
+
+Sebelum dipakai, sambungkan Firebase satu kali — panduannya di
+[`form/SETUP-FIREBASE.md`](form/SETUP-FIREBASE.md). Sebelum config diisi, form
+menampilkan banner peringatan dan belum menyimpan apa pun.
+
 ## Yang dibangun hari itu
 
 - Web App
