@@ -11,7 +11,7 @@ export const DIVISI = [
   "Manajemen",
 ];
 
-export const KELOMPOK = ["1", "2", "3", "4", "5", "6"];
+export const KELOMPOK = ["1", "2", "3", "4", "5"];
 
 export const KELOMPOK_LABEL = {
   "1": "Kelompok 1 (Satu)",
@@ -19,5 +19,4 @@ export const KELOMPOK_LABEL = {
   "3": "Kelompok 3 (Tiga)",
   "4": "Kelompok 4 (Empat)",
   "5": "Kelompok 5 (Lima)",
-  "6": "Kelompok 6 (Enam)",
 };
