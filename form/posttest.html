@@ -20,7 +20,18 @@
   <h1>Post-Test</h1>
   <p class="lede">Diisi setelah training selesai. Untuk mengukur apa yang bertambah dan mengumpulkan masukan.</p>
 
-  <div class="card">
+  <!-- Tampilan saat terkunci -->
+  <div class="card" id="terkunci-box" style="display:none">
+    <div class="done" style="display:block">
+      <div class="mark" style="background:rgba(201,146,43,.1);border-color:var(--gold);color:var(--gold-ink)">🔒</div>
+      <h2>Belum dibuka</h2>
+      <p>Post-test dibuka setelah training selesai — rencananya <strong>Jumat</strong>.<br>Sampai jumpa di sesi!</p>
+      <a href="./">← Kembali ke menu</a>
+    </div>
+  </div>
+
+  <!-- Tampilan saat terbuka -->
+  <div class="card" id="form-box" style="display:none">
     <div id="banner" class="banner warn" style="display:none">
       <span>⚠️</span><span><b>Firebase belum dikonfigurasi.</b> Jawaban belum akan tersimpan sampai <code>form/firebase-config.js</code> diisi.</span>
     </div>
@@ -31,8 +42,15 @@
         <input type="text" id="nama" name="nama" required autocomplete="name" placeholder="Nama kamu">
       </div>
       <div class="field">
+        <label for="kelompok">Kelompok <span style="color:var(--danger)">*</span></label>
+        <select id="kelompok" name="kelompok" required>
+          <option value="" disabled selected>Pilih kelompok…</option>
+        </select>
+      </div>
+      <div class="field">
         <label for="divisi">Divisi / Departemen <span style="color:var(--danger)">*</span></label>
-        <input type="text" id="divisi" name="divisi" required placeholder="mis. Sales, Produksi, Finance">
+        <input type="text" id="divisi" name="divisi" required list="divisi-list" placeholder="mis. Sales, Produksi, Finance">
+        <datalist id="divisi-list"></datalist>
       </div>
 
       <div id="soal"></div>
@@ -54,69 +72,91 @@
 
 <script type="module">
 import { simpanData, konfigurasiTerisi } from "./firebase.js";
+import { DIVISI, KELOMPOK, KELOMPOK_LABEL } from "./opsi.js";
 
 // ============================================================
-//  EDIT DI SINI — daftar pertanyaan post-test.
-//  Tipe "pilihan" = satu jawaban. Tipe "isian" = teks bebas.
+//  BUKA / KUNCI POST-TEST
+//  Ganti ke false pada hari Jumat untuk membuka post-test.
 // ============================================================
-const SOAL = [
-  { id:"q1", tipe:"pilihan", teks:"Setelah training, seberapa yakin kamu bisa membangun aplikasi sederhana dengan Claude?",
-    opsi:["Belum yakin","Cukup yakin","Yakin"] },
-  { id:"q2", tipe:"pilihan", teks:"Paham alur PRD → Design → Code → GitHub → Database → Integrasi AI?",
-    opsi:["Belum","Sebagian","Paham utuh"] },
-  { id:"q3", tipe:"pilihan", teks:"Apakah kamu berhasil menyambungkan aplikasi ke database & storage?",
-    opsi:["Belum","Sebagian jalan","Berhasil"] },
-  { id:"q4", tipe:"isian", teks:"Bagian mana yang paling bermanfaat dari training ini?" },
-  { id:"q5", tipe:"isian", teks:"Apa yang masih membingungkan atau perlu diperdalam?" },
-  { id:"q6", tipe:"pilihan", teks:"Seberapa besar kemungkinan kamu memakai ini di pekerjaan nyata?",
-    opsi:["Kecil","Mungkin","Besar"] },
-];
+const TERKUNCI = true;
 // ============================================================
 
-const wrap = document.getElementById("soal");
-SOAL.forEach((s, i) => {
-  const q = document.createElement("div"); q.className = "q";
-  const label = `${i+1}. ${s.teks}`;
-  if (s.tipe === "isian") {
-    q.innerHTML = `<p class="qt">${label} <span class="req">*</span></p>
-      <textarea name="${s.id}" required placeholder="Tulis jawabanmu…"></textarea>`;
-  } else {
-    const opts = s.opsi.map(o =>
-      `<label class="opt"><input type="radio" name="${s.id}" value="${o}" required><span>${o}</span></label>`
-    ).join("");
-    q.innerHTML = `<p class="qt">${label} <span class="req">*</span></p>${opts}`;
-  }
-  wrap.appendChild(q);
-});
+if (TERKUNCI) {
+  document.getElementById("terkunci-box").style.display = "block";
+} else {
+  document.getElementById("form-box").style.display = "block";
+  mulai();
+}
 
-if (!konfigurasiTerisi()) document.getElementById("banner").style.display = "flex";
+function mulai() {
+  // ============================================================
+  //  EDIT DI SINI — daftar pertanyaan post-test.
+  //  Tipe "pilihan" = satu jawaban. Tipe "isian" = teks bebas.
+  // ============================================================
+  const SOAL = [
+    { id:"q1", tipe:"pilihan", teks:"Setelah training, seberapa yakin kamu bisa membangun aplikasi sederhana dengan Claude?",
+      opsi:["Belum yakin","Cukup yakin","Yakin"] },
+    { id:"q2", tipe:"pilihan", teks:"Paham alur PRD → Design → Code → GitHub → Database → Integrasi AI?",
+      opsi:["Belum","Sebagian","Paham utuh"] },
+    { id:"q3", tipe:"pilihan", teks:"Apakah kelompokmu berhasil menyambungkan aplikasi ke database & storage?",
+      opsi:["Belum","Sebagian jalan","Berhasil"] },
+    { id:"q4", tipe:"isian", teks:"Bagian mana yang paling bermanfaat dari training ini?" },
+    { id:"q5", tipe:"isian", teks:"Apa yang masih membingungkan atau perlu diperdalam?" },
+    { id:"q6", tipe:"pilihan", teks:"Seberapa besar kemungkinan kamu memakai ini di pekerjaan nyata?",
+      opsi:["Kecil","Mungkin","Besar"] },
+  ];
+  // ============================================================
 
-document.addEventListener("change", (e) => {
-  if (e.target.matches(".opt input[type=radio]")) {
-    e.target.closest(".q").querySelectorAll(".opt").forEach(o => o.classList.remove("checked"));
-    e.target.closest(".opt").classList.add("checked");
-  }
-});
+  const form = document.getElementById("form");
+  const btn = document.getElementById("submit");
 
-const form = document.getElementById("form");
-const btn = document.getElementById("submit");
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const jawaban = {};
-  SOAL.forEach(s => { jawaban[s.id] = form.elements[s.id].value; });
-  const data = { nama: form.nama.value.trim(), divisi: form.divisi.value.trim(), jawaban };
+  // isi kelompok & divisi
+  const sel = document.getElementById("kelompok");
+  KELOMPOK.forEach(k => { const o = document.createElement("option"); o.value = k; o.textContent = KELOMPOK_LABEL[k]; sel.appendChild(o); });
+  const dl = document.getElementById("divisi-list");
+  DIVISI.forEach(d => { const o = document.createElement("option"); o.value = d; dl.appendChild(o); });
 
-  btn.disabled = true; btn.textContent = "Mengirim…";
-  try {
-    await simpanData("posttest", data);
-    form.style.display = "none";
-    document.getElementById("done").style.display = "block";
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  } catch (err) {
-    btn.disabled = false; btn.textContent = "Kirim post-test";
-    alert("Gagal mengirim: " + err.message + "\n\nCek koneksi internet, lalu coba lagi.");
-  }
-});
+  // render soal
+  const wrap = document.getElementById("soal");
+  SOAL.forEach((s, i) => {
+    const q = document.createElement("div"); q.className = "q";
+    const label = `${i+1}. ${s.teks}`;
+    if (s.tipe === "isian") {
+      q.innerHTML = `<p class="qt">${label} <span class="req">*</span></p><textarea name="${s.id}" required placeholder="Tulis jawabanmu…"></textarea>`;
+    } else {
+      const opts = s.opsi.map(o => `<label class="opt"><input type="radio" name="${s.id}" value="${o}" required><span>${o}</span></label>`).join("");
+      q.innerHTML = `<p class="qt">${label} <span class="req">*</span></p>${opts}`;
+    }
+    wrap.appendChild(q);
+  });
+
+  if (!konfigurasiTerisi()) document.getElementById("banner").style.display = "flex";
+
+  document.addEventListener("change", (e) => {
+    if (e.target.matches(".opt input[type=radio]")) {
+      e.target.closest(".q").querySelectorAll(".opt").forEach(o => o.classList.remove("checked"));
+      e.target.closest(".opt").classList.add("checked");
+    }
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const jawaban = {};
+    SOAL.forEach(s => { jawaban[s.id] = form.elements[s.id].value; });
+    const data = { nama: form.nama.value.trim(), kelompok: form.kelompok.value, divisi: form.divisi.value.trim(), jawaban };
+
+    btn.disabled = true; btn.textContent = "Mengirim…";
+    try {
+      await simpanData("posttest", data);
+      form.style.display = "none";
+      document.getElementById("done").style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (err) {
+      btn.disabled = false; btn.textContent = "Kirim post-test";
+      alert("Gagal mengirim: " + err.message + "\n\nCek koneksi internet, lalu coba lagi.");
+    }
+  });
+}
 </script>
 </body>
 </html>

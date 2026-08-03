@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Dashboard Admin — Training CHL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap admin-wrap">
+
+  <!-- ============ MEMUAT ============ -->
+  <div id="loading" class="loading">Memuat…</div>
+
+  <!-- ============ LOGIN ============ -->
+  <div id="login" class="login" style="display:none">
+    <div class="top"><span>Cipta Harmoni Lestari</span><span class="ins">INSYNTIVE</span></div>
+    <p class="eyebrow">Area Internal</p>
+    <h1 style="font-size:32px">Dashboard Admin</h1>
+    <p class="lede" style="margin-bottom:20px">Khusus panitia. Masuk dengan akun yang didaftarkan tim.</p>
+    <div class="card">
+      <form id="login-form">
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" required autocomplete="username" placeholder="email@chl.co.id">
+        </div>
+        <div class="field">
+          <label for="sandi">Password</label>
+          <input type="password" id="sandi" required autocomplete="current-password" placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn" id="login-btn">Masuk</button>
+        <p class="err" id="login-err"></p>
+      </form>
+    </div>
+    <p class="foot"><a class="back" href="./">← Kembali ke menu peserta</a></p>
+  </div>
+
+  <!-- ============ DASHBOARD ============ -->
+  <div id="dash" style="display:none">
+    <div class="adminbar">
+      <div>
+        <p class="eyebrow" style="margin:0 0 4px">Area Internal · Persiapan Training</p>
+        <h1 style="font-size:30px;margin:0">Dashboard</h1>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span class="who" id="who"></span>
+        <button class="btn-sm" id="refresh">↻ Muat ulang</button>
+        <button class="btn-sm" id="logout">Keluar</button>
+      </div>
+    </div>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="grid2">
+      <div class="panel">
+        <h2>Peserta per Kelompok</h2>
+        <p class="cap">Distribusi 6 kelompok</p>
+        <div class="bars" id="bars-kelompok"></div>
+      </div>
+      <div class="panel">
+        <h2>Kesiapan</h2>
+        <p class="cap">Sudah dikonfirmasi peserta</p>
+        <div class="bars" id="bars-siap"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Peserta per Divisi</h2>
+      <p class="cap">Divisi asal peserta</p>
+      <div class="bars" id="bars-divisi"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div><h2>Data Peserta</h2><p class="cap" id="cap-peserta">Form persiapan</p></div>
+        <button class="btn-sm solid" id="csv-peserta">⬇ Download CSV</button>
+      </div>
+      <div class="tablewrap"><table class="data" id="tbl-peserta"></table></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div><h2>Data Pre-Test</h2><p class="cap" id="cap-pretest">Jawaban pre-test</p></div>
+        <button class="btn-sm solid" id="csv-pretest">⬇ Download CSV</button>
+      </div>
+      <div class="tablewrap"><table class="data" id="tbl-pretest"></table></div>
+    </div>
+
+    <p class="foot">Training by INSYNTIVE · Cipta Harmoni Lestari · 2026</p>
+  </div>
+</div>
+
+<script type="module">
+import { pantauAuth, masuk, keluar, ambilSemua, konfigurasiTerisi } from "./firebase.js";
+import { DIVISI, KELOMPOK, KELOMPOK_LABEL } from "./opsi.js";
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;" }[c]));
+const show = (which) => {
+  $("loading").style.display = which === "loading" ? "block" : "none";
+  $("login").style.display   = which === "login" ? "block" : "none";
+  $("dash").style.display    = which === "dash" ? "block" : "none";
+};
+
+let peserta = [], pretest = [];
+
+// -------- Auth --------
+if (!konfigurasiTerisi()) {
+  show("login");
+  $("login-err").textContent = "Firebase belum dikonfigurasi (firebase-config.js).";
+} else {
+  show("loading");
+  pantauAuth(async (user) => {
+    if (user) {
+      $("who").textContent = user.email;
+      show("dash");
+      await muat();
+    } else {
+      show("login");
+    }
+  });
+}
+
+$("login-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const btn = $("login-btn");
+  btn.disabled = true; btn.textContent = "Masuk…"; $("login-err").textContent = "";
+  try {
+    await masuk($("email").value.trim(), $("sandi").value);
+  } catch (err) {
+    $("login-err").textContent = "Gagal masuk. Cek email/password. (" + (err.code || err.message) + ")";
+  } finally {
+    btn.disabled = false; btn.textContent = "Masuk";
+  }
+});
+
+$("logout").addEventListener("click", () => keluar());
+$("refresh").addEventListener("click", () => muat());
+
+// -------- Muat & render --------
+async function muat() {
+  $("stats").innerHTML = `<div class="loading" style="grid-column:1/-1">Mengambil data…</div>`;
+  try {
+    [peserta, pretest] = await Promise.all([ambilSemua("peserta"), ambilSemua("pretest")]);
+    render();
+  } catch (err) {
+    $("stats").innerHTML = `<div class="empty" style="grid-column:1/-1">Gagal memuat: ${esc(err.message)}</div>`;
+  }
+}
+
+function hitung(arr, fn) { const m = {}; arr.forEach(x => { const k = fn(x); if (k==null) return; m[k]=(m[k]||0)+1; }); return m; }
+
+function bars(el, rows) {
+  const max = Math.max(1, ...rows.map(r => r.v));
+  el.innerHTML = rows.map(r =>
+    `<div class="bar-row"><span class="bl">${esc(r.l)}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${(r.v/max*100)}%"></div></div>
+      <span class="bv">${r.v}</span></div>`
+  ).join("") || `<p class="empty">Belum ada data.</p>`;
+}
+
+function render() {
+  const total = peserta.length;
+  const lengkap = peserta.filter(p => (p.siap||[]).length >= 3).length;
+  const kelompokAktif = new Set(peserta.map(p => p.kelompok).filter(Boolean)).size;
+
+  $("stats").innerHTML = `
+    <div class="stat-card"><div class="num">${total}</div><div class="lbl">Peserta</div></div>
+    <div class="stat-card teal"><div class="num">${pretest.length}</div><div class="lbl">Pre-Test masuk</div></div>
+    <div class="stat-card"><div class="num">${lengkap}</div><div class="lbl">Kesiapan lengkap</div></div>
+    <div class="stat-card"><div class="num">${kelompokAktif}<span style="font-size:20px;color:var(--muted)">/6</span></div><div class="lbl">Kelompok terisi</div></div>`;
+
+  // per kelompok
+  const pk = hitung(peserta, p => p.kelompok);
+  bars($("bars-kelompok"), KELOMPOK.map(k => ({ l: KELOMPOK_LABEL[k].replace(/ \(.*/,""), v: pk[k]||0 })));
+
+  // kesiapan
+  const cek = (v) => peserta.filter(p => (p.siap||[]).includes(v)).length;
+  bars($("bars-siap"), [
+    { l:"Akun GitHub", v:cek("Akun GitHub") },
+    { l:"Claude Max",  v:cek("Claude Max") },
+    { l:"Laptop & internet", v:cek("Laptop & internet") },
+  ]);
+
+  // per divisi (dinamis dari data)
+  const pd = hitung(peserta, p => p.divisi || "—");
+  bars($("bars-divisi"), Object.entries(pd).map(([l,v]) => ({l,v})).sort((a,b)=>b.v-a.v));
+
+  // tabel peserta
+  const kel = (k) => k ? (KELOMPOK_LABEL[k]?.replace(/ \(.*/,"") || k) : "—";
+  tabel($("tbl-peserta"),
+    ["Nama","Kelompok","Divisi","GitHub","Kesiapan","Task repetitif","Divisi terlibat","Ekspektasi","Menu"],
+    peserta.map(p => [
+      esc(p.nama), `<span class="pill">${esc(kel(p.kelompok))}</span>`, esc(p.divisi),
+      p.github ? esc(p.github) : `<span class="muted">—</span>`,
+      `${(p.siap||[]).length}/3`,
+      wrapCell(p.task), wrapCell((p.divisiTerlibat||[]).join(", ")),
+      wrapCell(p.ekspektasi), wrapCell(p.menu),
+    ]));
+  $("cap-peserta").textContent = `Form persiapan · ${total} baris`;
+
+  // tabel pretest — kolom pertanyaan dinamis
+  const qks = [...new Set(pretest.flatMap(p => Object.keys(p.jawaban||{})))].sort();
+  tabel($("tbl-pretest"),
+    ["Nama","Kelompok","Divisi", ...qks.map(q => q.toUpperCase())],
+    pretest.map(p => [
+      esc(p.nama), `<span class="pill">${esc(kel(p.kelompok))}</span>`, esc(p.divisi),
+      ...qks.map(q => wrapCell(p.jawaban?.[q])),
+    ]));
+  $("cap-pretest").textContent = `Jawaban pre-test · ${pretest.length} baris`;
+}
+
+function wrapCell(v) {
+  const s = String(v ?? "").trim();
+  return s ? `<span class="wrapv">${esc(s)}</span>` : `<span class="muted">—</span>`;
+}
+
+function tabel(el, cols, rows) {
+  const head = `<thead><tr>${cols.map(c => `<th>${esc(c)}</th>`).join("")}</tr></thead>`;
+  const body = rows.length
+    ? `<tbody>${rows.map(r => `<tr>${r.map((c,i) => `<td${i>=5?' class="wrap"':''}>${c}</td>`).join("")}</tr>`).join("")}</tbody>`
+    : `<tbody><tr><td colspan="${cols.length}" class="empty">Belum ada data yang masuk.</td></tr></tbody>`;
+  el.innerHTML = head + body;
+}
+
+// -------- CSV --------
+function unduhCSV(nama, cols, rows) {
+  const q = (v) => `"${String(v ?? "").replace(/"/g,'""')}"`;
+  const csv = [cols.map(q).join(","), ...rows.map(r => r.map(q).join(","))].join("\r\n");
+  const blob = new Blob(["﻿"+csv], { type:"text/csv;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = nama; a.click();
+  URL.revokeObjectURL(a.href);
+}
+const kelPlain = (k) => k ? (KELOMPOK_LABEL[k]?.replace(/ \(.*/,"") || k) : "";
+
+$("csv-peserta").addEventListener("click", () => {
+  unduhCSV("peserta.csv",
+    ["Nama","Kelompok","Divisi","GitHub","Kesiapan","Task repetitif","Divisi terlibat","Ekspektasi","Menu"],
+    peserta.map(p => [p.nama, kelPlain(p.kelompok), p.divisi, p.github, (p.siap||[]).join("; "),
+      p.task, (p.divisiTerlibat||[]).join("; "), p.ekspektasi, p.menu]));
+});
+$("csv-pretest").addEventListener("click", () => {
+  const qks = [...new Set(pretest.flatMap(p => Object.keys(p.jawaban||{})))].sort();
+  unduhCSV("pretest.csv",
+    ["Nama","Kelompok","Divisi", ...qks],
+    pretest.map(p => [p.nama, kelPlain(p.kelompok), p.divisi, ...qks.map(q => p.jawaban?.[q] ?? "")]));
+});
+</script>
+</body>
+</html>

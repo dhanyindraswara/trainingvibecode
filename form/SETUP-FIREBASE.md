@@ -31,16 +31,17 @@ service cloud.firestore {
         && request.resource.data.nama.size() > 0
         && request.resource.data.nama.size() < 300;
     }
-    match /peserta/{id}  { allow create: if valid(); allow read, update, delete: if false; }
-    match /pretest/{id}  { allow create: if valid(); allow read, update, delete: if false; }
-    match /posttest/{id} { allow create: if valid(); allow read, update, delete: if false; }
+    function admin() { return request.auth != null; }
+    match /peserta/{id}  { allow create: if valid(); allow read, delete: if admin(); allow update: if false; }
+    match /pretest/{id}  { allow create: if valid(); allow read, delete: if admin(); allow update: if false; }
+    match /posttest/{id} { allow create: if valid(); allow read, delete: if admin(); allow update: if false; }
   }
 }
 ```
 
-Artinya: siapa pun boleh **mengirim** (create), tapi **tidak ada** yang bisa
-membaca/mengubah/menghapus dari sisi web. Data peserta tidak bisa diintip orang
-lain lewat browser — kamu tetap bisa melihat semuanya lewat Firebase Console.
+Artinya: siapa pun boleh **mengirim** (create), tapi hanya **admin yang sudah
+login** (`admin()`) yang bisa membaca/menghapus. Peserta tidak bisa mengintip
+data siapa pun lewat browser — hanya panitia yang punya akun.
 
 ## 4 · Daftarkan web app & ambil config
 
@@ -72,12 +73,32 @@ export const firebaseConfig = {
 Simpan, commit, push. Begitu tayang di Pages, form langsung menyimpan ke
 Firestore. Banner peringatan kuning otomatis hilang setelah config terisi.
 
-## 6 · Melihat & mengunduh jawaban
+## 6 · Aktifkan login admin (untuk dashboard)
 
-- **Lihat:** Firebase Console → **Firestore Database → Data** → koleksi
+Dashboard `admin.html` hanya bisa diakses panitia yang login. Aktifkan
+Authentication satu kali:
+
+1. Firebase Console → **Build → Authentication → Get started**.
+2. Tab **Sign-in method** → pilih **Email/Password** → **Enable** → **Save**.
+3. Tab **Users** → **Add user** → isi email + password tiap anggota tim yang
+   boleh melihat data. (Tidak ada pendaftaran mandiri — akun hanya dibuat di
+   sini, jadi peserta tidak bisa masuk.)
+4. Pastikan Firestore Rules sudah versi terbaru (langkah 3, ada fungsi
+   `admin()`), supaya akun yang login bisa membaca data.
+
+## 7 · Melihat & mengunduh jawaban
+
+- **Dashboard (disarankan):** buka `…/form/admin.html`, login dengan akun di
+  atas. Ada ringkasan per kelompok/divisi, kesiapan, tabel lengkap, dan tombol
+  **Download CSV** untuk `peserta` dan `pretest`.
+- **Mentah:** Firebase Console → **Firestore Database → Data** → koleksi
   `peserta`, `pretest`, `posttest`.
-- **Unduh ke Excel/CSV:** pakai ekstensi *Export Collections* atau
-  `firebase firestore:export`, atau salin manual untuk jumlah kecil.
+
+## Membuka post-test
+
+Post-test dikunci secara default. Untuk membukanya (mis. hari Jumat), buka
+`posttest.html`, cari baris `const TERKUNCI = true;` dan ganti jadi `false`,
+lalu commit & push.
 
 ## Menambah / mengubah pertanyaan tes
 

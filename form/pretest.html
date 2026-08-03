@@ -31,8 +31,15 @@
         <input type="text" id="nama" name="nama" required autocomplete="name" placeholder="Nama kamu">
       </div>
       <div class="field">
+        <label for="kelompok">Kelompok <span style="color:var(--danger)">*</span></label>
+        <select id="kelompok" name="kelompok" required>
+          <option value="" disabled selected>Pilih kelompok…</option>
+        </select>
+      </div>
+      <div class="field">
         <label for="divisi">Divisi / Departemen <span style="color:var(--danger)">*</span></label>
-        <input type="text" id="divisi" name="divisi" required placeholder="mis. Sales, Produksi, Finance">
+        <input type="text" id="divisi" name="divisi" required list="divisi-list" placeholder="mis. Sales, Produksi, Finance">
+        <datalist id="divisi-list"></datalist>
       </div>
 
       <div id="soal"></div>
@@ -54,6 +61,13 @@
 
 <script type="module">
 import { simpanData, konfigurasiTerisi } from "./firebase.js";
+import { DIVISI, KELOMPOK, KELOMPOK_LABEL } from "./opsi.js";
+
+// isi pilihan kelompok & divisi
+const sel = document.getElementById("kelompok");
+KELOMPOK.forEach(k => { const o = document.createElement("option"); o.value = k; o.textContent = KELOMPOK_LABEL[k]; sel.appendChild(o); });
+const dl = document.getElementById("divisi-list");
+DIVISI.forEach(d => { const o = document.createElement("option"); o.value = d; dl.appendChild(o); });
 
 // ============================================================
 //  EDIT DI SINI — daftar pertanyaan pre-test.
@@ -106,7 +120,7 @@ form.addEventListener("submit", async (e) => {
     const el = form.elements[s.id];
     jawaban[s.id] = el.value;
   });
-  const data = { nama: form.nama.value.trim(), divisi: form.divisi.value.trim(), jawaban };
+  const data = { nama: form.nama.value.trim(), kelompok: form.kelompok.value, divisi: form.divisi.value.trim(), jawaban };
 
   btn.disabled = true; btn.textContent = "Mengirim…";
   try {
