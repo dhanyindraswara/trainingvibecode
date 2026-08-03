@@ -163,6 +163,28 @@ table.data .muted{color:var(--muted)}
 .empty{text-align:center;color:var(--muted);padding:26px;font-size:14px}
 .loading{text-align:center;color:var(--ink-3);padding:40px;font-family:var(--mono);font-size:13px}
 
+/* ============ Roster kelompok (halaman peserta) ============ */
+.roster{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rcard{background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.rhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:13px 16px;background:var(--panel);border-bottom:2px solid var(--gold)}
+.rhead .rno{font-family:var(--display);font-weight:600;font-size:18px;color:var(--ink)}
+.rhead .rdiv{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--gold-ink)}
+.rlist{margin:0;padding:8px 16px 12px 34px;list-style:decimal}
+.rlist li{padding:6px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.rlist li:last-child{border-bottom:none}
+.rlist li::marker{color:var(--muted);font-family:var(--mono);font-size:12px}
+.rlist .rn{font-size:14.5px;color:var(--ink)}
+.rlist .rr{font-family:var(--mono);font-size:11px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.rlist li.hit{background:rgba(233,184,75,.16);margin:0 -16px;padding-left:16px;padding-right:16px;border-radius:3px}
+
+/* tile lebar (link daftar kelompok di hub) */
+.tile.wide{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between;gap:14px;padding:16px 22px}
+.tile.wide .tw-l{display:flex;flex-direction:column;gap:2px}
+.tile.wide h3{margin:0}
+.tile.wide p{margin:0}
+
+@media (max-width:560px){ .roster{grid-template-columns:1fr} }
+
 /* analisa persiapan: kartu per kelompok */
 .analisa{display:flex;flex-direction:column;gap:24px}
 .kel-head{display:flex;align-items:baseline;gap:10px;margin:0 0 13px;padding-bottom:8px;border-bottom:1.5px solid var(--gold)}

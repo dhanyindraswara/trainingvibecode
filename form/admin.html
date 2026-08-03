@@ -34,7 +34,7 @@
     <div class="grid2">
       <div class="panel">
         <h2>Peserta per Kelompok</h2>
-        <p class="cap">Distribusi 6 kelompok</p>
+        <p class="cap">Distribusi 5 kelompok</p>
         <div class="bars" id="bars-kelompok"></div>
       </div>
       <div class="panel">
@@ -131,7 +131,7 @@ function render() {
     <div class="stat-card"><div class="num">${total}</div><div class="lbl">Peserta</div></div>
     <div class="stat-card teal"><div class="num">${pretest.length}</div><div class="lbl">Pre-Test masuk</div></div>
     <div class="stat-card"><div class="num">${lengkap}</div><div class="lbl">Kesiapan lengkap</div></div>
-    <div class="stat-card"><div class="num">${kelompokAktif}<span style="font-size:20px;color:var(--muted)">/6</span></div><div class="lbl">Kelompok terisi</div></div>`;
+    <div class="stat-card"><div class="num">${kelompokAktif}<span style="font-size:20px;color:var(--muted)">/5</span></div><div class="lbl">Kelompok terisi</div></div>`;
 
   // per kelompok
   const pk = hitung(peserta, p => p.kelompok);
