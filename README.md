@@ -8,13 +8,14 @@ Materi training **Bangun Aplikasi Integrasi AI dengan Claude**.
 
 ## Isi deck
 
-41 slide, satu file HTML, tanpa dependensi apa pun selain font Google.
+52 slide, satu file HTML, tanpa dependensi apa pun selain font Google.
 
 | Sesi | Isi |
 |------|-----|
 | **Sesi 01** | Model AI (Haiku 4.5 → Sonnet 5 → Opus 5 → Fable 5 → Mythos 5) dan 7 fitur Claude: Chat, Projects, Artifacts, Tasks & Scheduled, Cowork, Claude Code, Claude Design |
 | **Sesi 02** | Peta persaingan: ChatGPT, Gemini, Copilot, Grok, DeepSeek, Perplexity, Llama — beserta harga dan kesimpulan jujurnya |
 | **Sesi 03** | Build day: PRD → Claude Design → Claude Code → GitHub → Database → Integrasi AI |
+| **Panduan** | Langkah demi langkah: pasang Claude Code, sambungkan ke GitHub (`gh auth login`), commit sebagai save point, perintah harian, dan contoh prompt siap tempel — Bahasa Indonesia **dan** English berdampingan |
 
 Tiap tahap di Sesi 03 punya diagram beranimasi **INPUT → DIOLAH OLEH → OUTPUT → KIRIM KE**, jadi jelas apa yang masuk, siapa yang mengolah, keluarnya apa, dan dikirim ke mana.
 

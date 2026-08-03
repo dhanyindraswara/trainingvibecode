@@ -1622,6 +1622,547 @@ S3_FORCE_PATH_STYLE="true"</div>
   <div class="minimap" data-a="fade" style="--i:7"><span class="mm done">Persiapan</span><span class="mm done">01 PRD</span><span class="mm done">02 Design</span><span class="mm done">03 Code</span><span class="mm done">04 GitHub</span><span class="mm done">05 Data</span><span class="mm on">06 AI</span></div>
 </section>
 
+<!-- ============================================================
+     PANDUAN TEKNIS — slide tambahan, langkah demi langkah
+     ============================================================ -->
+
+<!-- P0 · DIVIDER PANDUAN -->
+<section class="slide divider" data-act="Panduan" data-title="Panduan — Langkah demi langkah">
+  <div class="num" data-a="pop" style="--i:0">04</div>
+  <h1 data-a="rise" style="--i:2">Langkah demi langkah</h1>
+  <div class="rule" style="--i:3;width:220px;margin:14px auto 22px;background:linear-gradient(90deg,transparent,var(--gold),transparent)"></div>
+  <p class="sub" data-a="fade" style="--i:4">Bagian ini bukan teori. Ini yang kita ketik, kita klik, dan kita tempel — dari laptop kosong sampai aplikasi tersambung. Buka saat macet.</p>
+</section>
+
+<!-- P1 · PETA SETUP -->
+<section class="slide" data-act="Panduan" data-title="Peta setup — tiga sambungan">
+  <p class="eyebrow" data-a="left" style="--i:0">Panduan · Peta</p>
+  <h2 data-a="rise" style="--i:1">Tiga sambungan yang harus jadi<br>sebelum kita menulis fitur.</h2>
+  <div class="rule" style="--i:2"></div>
+  <div class="body-area">
+    <svg class="mg" data-a="fade" style="--i:3" viewBox="0 0 1112 300" aria-hidden="true">
+      <defs><marker id="pmA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A2731C"/></marker></defs>
+
+      <!-- laptop / claude code -->
+      <rect x="40" y="96" width="250" height="112" rx="5" fill="#FFF6E2" stroke="#C9922B" stroke-width="1.6"/>
+      <text x="165" y="132" text-anchor="middle" style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;fill:#A2731C">SAMBUNGAN 01</text>
+      <text x="165" y="160" text-anchor="middle" style="font-family:var(--display);font-size:21px;font-weight:600;fill:#111A22">Claude Code</text>
+      <text x="165" y="182" text-anchor="middle" style="font-family:var(--mono);font-size:10.5px;fill:#69798A">terpasang &amp; login di laptop</text>
+
+      <!-- github -->
+      <rect x="431" y="96" width="250" height="112" rx="5" fill="#ffffff" stroke="#E1E7EC" stroke-width="1.4">
+        <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC" keyTimes="0;0.30;0.40;0.62" dur="8s" repeatCount="indefinite"/>
+      </rect>
+      <text x="556" y="132" text-anchor="middle" style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;fill:#A2731C">SAMBUNGAN 02</text>
+      <text x="556" y="160" text-anchor="middle" style="font-family:var(--display);font-size:21px;font-weight:600;fill:#111A22">GitHub</text>
+      <text x="556" y="182" text-anchor="middle" style="font-family:var(--mono);font-size:10.5px;fill:#69798A">repo tim · riwayat · titik pulih</text>
+
+      <!-- server -->
+      <rect x="822" y="96" width="250" height="112" rx="5" fill="rgba(18,122,110,.06)" stroke="#127A6E" stroke-width="1.4" stroke-dasharray="6 5">
+        <animate attributeName="fill" values="rgba(18,122,110,.06);rgba(18,122,110,.06);rgba(18,122,110,.2);rgba(18,122,110,.06)" keyTimes="0;0.62;0.74;0.95" dur="8s" repeatCount="indefinite"/>
+      </rect>
+      <text x="947" y="132" text-anchor="middle" style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;fill:#127A6E">SAMBUNGAN 03</text>
+      <text x="947" y="160" text-anchor="middle" style="font-family:var(--display);font-size:21px;font-weight:600;fill:#111A22">Database &amp; Storage</text>
+      <text x="947" y="182" text-anchor="middle" style="font-family:var(--mono);font-size:10.5px;fill:#69798A">MySQL + MinIO di server CHL</text>
+
+      <!-- arrows -->
+      <path d="M294,152 H424" stroke="#A2731C" stroke-width="1.5" fill="none" marker-end="url(#pmA)"/>
+      <path d="M685,152 H815" stroke="#A2731C" stroke-width="1.5" fill="none" marker-end="url(#pmA)"/>
+      <circle class="gf" r="4.5" opacity="0">
+        <animateMotion dur="8s" repeatCount="indefinite" path="M294,152 H424" keyPoints="0;0;1;1" keyTimes="0;0.22;0.36;1"/>
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.215;0.235;0.345;0.36;1" dur="8s" repeatCount="indefinite"/>
+      </circle>
+      <circle class="gt" r="4.5" opacity="0">
+        <animateMotion dur="8s" repeatCount="indefinite" path="M685,152 H815" keyPoints="0;0;1;1" keyTimes="0;0.54;0.68;1"/>
+        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.535;0.555;0.665;0.68;1" dur="8s" repeatCount="indefinite"/>
+      </circle>
+
+      <text x="359" y="140" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#A2731C">push</text>
+      <text x="750" y="140" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#127A6E">connect</text>
+
+      <!-- kaki -->
+      <text x="165" y="245" text-anchor="middle" style="font-family:var(--mono);font-size:10.5px;fill:#96A4B1">slide berikutnya</text>
+      <text x="556" y="245" text-anchor="middle" style="font-family:var(--mono);font-size:10.5px;fill:#96A4B1">slide berikutnya</text>
+      <text x="947" y="245" text-anchor="middle" style="font-family:var(--mono);font-size:10.5px;fill:#96A4B1">sudah dibahas di Tahap 05</text>
+    </svg>
+    <div class="callout" data-a="rise" style="--i:5;margin-top:18px">
+      <span class="k">Urutannya mengikat</span>
+      <p>Jangan lompat. Kalau sambungan 01 belum jadi, sambungan 02 tidak akan bisa dites. Kalau 02 belum jadi, kode kita belum punya tempat pulang.</p>
+    </div>
+  </div>
+</section>
+
+<!-- P2 · SETUP 01 — PASANG CLAUDE CODE -->
+<section class="slide" data-act="Panduan" data-title="Setup 01 — Pasang Claude Code">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">01</span><div><p class="eyebrow" style="margin:0 0 4px">Setup · Laptop</p><h2 style="margin:0">Pasang Claude Code</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="split">
+    <div>
+      <ul class="clean sm" data-a="rise" style="--i:2">
+        <li><strong>1 · Buka Terminal.</strong> Mac: <span class="mono">Terminal</span>. Windows: <span class="mono">PowerShell</span>. Cari di menu Start / Spotlight.</li>
+        <li><strong>2 · Pastikan Node.js ada.</strong> Ketik <span class="mono">node -v</span>. Kalau keluar angka versi, aman. Kalau <em>command not found</em>, pasang dulu dari <span class="mono">nodejs.org</span>.</li>
+        <li><strong>3 · Pasang Claude Code.</strong> Satu baris, sekali seumur laptop.</li>
+        <li><strong>4 · Masuk ke folder project,</strong> lalu jalankan <span class="mono">claude</span>.</li>
+        <li><strong>5 · Login.</strong> Browser terbuka sendiri — pilih akun <em>Claude Max</em> kelompokmu, klik <em>Authorize</em>, lalu kembali ke Terminal.</li>
+      </ul>
+      <div class="callout teal" data-a="rise" style="--i:4;margin-top:8px">
+        <span class="k">Satu akun sekelompok</span>
+        <p>Cukup satu orang per kelompok yang login. Yang lain menonton layar yang sama dulu — nanti bergantian pegang keyboard.</p>
+      </div>
+    </div>
+    <div>
+      <svg class="mg" data-a="rise" style="--i:3;max-width:470px" viewBox="0 0 600 268" aria-hidden="true">
+        <rect x="0" y="0" width="600" height="268" rx="6" fill="#0F1720"/>
+        <path d="M0,28 H600" stroke="#243240" stroke-width="1"/>
+        <circle cx="20" cy="15" r="4.5" fill="#E5534B"/><circle cx="37" cy="15" r="4.5" fill="#E9B84B"/><circle cx="54" cy="15" r="4.5" fill="#3FB950"/>
+        <text x="300" y="19" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#7D8B99;letter-spacing:.14em">TERMINAL</text>
+
+        <g style="font-family:var(--mono);font-size:12.5px">
+          <text x="18" y="60" fill="#E6EDF3" opacity="0"><tspan fill="#E9B84B">$ </tspan>node -v
+            <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.03;0.06;1" dur="10s" repeatCount="indefinite"/></text>
+          <text x="18" y="84" fill="#7EE787" opacity="0">v20.11.0
+            <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.12;0.15;1" dur="10s" repeatCount="indefinite"/></text>
+
+          <text x="18" y="118" fill="#E6EDF3" opacity="0"><tspan fill="#E9B84B">$ </tspan>npm install -g @anthropic-ai/claude-code
+            <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.22;0.25;1" dur="10s" repeatCount="indefinite"/></text>
+          <text x="18" y="142" fill="#7EE787" opacity="0">+ claude-code — terpasang
+            <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.36;0.39;1" dur="10s" repeatCount="indefinite"/></text>
+
+          <text x="18" y="176" fill="#E6EDF3" opacity="0"><tspan fill="#E9B84B">$ </tspan>cd chl-proyek
+            <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.48;0.51;1" dur="10s" repeatCount="indefinite"/></text>
+          <text x="18" y="200" fill="#E6EDF3" opacity="0"><tspan fill="#E9B84B">$ </tspan>claude
+            <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.58;0.61;1" dur="10s" repeatCount="indefinite"/></text>
+          <text x="18" y="224" fill="#79C0FF" opacity="0">→ membuka browser untuk login…
+            <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.70;0.73;1" dur="10s" repeatCount="indefinite"/></text>
+          <text x="18" y="248" fill="#7EE787" opacity="0">✓ login berhasil — Claude Max
+            <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.84;0.87;1" dur="10s" repeatCount="indefinite"/></text>
+        </g>
+        <rect x="18" y="238" width="8" height="14" fill="#E9B84B" opacity="0">
+          <animate attributeName="opacity" values="0;0;1;0;1;0;1" keyTimes="0;0.90;0.92;0.94;0.96;0.98;1" dur="10s" repeatCount="indefinite"/>
+        </rect>
+      </svg>
+      <div class="code" data-a="rise" style="--i:5;margin-top:14px;font-size:11.5px">npm install -g <span class="hl">@anthropic-ai/claude-code</span>
+cd <span class="cm">[folder-project-kita]</span>
+<span class="hl">claude</span>   <span class="cm">← mulai dari sini setiap hari</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- P3 · SETUP 02 — CLAUDE CODE + GITHUB -->
+<section class="slide" data-act="Panduan" data-title="Setup 02 — Claude Code ↔ GitHub">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">02</span><div><p class="eyebrow" style="margin:0 0 4px">Setup · Sambungan</p><h2 style="margin:0">Claude Code ↔ GitHub</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+
+  <div class="ipo" data-a="fade" style="--i:2">
+    <svg class="mg" viewBox="0 0 1112 158" aria-hidden="true">
+      <defs><marker id="pmB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A2731C"/></marker></defs>
+
+      <!-- 1 laptop -->
+      <rect x="20" y="40" width="210" height="76" rx="4" fill="#FFF6E2" stroke="#C9922B">
+        <animate attributeName="stroke-width" values="1;1;2.2;1" keyTimes="0;0.02;0.08;0.22" dur="9s" repeatCount="indefinite"/></rect>
+      <text x="125" y="60" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#A2731C">LANGKAH 1</text>
+      <text x="125" y="82" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:#111A22">gh auth login</text>
+      <text x="125" y="101" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:#69798A">diketik di Terminal</text>
+
+      <!-- 2 browser -->
+      <rect x="290" y="40" width="210" height="76" rx="4" fill="#ffffff" stroke="#E1E7EC">
+        <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC" keyTimes="0;0.22;0.30;0.46" dur="9s" repeatCount="indefinite"/></rect>
+      <text x="395" y="60" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#A2731C">LANGKAH 2</text>
+      <text x="395" y="82" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:#111A22">Browser terbuka</text>
+      <text x="395" y="101" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:#69798A">tempel kode · Authorize</text>
+
+      <!-- 3 balik -->
+      <rect x="560" y="40" width="210" height="76" rx="4" fill="#ffffff" stroke="#E1E7EC">
+        <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC" keyTimes="0;0.46;0.54;0.70" dur="9s" repeatCount="indefinite"/></rect>
+      <text x="665" y="60" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#A2731C">LANGKAH 3</text>
+      <text x="665" y="82" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:#111A22">Terminal tersambung</text>
+      <text x="665" y="101" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:#69798A">✓ Logged in as …</text>
+
+      <!-- 4 push -->
+      <rect x="830" y="40" width="262" height="76" rx="4" fill="rgba(18,122,110,.06)" stroke="#127A6E" stroke-dasharray="6 5">
+        <animate attributeName="fill" values="rgba(18,122,110,.06);rgba(18,122,110,.06);rgba(18,122,110,.2);rgba(18,122,110,.06)" keyTimes="0;0.70;0.80;0.96" dur="9s" repeatCount="indefinite"/></rect>
+      <text x="961" y="60" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#127A6E">LANGKAH 4</text>
+      <text x="961" y="82" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:#111A22">Claude Code push</text>
+      <text x="961" y="101" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:#69798A">kode kita muncul di repo</text>
+
+      <path d="M232,78 H283" stroke="#A2731C" stroke-width="1.4" fill="none" marker-end="url(#pmB)"/>
+      <path d="M502,78 H553" stroke="#A2731C" stroke-width="1.4" fill="none" marker-end="url(#pmB)"/>
+      <path d="M772,78 H823" stroke="#A2731C" stroke-width="1.4" fill="none" marker-end="url(#pmB)"/>
+      <circle class="gf" r="3.8" opacity="0"><animateMotion dur="9s" repeatCount="indefinite" path="M232,78 H288" keyPoints="0;0;1;1" keyTimes="0;0.14;0.22;1"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.135;0.15;0.21;0.22;1" dur="9s" repeatCount="indefinite"/></circle>
+      <circle class="gf" r="3.8" opacity="0"><animateMotion dur="9s" repeatCount="indefinite" path="M502,78 H558" keyPoints="0;0;1;1" keyTimes="0;0.38;0.46;1"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.375;0.39;0.45;0.46;1" dur="9s" repeatCount="indefinite"/></circle>
+      <circle class="gt" r="3.8" opacity="0"><animateMotion dur="9s" repeatCount="indefinite" path="M772,78 H828" keyPoints="0;0;1;1" keyTimes="0;0.62;0.70;1"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.615;0.63;0.69;0.70;1" dur="9s" repeatCount="indefinite"/></circle>
+    </svg>
+  </div>
+
+  <div class="split">
+    <div>
+      <ul class="clean sm" data-a="rise" style="--i:3">
+        <li><strong>1 · Buat repo dulu di github.com.</strong> Tombol hijau <em>New</em> → nama <span class="mono">chl-[proyek]</span> → pilih <em>Private</em> → <em>Create repository</em>.</li>
+        <li><strong>2 · Pasang GitHub CLI</strong> kalau belum: <span class="mono">brew install gh</span> (Mac) atau unduh dari <span class="mono">cli.github.com</span> (Windows).</li>
+        <li><strong>3 · Jalankan <span class="mono">gh auth login</span></strong> → pilih <em>GitHub.com</em> → <em>HTTPS</em> → <em>Login with a web browser</em>.</li>
+        <li><strong>4 · Salin kode 8 digit</strong> yang muncul di Terminal, tempel di browser, klik <em>Authorize</em>.</li>
+        <li><strong>5 · Balik ke Terminal.</strong> Muncul <span class="mono">✓ Logged in as …</span> — sambungan jadi.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card" data-a="rise" style="--i:4;padding:18px 20px">
+        <span class="tag">Sisanya biar Claude yang kerjakan</span>
+        <div class="code" style="margin-top:6px;font-size:11.5px"><span class="cm">— tempel ini ke Claude Code —</span>
+
+Hubungkan folder ini ke repo GitHub
+<span class="hl">chl-[proyek]</span> milik akun kita.
+
+Buat <span class="hl">.gitignore</span> lebih dulu — pastikan
+<span class="hl">.env</span> dan node_modules tidak ikut.
+Lalu commit pertama dan push ke main.</div>
+        <p class="sub" style="margin-top:12px;font-size:13.5px">Kita tidak perlu hafal perintah <span class="mono">git</span>. Yang wajib kita periksa cuma satu: <strong>.env tidak ikut ter-push.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P4 · SETUP 03 — COMMIT & PUSH -->
+<section class="slide" data-act="Panduan" data-title="Setup 03 — Commit sebagai save point">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">03</span><div><p class="eyebrow" style="margin:0 0 4px">Setup · Kebiasaan</p><h2 style="margin:0">Commit = save point</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="split">
+    <div>
+      <div class="diagram" data-a="rise" style="--i:2;margin-bottom:14px">
+        <div class="dlabel">Satu layar jadi · satu commit</div>
+        <svg class="mg" viewBox="0 0 520 190" aria-hidden="true">
+          <path d="M40,132 H480" stroke="#E1E7EC" stroke-width="2"/>
+          <path d="M40,132 H480" stroke="#C9922B" stroke-width="2" stroke-dasharray="440" stroke-dashoffset="440">
+            <animate attributeName="stroke-dashoffset" values="440;440;0;0" keyTimes="0;0.05;0.72;1" dur="9s" repeatCount="indefinite"/>
+          </path>
+
+          <g>
+            <circle cx="80" cy="132" r="8" fill="#fff" stroke="#C9922B" stroke-width="2" opacity="0">
+              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.10;0.15;1" dur="9s" repeatCount="indefinite"/></circle>
+            <text x="80" y="112" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:#69798A" opacity="0">scaffold
+              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.10;0.15;1" dur="9s" repeatCount="indefinite"/></text>
+            <circle cx="180" cy="132" r="8" fill="#fff" stroke="#C9922B" stroke-width="2" opacity="0">
+              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.25;0.30;1" dur="9s" repeatCount="indefinite"/></circle>
+            <text x="180" y="112" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:#69798A" opacity="0">daftar unit
+              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.25;0.30;1" dur="9s" repeatCount="indefinite"/></text>
+            <circle cx="280" cy="132" r="8" fill="#fff" stroke="#C9922B" stroke-width="2" opacity="0">
+              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.40;0.45;1" dur="9s" repeatCount="indefinite"/></circle>
+            <text x="280" y="112" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:#69798A" opacity="0">form upload
+              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.40;0.45;1" dur="9s" repeatCount="indefinite"/></text>
+            <circle cx="380" cy="132" r="8" fill="#FFF6E2" stroke="#C9922B" stroke-width="2" opacity="0">
+              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.55;0.60;1" dur="9s" repeatCount="indefinite"/></circle>
+            <text x="380" y="112" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:#69798A" opacity="0">RAG
+              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.55;0.60;1" dur="9s" repeatCount="indefinite"/></text>
+          </g>
+
+          <!-- awan github -->
+          <rect x="300" y="26" width="180" height="48" rx="4" fill="#ffffff" stroke="#E1E7EC">
+            <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#127A6E;#E1E7EC" keyTimes="0;0.72;0.82;0.97" dur="9s" repeatCount="indefinite"/></rect>
+          <text x="390" y="46" text-anchor="middle" style="font-family:var(--display);font-size:14px;font-weight:600;fill:#111A22">GitHub</text>
+          <text x="390" y="63" text-anchor="middle" style="font-family:var(--mono);font-size:9px;fill:#69798A">origin/main</text>
+          <path d="M390,120 V80" stroke="#127A6E" stroke-width="1.4" stroke-dasharray="4 4" fill="none"/>
+          <circle class="gt" r="4" opacity="0">
+            <animateMotion dur="9s" repeatCount="indefinite" path="M390,120 V80" keyPoints="0;0;1;1" keyTimes="0;0.66;0.74;1"/>
+            <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.655;0.67;0.73;0.74;1" dur="9s" repeatCount="indefinite"/></circle>
+          <text x="404" y="103" style="font-family:var(--mono);font-size:9px;fill:#127A6E">push</text>
+
+          <text x="40" y="168" style="font-family:var(--mono);font-size:9.5px;fill:#96A4B1">pagi</text>
+          <text x="480" y="168" text-anchor="end" style="font-family:var(--mono);font-size:9.5px;fill:#96A4B1">sore</text>
+        </svg>
+      </div>
+      <div class="callout" data-a="rise" style="--i:3">
+        <span class="k">Aturan keras</span>
+        <p>Sebelum push pertama, buka <span class="mono">.gitignore</span> dan pastikan ada baris <span class="mono">.env</span>. Kredensial yang sudah ter-push tetap tersimpan di riwayat walau nanti dihapus.</p>
+      </div>
+    </div>
+    <div>
+      <div class="card" data-a="rise" style="--i:4;padding:20px">
+        <span class="tag">Prompt commit — tempel apa adanya</span>
+        <div class="code" style="margin-top:6px;font-size:11.5px">Layar daftar unit sudah jalan.
+Commit dengan pesan yang jelas, lalu push.</div>
+        <div class="rule" style="margin:16px 0 12px"></div>
+        <span class="tag">Kalau kita merusak sesuatu</span>
+        <div class="code" style="font-size:11.5px">Balikkan ke commit terakhir yang jalan.
+Jangan perbaiki tambal sulam.</div>
+        <div class="rule" style="margin:16px 0 12px"></div>
+        <p class="sub" style="font-size:13.5px"><strong>Kapan commit?</strong> Setiap satu layar berhasil dibuka di browser. Bukan setiap satu jam, bukan sekali di akhir hari. Commit yang jalan itu tempat kita pulang saat percobaan berikutnya gagal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P5 · ANATOMI PROMPT -->
+<section class="slide" data-act="Panduan" data-title="Anatomi prompt yang baik">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">04</span><div><p class="eyebrow" style="margin:0 0 4px">Panduan · Prompt</p><h2 style="margin:0">Lima bagian prompt yang baik</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="body-area">
+    <svg class="mg" data-a="fade" style="--i:2" viewBox="0 0 1112 250" aria-hidden="true">
+      <g>
+        <rect x="0" y="20" width="212" height="132" rx="4" fill="#ffffff" stroke="#E1E7EC">
+          <animate attributeName="fill" values="#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0;0.08;0.20;1" dur="10s" repeatCount="indefinite"/>
+          <animate attributeName="stroke" values="#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0;0.08;0.20;1" dur="10s" repeatCount="indefinite"/></rect>
+        <text x="106" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;fill:#A2731C">BAGIAN 1</text>
+        <text x="106" y="76" text-anchor="middle" style="font-family:var(--display);font-size:19px;font-weight:600;fill:#111A22">Konteks</text>
+        <text x="106" y="102" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#69798A">aplikasi untuk siapa,</text>
+        <text x="106" y="118" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#69798A">dipakai mengerjakan apa</text>
+      </g>
+      <g>
+        <rect x="225" y="20" width="212" height="132" rx="4" fill="#ffffff" stroke="#E1E7EC">
+          <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0;0.20;0.28;0.40;1" dur="10s" repeatCount="indefinite"/>
+          <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0;0.20;0.28;0.40;1" dur="10s" repeatCount="indefinite"/></rect>
+        <text x="331" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;fill:#A2731C">BAGIAN 2</text>
+        <text x="331" y="76" text-anchor="middle" style="font-family:var(--display);font-size:19px;font-weight:600;fill:#111A22">Batasan</text>
+        <text x="331" y="102" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#69798A">Next.js, MySQL, MinIO</text>
+        <text x="331" y="118" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#69798A">— jangan diganti</text>
+      </g>
+      <g>
+        <rect x="450" y="20" width="212" height="132" rx="4" fill="#ffffff" stroke="#E1E7EC">
+          <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0;0.40;0.48;0.60;1" dur="10s" repeatCount="indefinite"/>
+          <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0;0.40;0.48;0.60;1" dur="10s" repeatCount="indefinite"/></rect>
+        <text x="556" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;fill:#A2731C">BAGIAN 3</text>
+        <text x="556" y="76" text-anchor="middle" style="font-family:var(--display);font-size:19px;font-weight:600;fill:#111A22">Satu tugas</text>
+        <text x="556" y="102" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#69798A">satu layar saja,</text>
+        <text x="556" y="118" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#69798A">bukan seluruh aplikasi</text>
+      </g>
+      <g>
+        <rect x="675" y="20" width="212" height="132" rx="4" fill="#ffffff" stroke="#E1E7EC">
+          <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0;0.60;0.68;0.80;1" dur="10s" repeatCount="indefinite"/>
+          <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0;0.60;0.68;0.80;1" dur="10s" repeatCount="indefinite"/></rect>
+        <text x="781" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;fill:#A2731C">BAGIAN 4</text>
+        <text x="781" y="76" text-anchor="middle" style="font-family:var(--display);font-size:19px;font-weight:600;fill:#111A22">Bukti selesai</text>
+        <text x="781" y="102" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#69798A">jalankan, lalu</text>
+        <text x="781" y="118" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#69798A">tunjukkan hasilnya</text>
+      </g>
+      <g>
+        <rect x="900" y="20" width="212" height="132" rx="4" fill="rgba(18,122,110,.06)" stroke="#127A6E" stroke-dasharray="6 5">
+          <animate attributeName="fill" values="rgba(18,122,110,.06);rgba(18,122,110,.06);rgba(18,122,110,.22);rgba(18,122,110,.06)" keyTimes="0;0.80;0.88;1" dur="10s" repeatCount="indefinite"/></rect>
+        <text x="1006" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;fill:#127A6E">BAGIAN 5</text>
+        <text x="1006" y="76" text-anchor="middle" style="font-family:var(--display);font-size:19px;font-weight:600;fill:#111A22">Larangan</text>
+        <text x="1006" y="102" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#69798A">jangan sentuh</text>
+        <text x="1006" y="118" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#69798A">bagian yang sudah jalan</text>
+      </g>
+
+      <text x="556" y="196" text-anchor="middle" style="font-family:var(--display);font-size:17px;fill:#3B4C5A">Prompt yang buruk hanya punya bagian 3. Prompt yang baik punya kelimanya.</text>
+      <text x="556" y="224" text-anchor="middle" style="font-family:var(--mono);font-size:11px;fill:#96A4B1">"buatin aplikasi" → 40 menit terbuang · lima bagian di atas → satu layar jadi</text>
+    </svg>
+  </div>
+</section>
+
+<!-- P6 · PROMPT PEMBUKA -->
+<section class="slide" data-act="Panduan" data-title="Prompt 01 — Membuka project dari PRD">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">05</span><div><p class="eyebrow" style="margin:0 0 4px">Prompt · Pesan pertama</p><h2 style="margin:0">Membuka project dari PRD</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="split">
+    <div>
+      <div class="card" data-a="rise" style="--i:2;padding:18px 20px">
+        <span class="tag">🇮🇩 Bahasa Indonesia</span>
+        <div class="code" style="margin-top:6px;font-size:11.5px">Ini <span class="hl">PRD.md</span> dan hasil Claude Design kami.
+
+<span class="cm">Konteks:</span> aplikasi internal untuk tim
+<span class="hl">[divisi]</span>, dipakai <span class="hl">[siapa]</span> untuk <span class="hl">[apa]</span>.
+
+<span class="cm">Batasan:</span> Next.js, MySQL, MinIO.
+Jangan ganti stack-nya.
+
+<span class="cm">Tugas pertama:</span> baca PRD, lalu buat
+rencana kerja per layar dan urutannya.
+
+<span class="hl">Jangan tulis kode dulu.</span> Tunggu aku setuju.</div>
+      </div>
+    </div>
+    <div>
+      <div class="card teal" data-a="rise" style="--i:3;padding:18px 20px">
+        <span class="tag">🇬🇧 English</span>
+        <div class="code" style="margin-top:6px;font-size:11.5px;border-left-color:#127A6E">Here is our <span class="hl">PRD.md</span> and the Claude Design output.
+
+<span class="cm">Context:</span> internal app for the <span class="hl">[division]</span> team,
+used by <span class="hl">[who]</span> to <span class="hl">[do what]</span>.
+
+<span class="cm">Constraints:</span> Next.js, MySQL, MinIO.
+Do not substitute the stack.
+
+<span class="cm">First task:</span> read the PRD, then propose a
+screen-by-screen build plan in order.
+
+<span class="hl">Do not write code yet.</span> Wait for my approval.</div>
+      </div>
+    </div>
+  </div>
+  <div class="callout" data-a="rise" style="--i:4;margin-top:14px">
+    <span class="k">Kenapa "jangan tulis kode dulu"</span>
+    <p>Karena rencana salah yang ketahuan dalam 30 detik jauh lebih murah daripada 300 baris kode salah yang ketahuan satu jam kemudian. Baca rencananya, koreksi, baru bilang lanjut.</p>
+  </div>
+</section>
+
+<!-- P7 · PROMPT PER LAYAR -->
+<section class="slide" data-act="Panduan" data-title="Prompt 02 — Satu layar dalam satu waktu">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">06</span><div><p class="eyebrow" style="margin:0 0 4px">Prompt · Membangun</p><h2 style="margin:0">Satu layar dalam satu waktu</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="split">
+    <div>
+      <div class="card" data-a="rise" style="--i:2;padding:18px 20px">
+        <span class="tag">🇮🇩 Bahasa Indonesia</span>
+        <div class="code" style="margin-top:6px;font-size:11.5px">Bangun <span class="hl">HANYA</span> layar "Daftar Unit".
+
+- Ambil data dari tabel <span class="hl">units</span> di MySQL.
+- Tampilkan: nama, tipe, harga, status.
+- Ada kolom pencarian dan filter status.
+- Kalau data kosong, tampilkan pesan ramah.
+
+Setelah selesai: jalankan, buka halamannya,
+dan tunjukkan hasilnya ke aku.
+
+<span class="hl">Jangan sentuh layar lain</span> yang sudah jalan.</div>
+      </div>
+    </div>
+    <div>
+      <div class="card teal" data-a="rise" style="--i:3;padding:18px 20px">
+        <span class="tag">🇬🇧 English</span>
+        <div class="code" style="margin-top:6px;font-size:11.5px;border-left-color:#127A6E">Build <span class="hl">ONLY</span> the "Unit List" screen.
+
+- Read from the <span class="hl">units</span> table in MySQL.
+- Show: name, type, price, status.
+- Include a search box and a status filter.
+- If there is no data, show a friendly empty state.
+
+When done: run it, open the page,
+and show me the result.
+
+<span class="hl">Do not touch other screens</span> that already work.</div>
+      </div>
+    </div>
+  </div>
+  <div class="callout teal" data-a="rise" style="--i:4;margin-top:14px">
+    <span class="k">Pola yang dipakai berulang</span>
+    <p>Ganti tiga hal saja tiap kali: <strong>nama layar</strong>, <strong>sumber datanya</strong>, dan <strong>apa yang tampil</strong>. Sisanya biarkan sama persis — termasuk kalimat terakhirnya.</p>
+  </div>
+</section>
+
+<!-- P8 · PROMPT SAAT ERROR -->
+<section class="slide" data-act="Panduan" data-title="Prompt 03 — Saat ngadat">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">07</span><div><p class="eyebrow" style="margin:0 0 4px">Prompt · Saat ngadat</p><h2 style="margin:0">Tempel errornya, jangan diceritakan</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="split">
+    <div>
+      <div class="card" data-a="rise" style="--i:2;padding:18px 20px">
+        <span class="tag">🇮🇩 Bahasa Indonesia</span>
+        <div class="code" style="margin-top:6px;font-size:11.5px">Aku dapat error ini waktu membuka <span class="hl">/units</span>:
+
+<span class="cm">[TEMPEL SELURUH PESAN ERROR DI SINI]</span>
+
+Jangan menebak. Baca dulu file yang disebut
+di error itu, jelaskan penyebabnya dalam
+<span class="hl">satu kalimat</span>, baru perbaiki.
+
+Setelah diperbaiki, jalankan lagi dan
+tunjukkan halamannya sudah normal.</div>
+      </div>
+    </div>
+    <div>
+      <div class="card teal" data-a="rise" style="--i:3;padding:18px 20px">
+        <span class="tag">🇬🇧 English</span>
+        <div class="code" style="margin-top:6px;font-size:11.5px;border-left-color:#127A6E">I get this error when opening <span class="hl">/units</span>:
+
+<span class="cm">[PASTE THE ENTIRE ERROR MESSAGE HERE]</span>
+
+Don't guess. First read the file referenced in
+the error, explain the cause in
+<span class="hl">one sentence</span>, then fix it.
+
+After fixing, run it again and show me
+that the page works.</div>
+      </div>
+    </div>
+  </div>
+  <div class="callout" data-a="rise" style="--i:4;margin-top:14px">
+    <span class="k">Kesalahan paling mahal hari ini</span>
+    <p>Menulis <em>"errornya merah, katanya ada yang undefined"</em>. Pesan error itu berisi nama file dan nomor baris — itulah yang membuat perbaikan jadi 30 detik, bukan 30 menit. Blok, salin, tempel utuh.</p>
+  </div>
+</section>
+
+<!-- P9 · PERINTAH HARIAN CLAUDE CODE -->
+<section class="slide" data-act="Panduan" data-title="Perintah harian Claude Code">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">08</span><div><p class="eyebrow" style="margin:0 0 4px">Panduan · Kendali</p><h2 style="margin:0">Perintah yang dipakai seharian</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="split">
+    <div>
+      <table class="grid" data-a="rise" style="--i:2">
+        <tr><th>Ketik / tekan</th><th>Gunanya</th></tr>
+        <tr><td class="k mono">claude</td><td>Mulai sesi di folder project. Selalu dari sini.</td></tr>
+        <tr><td class="k mono">/init</td><td>Bikin <span class="mono">CLAUDE.md</span> — catatan project supaya Claude ingat aturan kita di sesi berikutnya.</td></tr>
+        <tr><td class="k mono">/clear</td><td>Bersihkan konteks kalau obrolan sudah melenceng jauh. Kode tidak terhapus.</td></tr>
+        <tr><td class="k mono">Shift + Tab</td><td>Mode rencana — Claude menyusun langkah dulu, tidak langsung mengubah file.</td></tr>
+        <tr><td class="k mono">Esc</td><td>Hentikan saat Claude jalan ke arah yang salah. Jangan ditunggu sampai selesai.</td></tr>
+        <tr><td class="k mono">/model</td><td>Ganti model. Opus untuk yang rumit, Sonnet untuk yang rutin.</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="diagram" data-a="rise" style="--i:3">
+        <div class="dlabel">Lingkaran kerja sehari</div>
+        <svg class="mg" viewBox="0 0 480 250" aria-hidden="true">
+          <defs><marker id="pmC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A2731C"/></marker></defs>
+          <circle cx="240" cy="118" r="88" fill="none" stroke="#E1E7EC" stroke-width="1.5" stroke-dasharray="5 5"/>
+
+          <g>
+            <rect x="170" y="6" width="140" height="40" rx="4" fill="#FFF6E2" stroke="#C9922B">
+              <animate attributeName="fill" values="#FFF6E2;#F6DFA8;#FFF6E2;#FFF6E2" keyTimes="0;0.08;0.20;1" dur="8s" repeatCount="indefinite"/></rect>
+            <text x="240" y="31" text-anchor="middle" style="font-family:var(--display);font-size:14px;font-weight:600;fill:#111A22">Minta satu layar</text>
+
+            <rect x="330" y="98" width="140" height="40" rx="4" fill="#ffffff" stroke="#E1E7EC">
+              <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0;0.25;0.33;0.45;1" dur="8s" repeatCount="indefinite"/></rect>
+            <text x="400" y="123" text-anchor="middle" style="font-family:var(--display);font-size:14px;font-weight:600;fill:#111A22">Buka di browser</text>
+
+            <rect x="170" y="190" width="140" height="40" rx="4" fill="#ffffff" stroke="#E1E7EC">
+              <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0;0.50;0.58;0.70;1" dur="8s" repeatCount="indefinite"/></rect>
+            <text x="240" y="215" text-anchor="middle" style="font-family:var(--display);font-size:14px;font-weight:600;fill:#111A22">Jalan? Commit</text>
+
+            <rect x="10" y="98" width="140" height="40" rx="4" fill="rgba(18,122,110,.06)" stroke="#127A6E" stroke-dasharray="5 4">
+              <animate attributeName="fill" values="rgba(18,122,110,.06);rgba(18,122,110,.06);rgba(18,122,110,.2);rgba(18,122,110,.06)" keyTimes="0;0.72;0.82;0.95" dur="8s" repeatCount="indefinite"/></rect>
+            <text x="80" y="117" text-anchor="middle" style="font-family:var(--display);font-size:14px;font-weight:600;fill:#111A22">Belum? Tempel</text>
+            <text x="80" y="132" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:#69798A">errornya utuh</text>
+          </g>
+
+          <path d="M312,32 A88,88 0 0 1 398,96" class="gs" style="stroke-width:1.4" marker-end="url(#pmC)"/>
+          <path d="M398,140 A88,88 0 0 1 312,204" class="gs" style="stroke-width:1.4" marker-end="url(#pmC)"/>
+          <path d="M168,204 A88,88 0 0 1 82,140" class="gs" style="stroke-width:1.4" marker-end="url(#pmC)"/>
+          <path d="M82,96 A88,88 0 0 1 168,32" class="gs" style="stroke-width:1.4" marker-end="url(#pmC)"/>
+
+          <circle class="gf" r="4.5">
+            <animateMotion dur="8s" repeatCount="indefinite" path="M240,26 A92,92 0 1 1 239,26"/>
+          </circle>
+        </svg>
+      </div>
+      <div class="callout teal" data-a="rise" style="--i:4;margin-top:12px">
+        <span class="k">Satu putaran ≈ 15 menit</span>
+        <p>Kalau satu putaran sudah lewat 40 menit, berarti tugasnya kebesaran. Pecah jadi dua, ulangi dari atas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P10 · CHECKLIST SETUP -->
+<section class="slide" data-act="Panduan" data-title="Checklist sebelum mulai bangun">
+  <p class="eyebrow" data-a="left" style="--i:0">Panduan · Sebelum menulis fitur pertama</p>
+  <h2 data-a="rise" style="--i:1">Tujuh baris ini harus hijau dulu.</h2>
+  <div class="rule" style="--i:2"></div>
+  <div class="split">
+    <div>
+      <div class="check done" data-a="left" style="--i:3"><span class="box"></span><span class="t"><b>Claude Code jalan</b> — ketik <span class="mono">claude</span> di folder project, tidak error.</span><span class="who ok">Semua</span></div>
+      <div class="check done" data-a="left" style="--i:4"><span class="box"></span><span class="t"><b>Login Claude Max</b> — satu akun per kelompok, sudah ter-authorize.</span><span class="who ok">1 org</span></div>
+      <div class="check done" data-a="left" style="--i:5"><span class="box"></span><span class="t"><b>Repo GitHub dibuat</b> — privat, nama <span class="mono">chl-[proyek]</span>, minimal dua orang punya akses.</span><span class="who ok">1 org</span></div>
+      <div class="check done" data-a="left" style="--i:6"><span class="box"></span><span class="t"><b><span class="mono">gh auth login</span> berhasil</b> — muncul <span class="mono">✓ Logged in as …</span></span><span class="who ok">1 org</span></div>
+    </div>
+    <div>
+      <div class="check done" data-a="left" style="--i:7"><span class="box"></span><span class="t"><b><span class="mono">.gitignore</span> berisi <span class="mono">.env</span></b> — diperiksa <em>sebelum</em> push pertama.</span><span class="who ok">Wajib</span></div>
+      <div class="check done" data-a="left" style="--i:8"><span class="box"></span><span class="t"><b><span class="mono">.env.local</span> terisi</b> — kredensial MySQL &amp; MinIO dari lembar ACCESS kelompok.</span><span class="who ok">1 org</span></div>
+      <div class="check done" data-a="left" style="--i:9"><span class="box"></span><span class="t"><b><span class="mono">/api/health</span> hijau</b> — MySQL dan MinIO dua-duanya <span class="mono">ok</span>.</span><span class="who ok">Bukti</span></div>
+      <div class="callout" data-a="rise" style="--i:10;margin-top:18px">
+        <span class="k">Kalau satu saja merah</span>
+        <p>Berhenti di situ, panggil fasilitator. Membangun fitur di atas setup yang setengah jadi adalah cara tercepat membuang satu jam pertama.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 37 · SATU STACK -->
 <section class="slide" data-act="Sesi 03" data-title="Satu stack">
   <p class="eyebrow" data-a="left" style="--i:0">Aturan yang menembus semua tahap</p>
@@ -1718,7 +2259,7 @@ S3_FORCE_PATH_STYLE="true"</div>
   <div id="rail"><div id="railfill"></div></div>
   <div id="hudbar">
     <span id="hudleft">Cipta Harmoni Lestari — Bangun Aplikasi Integrasi AI dengan Claude</span>
-    <span id="hudright"><b id="cur">1</b> / <span id="tot">41</span></span>
+    <span id="hudright"><b id="cur">1</b> / <span id="tot">52</span></span>
   </div>
 </nav>
 <div id="help">← → geser &nbsp;·&nbsp; O semua slide &nbsp;·&nbsp; F layar penuh</div>
@@ -1733,6 +2274,7 @@ S3_FORCE_PATH_STYLE="true"</div>
   var stage=document.getElementById('stage');
   var slides=[].slice.call(document.querySelectorAll('.slide'));
   var i=0, ov=document.getElementById('overview');
+  var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.getElementById('tot').textContent=slides.length;
 
   function fit(){
@@ -1745,6 +2287,15 @@ S3_FORCE_PATH_STYLE="true"</div>
     n=Math.max(0,Math.min(slides.length-1,n));
     slides.forEach(function(s){s.classList.remove('active')});
     var el=slides[n]; void el.offsetWidth; el.classList.add('active');
+    // Chromium tidak pernah menjalankan animasi SMIL pada SVG yang saat halaman
+    // dimuat berada di dalam display:none — dan tidak memulainya walau slide-nya
+    // kemudian tampil. Menyetel ulang jam animasi saat slide dibuka membuat semua
+    // motion graphic berjalan, dan selalu mulai dari awal tiap kali slide dibuka.
+    if(!reduceMotion){
+      [].forEach.call(el.querySelectorAll('svg'),function(s){
+        if(s.setCurrentTime){ try{ s.setCurrentTime(0) }catch(e){} }
+      });
+    }
     i=n;
     document.getElementById('cur').textContent=n+1;
     document.getElementById('railfill').style.width=(n/(slides.length-1)*100)+'%';
