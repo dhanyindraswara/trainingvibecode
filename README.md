@@ -8,7 +8,8 @@ Materi training **Bangun Aplikasi Integrasi AI dengan Claude**.
 
 ## Isi deck
 
-64 slide, satu file HTML, tanpa dependensi apa pun selain font Google.
+73 slide dalam satu file HTML — tanpa dependensi apa pun selain font Google dan
+tangkapan layar di folder [`img/`](img/).
 
 | Sesi | Isi |
 |------|-----|
@@ -39,6 +40,17 @@ berdampingan.
 
 Tiap langkah punya diagram beranimasi dan pita kemajuan 01–10 di kaki slide, jadi selalu
 jelas kita sedang di langkah ke berapa.
+
+### Album — sembilan halaman tangkapan layar nyata
+
+Layar asli dari satu sesi build, urut sesuai langkahnya: membuat repo, import ke Vercel,
+menyalakan Neon dan Blob, menempel kunci, PRD jadi design, transfer ke Claude Code, sampai
+tujuh tabel muncul di Neon. Tiga di antaranya ditandai **"perhatikan di sini"** karena di
+layar itulah macetnya lahir — centang *Add README* yang mati, *Application Preset: Other*,
+dan pilihan *Access: Private* pada Blob.
+
+Semua tangkapan layar sudah diperiksa: tidak ada nilai kunci yang terbuka — semuanya
+ter-*mask* oleh Vercel sendiri.
 
 ### Bengkel — sembilan halaman untuk saat layar merah
 
