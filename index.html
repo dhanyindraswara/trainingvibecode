@@ -181,7 +181,7 @@ svg.flow .out{font-family:var(--mono);font-size:12px;fill:var(--gold-ink);letter
 
 /* ============ MINIMAP ============ */
 .minimap{display:flex;position:absolute;left:84px;right:84px;bottom:18px;margin:0;padding-top:0}
-.minimap.m11 .mm{font-size:8.6px;letter-spacing:.06em;padding:5px 2px}
+.minimap.m10 .mm{font-size:8.6px;letter-spacing:.06em;padding:5px 2px}
 .mm{flex:1;text-align:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#B4C0CB;padding:5px 4px;border-top:1px solid var(--line);position:relative}
 .mm.on{color:var(--gold-ink);border-top:1.5px solid var(--gold)}
 .mm.on::before{content:"";position:absolute;top:-4.5px;left:50%;transform:translateX(-50%);width:7px;height:7px;background:var(--gold-bright);border-radius:50%}
@@ -361,8 +361,8 @@ svg.flow .out{font-family:var(--mono);font-size:12px;fill:var(--gold-ink);letter
       </div>
       <div class="card" data-a="rise" style="--i:5">
         <span class="tag">Sesi 03 · sisa hari</span><h3>Build aplikasinya</h3>
-        <p class="sub">Sebelas langkah: login, repo, PRD, design, bangun, data, AI, publikasi, uji. Laptop dibuka, tangan di keyboard.</p>
-        <div class="chips"><span class="chip teal">Next.js</span><span class="chip teal">Docker</span><span class="chip teal">MySQL</span><span class="chip teal">MinIO</span></div>
+        <p class="sub">Sepuluh langkah: login, repo, sambung, Vercel, PRD, design, data, menu, AI, uji. Laptop dibuka, tangan di keyboard.</p>
+        <div class="chips"><span class="chip teal">Next.js</span><span class="chip teal">Vercel</span><span class="chip teal">Postgres</span><span class="chip teal">Blob</span></div>
       </div>
     </div>
     <p class="sub" data-a="fade" style="--i:7;margin-top:26px;font-size:14px">Sesi 1 dan 2 ada supaya Sesi 3 tidak terasa seperti sulap. Kalau kita paham cara kerja tools-nya, kita bisa memperbaiki sendiri saat ngadat — dan pasti akan ada momen ngadat.</p>
@@ -923,107 +923,99 @@ kalimat yang berputar.</div>
   <div class="num" data-a="pop" style="--i:0">03</div>
   <h1 data-a="rise" style="--i:2">Build day</h1>
   <div class="rule" style="--i:3;width:220px;margin:14px auto 22px;background:linear-gradient(90deg,transparent,var(--gold),transparent)"></div>
-  <p class="sub" data-a="fade" style="--i:4">Sebelas langkah, berurutan. Dari login sampai semua menu selesai diuji. Jangan dilompati — tiap langkah menyiapkan bahan untuk langkah sesudahnya. Laptop dibuka mulai dari sini.</p>
+  <p class="sub" data-a="fade" style="--i:4">Sepuluh langkah, berurutan. Dari login sampai semua menu selesai diuji. Jangan dilompati — tiap langkah menyiapkan bahan untuk langkah sesudahnya. Laptop dibuka mulai dari sini.</p>
 </section>
 
-<!-- 26 · ALUR 11 LANGKAH -->
-<section class="slide" data-act="Sesi 03" data-title="Alur 11 langkah">
+<!-- 26 · ALUR 10 LANGKAH -->
+<section class="slide" data-act="Sesi 03" data-title="Alur 10 langkah">
   <p class="eyebrow" data-a="left" style="--i:0">Alurnya</p>
   <h2 data-a="rise" style="--i:1">Seluruh hari ini dalam satu layar.</h2>
   <div class="rule" style="--i:2"></div>
   <div class="flowwrap" data-a="fade" style="--i:3">
-<svg class="mg" viewBox="0 0 1220 430" aria-hidden="true" role="img" aria-label="Sebelas langkah build day, dari login Claude sampai uji semua menu">
+<svg class="mg" viewBox="0 0 1220 430" aria-hidden="true" role="img" aria-label="Sepuluh langkah build day, dari login Claude sampai uji semua menu">
   <defs><marker id="fl11" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A2731C"/></marker></defs>
   <text x="4" y="47" style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;fill:#A2731C">SIAPKAN</text>
-  <text x="4" y="149" style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;fill:#A2731C">RANCANG</text>
+  <text x="4" y="149" style="font-family:var(--mono);font-size:8.4px;letter-spacing:.18em;fill:#A2731C">SAMBUNG &amp; RANCANG</text>
   <text x="4" y="251" style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;fill:#A2731C">BANGUN</text>
-  <text x="4" y="353" style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;fill:#A2731C">RILIS</text>
+  <text x="4" y="353" style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;fill:#A2731C">UJI</text>
   <rect x="150" y="10" width="300" height="64" rx="4" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.0000;0.0055;0.0673;1.0000" dur="13.2s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.0000;0.0055;0.0673;1.0000" dur="13.2s" repeatCount="indefinite"/></rect>
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.0000;0.0061;0.0740;1.0000" dur="12.0s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.0000;0.0061;0.0740;1.0000" dur="12.0s" repeatCount="indefinite"/></rect>
   <text x="164" y="31" style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;fill:#A2731C">01</text>
   <text x="194" y="32" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Login Claude Max</text>
   <text x="194" y="55" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">claude.ai · 1 akun per kelompok</text>
   <rect x="520" y="10" width="300" height="64" rx="4" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.0909;0.0964;0.1582;1.0000" dur="13.2s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.0909;0.0964;0.1582;1.0000" dur="13.2s" repeatCount="indefinite"/></rect>
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.1000;0.1061;0.1740;1.0000" dur="12.0s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.1000;0.1061;0.1740;1.0000" dur="12.0s" repeatCount="indefinite"/></rect>
   <text x="534" y="31" style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;fill:#A2731C">02</text>
   <text x="564" y="32" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Akun &amp; repo GitHub</text>
   <text x="564" y="55" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">repo privat + hak akses</text>
   <rect x="890" y="10" width="300" height="64" rx="4" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.1818;0.1873;0.2491;1.0000" dur="13.2s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.1818;0.1873;0.2491;1.0000" dur="13.2s" repeatCount="indefinite"/></rect>
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.2000;0.2061;0.2740;1.0000" dur="12.0s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.2000;0.2061;0.2740;1.0000" dur="12.0s" repeatCount="indefinite"/></rect>
   <text x="904" y="31" style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;fill:#A2731C">03</text>
-  <text x="934" y="32" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Sambungkan Claude ↔ GitHub</text>
+  <text x="934" y="32" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Sambungkan Claude Code</text>
   <text x="934" y="55" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">repo muncul di Claude Code</text>
   <rect x="150" y="112" width="300" height="64" rx="4" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.2727;0.2782;0.3400;1.0000" dur="13.2s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.2727;0.2782;0.3400;1.0000" dur="13.2s" repeatCount="indefinite"/></rect>
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.3000;0.3061;0.3740;1.0000" dur="12.0s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.3000;0.3061;0.3740;1.0000" dur="12.0s" repeatCount="indefinite"/></rect>
   <text x="164" y="133" style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;fill:#A2731C">04</text>
-  <text x="194" y="134" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Tulis PRD</text>
-  <text x="194" y="157" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">masalah nyata jadi dokumen</text>
+  <text x="194" y="134" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Sambungkan Vercel</text>
+  <text x="194" y="157" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">alamatnya hidup di sini</text>
   <rect x="520" y="112" width="300" height="64" rx="4" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.3636;0.3691;0.4309;1.0000" dur="13.2s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.3636;0.3691;0.4309;1.0000" dur="13.2s" repeatCount="indefinite"/></rect>
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.4000;0.4061;0.4740;1.0000" dur="12.0s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.4000;0.4061;0.4740;1.0000" dur="12.0s" repeatCount="indefinite"/></rect>
   <text x="534" y="133" style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;fill:#A2731C">05</text>
-  <text x="564" y="134" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Bikin design</text>
-  <text x="564" y="157" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">prototype yang bisa diklik</text>
+  <text x="564" y="134" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Tulis PRD</text>
+  <text x="564" y="157" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">masalah nyata jadi dokumen</text>
   <rect x="890" y="112" width="300" height="64" rx="4" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.4545;0.4600;0.5218;1.0000" dur="13.2s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.4545;0.4600;0.5218;1.0000" dur="13.2s" repeatCount="indefinite"/></rect>
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.5000;0.5061;0.5740;1.0000" dur="12.0s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.5000;0.5061;0.5740;1.0000" dur="12.0s" repeatCount="indefinite"/></rect>
   <text x="904" y="133" style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;fill:#A2731C">06</text>
-  <text x="934" y="134" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Transfer + pilih repo</text>
-  <text x="934" y="157" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">design mendarat di repo</text>
+  <text x="934" y="134" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Bikin design</text>
+  <text x="934" y="157" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">prototype yang bisa diklik</text>
   <rect x="150" y="214" width="300" height="64" rx="4" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.5455;0.5509;0.6127;1.0000" dur="13.2s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.5455;0.5509;0.6127;1.0000" dur="13.2s" repeatCount="indefinite"/></rect>
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.6000;0.6061;0.6740;1.0000" dur="12.0s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.6000;0.6061;0.6740;1.0000" dur="12.0s" repeatCount="indefinite"/></rect>
   <text x="164" y="235" style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;fill:#A2731C">07</text>
-  <text x="194" y="236" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Hidupkan menunya</text>
-  <text x="194" y="259" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">logic &amp; struktur data</text>
+  <text x="194" y="236" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Nyalakan data</text>
+  <text x="194" y="259" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">Postgres + Blob · dua klik</text>
   <rect x="520" y="214" width="300" height="64" rx="4" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.6364;0.6418;0.7036;1.0000" dur="13.2s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.6364;0.6418;0.7036;1.0000" dur="13.2s" repeatCount="indefinite"/></rect>
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.7000;0.7061;0.7740;1.0000" dur="12.0s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.7000;0.7061;0.7740;1.0000" dur="12.0s" repeatCount="indefinite"/></rect>
   <text x="534" y="235" style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;fill:#A2731C">08</text>
-  <text x="564" y="236" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Sambungkan database</text>
-  <text x="564" y="259" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">MySQL + MinIO + GitHub</text>
+  <text x="564" y="236" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Hidupkan menunya</text>
+  <text x="564" y="259" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">satu menu sampai tuntas</text>
   <rect x="890" y="214" width="300" height="64" rx="4" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.7273;0.7327;0.7945;1.0000" dur="13.2s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.7273;0.7327;0.7945;1.0000" dur="13.2s" repeatCount="indefinite"/></rect>
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.8000;0.8061;0.8740;1.0000" dur="12.0s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.8000;0.8061;0.8740;1.0000" dur="12.0s" repeatCount="indefinite"/></rect>
   <text x="904" y="235" style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;fill:#A2731C">09</text>
   <text x="934" y="236" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Menu ber-AI</text>
   <text x="934" y="259" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">API + database = RAG</text>
-  <rect x="150" y="316" width="300" height="64" rx="4" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.8182;0.8236;0.8855;1.0000" dur="13.2s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.8182;0.8236;0.8855;1.0000" dur="13.2s" repeatCount="indefinite"/></rect>
-  <text x="164" y="337" style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;fill:#A2731C">10</text>
-  <text x="194" y="338" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Publikasikan</text>
-  <text x="194" y="361" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">lewat GitHub Pages</text>
-  <rect x="520" y="316" width="300" height="64" rx="4" fill="rgba(18,122,110,.06)" stroke="#127A6E" stroke-dasharray="6 5">
-    <animate attributeName="fill" values="rgba(18,122,110,.06);rgba(18,122,110,.06);rgba(18,122,110,.22);rgba(18,122,110,.06);rgba(18,122,110,.06)" keyTimes="0.0000;0.9091;0.9145;0.9764;1.0000" dur="13.2s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#127A6E;#127A6E;#0C5A51;#127A6E;#127A6E" keyTimes="0.0000;0.9091;0.9145;0.9764;1.0000" dur="13.2s" repeatCount="indefinite"/></rect>
-  <text x="534" y="337" style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;fill:#127A6E">11</text>
-  <text x="564" y="338" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Uji semua menu</text>
-  <text x="564" y="361" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">satu per satu, dicatat</text>
+  <rect x="150" y="316" width="300" height="64" rx="4" fill="rgba(18,122,110,.06)" stroke="#127A6E" stroke-dasharray="6 5">
+    <animate attributeName="fill" values="rgba(18,122,110,.06);rgba(18,122,110,.06);rgba(18,122,110,.22);rgba(18,122,110,.06);rgba(18,122,110,.06)" keyTimes="0.0000;0.9000;0.9061;0.9740;1.0000" dur="12.0s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#127A6E;#127A6E;#0C5A51;#127A6E;#127A6E" keyTimes="0.0000;0.9000;0.9061;0.9740;1.0000" dur="12.0s" repeatCount="indefinite"/></rect>
+  <text x="164" y="337" style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;fill:#127A6E">10</text>
+  <text x="194" y="338" style="font-family:var(--display);font-size:18px;font-weight:600;fill:var(--ink)">Uji semua menu</text>
+  <text x="194" y="361" style="font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)">satu per satu, dicatat</text>
   <path d="M455,42 H511" stroke="#A2731C" stroke-width="1.5" fill="none" marker-end="url(#fl11)"/>
-  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="13.2s" repeatCount="indefinite" path="M455,42 H516" keyPoints="0;0;1;1" keyTimes="0.0000;0.0673;0.0891;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.0633;0.0753;0.0811;0.0891;1.0000" dur="13.2s" repeatCount="indefinite"/></circle>
+  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="12.0s" repeatCount="indefinite" path="M455,42 H516" keyPoints="0;0;1;1" keyTimes="0.0000;0.0740;0.0980;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.0696;0.0828;0.0892;0.0980;1.0000" dur="12.0s" repeatCount="indefinite"/></circle>
   <path d="M825,42 H881" stroke="#A2731C" stroke-width="1.5" fill="none" marker-end="url(#fl11)"/>
-  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="13.2s" repeatCount="indefinite" path="M825,42 H886" keyPoints="0;0;1;1" keyTimes="0.0000;0.1582;0.1800;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.1542;0.1662;0.1720;0.1800;1.0000" dur="13.2s" repeatCount="indefinite"/></circle>
+  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="12.0s" repeatCount="indefinite" path="M825,42 H886" keyPoints="0;0;1;1" keyTimes="0.0000;0.1740;0.1980;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.1696;0.1828;0.1892;0.1980;1.0000" dur="12.0s" repeatCount="indefinite"/></circle>
   <path d="M1195,42 H1210 V93 H135 V144 H141" stroke="#A2731C" stroke-width="1.5" fill="none" marker-end="url(#fl11)"/>
-  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="13.2s" repeatCount="indefinite" path="M1195,42 H1210 V93 H135 V144 H146" keyPoints="0;0;1;1" keyTimes="0.0000;0.2491;0.2709;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.2451;0.2571;0.2629;0.2709;1.0000" dur="13.2s" repeatCount="indefinite"/></circle>
+  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="12.0s" repeatCount="indefinite" path="M1195,42 H1210 V93 H135 V144 H146" keyPoints="0;0;1;1" keyTimes="0.0000;0.2740;0.2980;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.2696;0.2828;0.2892;0.2980;1.0000" dur="12.0s" repeatCount="indefinite"/></circle>
   <path d="M455,144 H511" stroke="#A2731C" stroke-width="1.5" fill="none" marker-end="url(#fl11)"/>
-  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="13.2s" repeatCount="indefinite" path="M455,144 H516" keyPoints="0;0;1;1" keyTimes="0.0000;0.3400;0.3618;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.3360;0.3480;0.3538;0.3618;1.0000" dur="13.2s" repeatCount="indefinite"/></circle>
+  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="12.0s" repeatCount="indefinite" path="M455,144 H516" keyPoints="0;0;1;1" keyTimes="0.0000;0.3740;0.3980;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.3696;0.3828;0.3892;0.3980;1.0000" dur="12.0s" repeatCount="indefinite"/></circle>
   <path d="M825,144 H881" stroke="#A2731C" stroke-width="1.5" fill="none" marker-end="url(#fl11)"/>
-  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="13.2s" repeatCount="indefinite" path="M825,144 H886" keyPoints="0;0;1;1" keyTimes="0.0000;0.4309;0.4527;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.4269;0.4389;0.4447;0.4527;1.0000" dur="13.2s" repeatCount="indefinite"/></circle>
+  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="12.0s" repeatCount="indefinite" path="M825,144 H886" keyPoints="0;0;1;1" keyTimes="0.0000;0.4740;0.4980;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.4696;0.4828;0.4892;0.4980;1.0000" dur="12.0s" repeatCount="indefinite"/></circle>
   <path d="M1195,144 H1210 V195 H135 V246 H141" stroke="#A2731C" stroke-width="1.5" fill="none" marker-end="url(#fl11)"/>
-  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="13.2s" repeatCount="indefinite" path="M1195,144 H1210 V195 H135 V246 H146" keyPoints="0;0;1;1" keyTimes="0.0000;0.5218;0.5436;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.5178;0.5298;0.5356;0.5436;1.0000" dur="13.2s" repeatCount="indefinite"/></circle>
+  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="12.0s" repeatCount="indefinite" path="M1195,144 H1210 V195 H135 V246 H146" keyPoints="0;0;1;1" keyTimes="0.0000;0.5740;0.5980;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.5696;0.5828;0.5892;0.5980;1.0000" dur="12.0s" repeatCount="indefinite"/></circle>
   <path d="M455,246 H511" stroke="#A2731C" stroke-width="1.5" fill="none" marker-end="url(#fl11)"/>
-  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="13.2s" repeatCount="indefinite" path="M455,246 H516" keyPoints="0;0;1;1" keyTimes="0.0000;0.6127;0.6345;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.6087;0.6207;0.6265;0.6345;1.0000" dur="13.2s" repeatCount="indefinite"/></circle>
+  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="12.0s" repeatCount="indefinite" path="M455,246 H516" keyPoints="0;0;1;1" keyTimes="0.0000;0.6740;0.6980;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.6696;0.6828;0.6892;0.6980;1.0000" dur="12.0s" repeatCount="indefinite"/></circle>
   <path d="M825,246 H881" stroke="#A2731C" stroke-width="1.5" fill="none" marker-end="url(#fl11)"/>
-  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="13.2s" repeatCount="indefinite" path="M825,246 H886" keyPoints="0;0;1;1" keyTimes="0.0000;0.7036;0.7255;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.6996;0.7116;0.7175;0.7255;1.0000" dur="13.2s" repeatCount="indefinite"/></circle>
+  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="12.0s" repeatCount="indefinite" path="M825,246 H886" keyPoints="0;0;1;1" keyTimes="0.0000;0.7740;0.7980;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.7696;0.7828;0.7892;0.7980;1.0000" dur="12.0s" repeatCount="indefinite"/></circle>
   <path d="M1195,246 H1210 V297 H135 V348 H141" stroke="#A2731C" stroke-width="1.5" fill="none" marker-end="url(#fl11)"/>
-  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="13.2s" repeatCount="indefinite" path="M1195,246 H1210 V297 H135 V348 H146" keyPoints="0;0;1;1" keyTimes="0.0000;0.7945;0.8164;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.7905;0.8025;0.8084;0.8164;1.0000" dur="13.2s" repeatCount="indefinite"/></circle>
-  <path d="M455,348 H511" stroke="#A2731C" stroke-width="1.5" fill="none" marker-end="url(#fl11)"/>
-  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="13.2s" repeatCount="indefinite" path="M455,348 H516" keyPoints="0;0;1;1" keyTimes="0.0000;0.8855;0.9073;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.8815;0.8935;0.8993;0.9073;1.0000" dur="13.2s" repeatCount="indefinite"/></circle>
+  <circle class="gf" r="4.2" opacity="0"><animateMotion dur="12.0s" repeatCount="indefinite" path="M1195,246 H1210 V297 H135 V348 H146" keyPoints="0;0;1;1" keyTimes="0.0000;0.8740;0.8980;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.8696;0.8828;0.8892;0.8980;1.0000" dur="12.0s" repeatCount="indefinite"/></circle>
   <line x1="4" y1="404" x2="1216" y2="404" stroke="#E1E7EC" stroke-width="1"/>
   <text x="4" y="424" style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;fill:#A2731C">SELESAI HARI INI:</text>
   <text x="208" y="424" style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;fill:#111A22">WEB APP</text>
@@ -1044,12 +1036,12 @@ kalimat yang berputar.</div>
       <div class="check" data-a="left" style="--i:3"><span class="box"></span><span class="t"><b>Akun GitHub sudah dibuat</b> dan bisa login — bukan "kayaknya dulu pernah bikin tahun 2021"</span><span class="who">Semua</span></div>
       <div class="check" data-a="left" style="--i:4"><span class="box"></span><span class="t"><b>Akun Claude Max 5×</b> — bukan paket Pro. Login lewat Claude web (claude.ai), satu akun per kelompok.</span><span class="who">Semua</span></div>
       <div class="check" data-a="left" style="--i:5"><span class="box"></span><span class="t"><b>Laptop dan koneksi internet</b> yang stabil sepanjang hari</span><span class="who">Semua</span></div>
-      <div class="check done" data-a="left" style="--i:8"><span class="box"></span><span class="t"><b>API key</b> untuk menu gambar — sudah disiapkan dan dibagikan tim INSYNTIVE di hari H</span><span class="who ok">Disediakan</span></div>
+      <div class="check done" data-a="left" style="--i:8"><span class="box"></span><span class="t"><b>API key Anthropic</b> untuk menu ber-AI — disiapkan dan dibagikan tim INSYNTIVE di hari H. Langganan Claude Max tidak termasuk akses API.</span><span class="who ok">Disediakan</span></div>
       <div class="check" data-a="left" style="--i:9"><span class="box"></span><span class="t"><b>Satu masalah nyata</b> dari departemen kita sendiri, sudah ditulis dalam tiga kalimat</span><span class="who">1 per tim</span></div>
     </div>
     <div class="card" data-a="rise" style="--i:10;padding:24px">
       <span class="tag">Yang tidak perlu kita siapkan</span>
-      <p class="sub">Database, storage, environment, dan API key sudah disiapkan tim INSYNTIVE. Tidak ada instalasi server, tidak ada setup Docker, tidak perlu beli kuota API sendiri. Di hari H kita cukup <em>connect</em> lalu <em>prompt</em>.</p>
+      <p class="sub">Database, storage, alamat publik, dan API key sudah diurus. Tidak ada server yang dipasang, tidak ada Docker, tidak ada kredensial yang diketik manual — Vercel menempelkannya sendiri. Di hari H kita cukup <em>connect</em> lalu <em>prompt</em>.</p>
       <div class="rule" style="margin:20px 0 16px"></div>
       <span class="tag">Poin terakhir yang paling menentukan</span>
       <p class="sub">Tim yang datang membawa masalah nyata — tunggakan serah terima unit, dokumen vendor yang berantakan, prospek yang tidak pernah ditindaklanjuti — akan selesai. Tim yang datang untuk "belajar AI" akan membuat aplikasi to-do list dan melupakannya hari Jumat.</p>
@@ -1210,7 +1202,7 @@ Add .gitignore   Node
 
 <span class="cm"># setelah dibuat</span>
 Settings → Collaborators → <span class="hl">+ 1 rekan</span></div>
-        <p class="sub" style="margin-top:10px;font-size:13px">Nama repo dipakai seharian — di Claude Code, di alamat GitHub Pages, dan di obrolan antar tim. Pilih yang pendek dan bisa diucapkan.</p>
+        <p class="sub" style="margin-top:10px;font-size:13px">Nama repo dipakai seharian — di Claude Code, di alamat Vercel, dan di obrolan antar tim. Pilih yang pendek dan bisa diucapkan.</p>
       </div>
     </div>
   </div>
@@ -1286,9 +1278,79 @@ Setelah itu sebutkan nama branch-nya.</div>
   </div>
 </section>
 
+<!-- 30b · LANGKAH 04 -->
+<section class="slide padat" data-step="4" data-act="Sesi 03" data-title="Langkah 04 — Sambungkan Vercel">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">04</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Publikasi</p><h2 style="margin:0">Alamatnya hidup sebelum ada isinya</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="ipo" data-a="fade" style="--i:2">
+<svg class="mg" viewBox="0 0 1112 122" aria-hidden="true">
+  <defs><marker id="chV" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A2731C"/></marker></defs>
+  <rect x="0" y="30" width="233" height="66" rx="4" fill="#ffffff" stroke="#E1E7EC">
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.0000;0.0150;0.1950;1.0000" dur="9.6s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.0000;0.0150;0.1950;1.0000" dur="9.6s" repeatCount="indefinite"/></rect>
+  <text x="116" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#A2731C">LANGKAH 1</text>
+  <text x="116" y="69" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">Login Vercel</text>
+  <text x="116" y="87" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">Continue with GitHub</text>
+  <rect x="293" y="30" width="233" height="66" rx="4" fill="#ffffff" stroke="#E1E7EC">
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.2500;0.2650;0.4450;1.0000" dur="9.6s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.2500;0.2650;0.4450;1.0000" dur="9.6s" repeatCount="indefinite"/></rect>
+  <text x="410" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#A2731C">LANGKAH 2</text>
+  <text x="410" y="69" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">Import repo</text>
+  <text x="410" y="87" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">chl-[proyek] · setelan bawaan</text>
+  <path d="M237,63 H284" stroke="#A2731C" stroke-width="1.4" fill="none" marker-end="url(#chV)"/>
+  <circle class="gf" r="3.8" opacity="0"><animateMotion dur="9.6s" repeatCount="indefinite" path="M237,63 H289" keyPoints="0;0;1;1" keyTimes="0.0000;0.1800;0.2450;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.1750;0.1900;0.2350;0.2450;1.0000" dur="9.6s" repeatCount="indefinite"/></circle>
+  <rect x="586" y="30" width="233" height="66" rx="4" fill="#ffffff" stroke="#E1E7EC">
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.5000;0.5150;0.6950;1.0000" dur="9.6s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.5000;0.5150;0.6950;1.0000" dur="9.6s" repeatCount="indefinite"/></rect>
+  <text x="702" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#A2731C">LANGKAH 3</text>
+  <text x="702" y="69" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">Deploy</text>
+  <text x="702" y="87" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">build jalan sendiri</text>
+  <path d="M530,63 H577" stroke="#A2731C" stroke-width="1.4" fill="none" marker-end="url(#chV)"/>
+  <circle class="gf" r="3.8" opacity="0"><animateMotion dur="9.6s" repeatCount="indefinite" path="M530,63 H582" keyPoints="0;0;1;1" keyTimes="0.0000;0.4300;0.4950;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.4250;0.4400;0.4850;0.4950;1.0000" dur="9.6s" repeatCount="indefinite"/></circle>
+  <rect x="879" y="30" width="233" height="66" rx="4" fill="rgba(18,122,110,.06)" stroke="#127A6E" stroke-dasharray="6 5">
+    <animate attributeName="fill" values="rgba(18,122,110,.06);rgba(18,122,110,.06);rgba(18,122,110,.22);rgba(18,122,110,.06);rgba(18,122,110,.06)" keyTimes="0.0000;0.7500;0.7650;0.9450;1.0000" dur="9.6s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#127A6E;#127A6E;#0C5A51;#127A6E;#127A6E" keyTimes="0.0000;0.7500;0.7650;0.9450;1.0000" dur="9.6s" repeatCount="indefinite"/></rect>
+  <text x="996" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#127A6E">LANGKAH 4</text>
+  <text x="996" y="69" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">Alamat publik</text>
+  <text x="996" y="87" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">tiap push otomatis tayang</text>
+  <path d="M823,63 H870" stroke="#A2731C" stroke-width="1.4" fill="none" marker-end="url(#chV)"/>
+  <circle class="gt" r="3.8" opacity="0"><animateMotion dur="9.6s" repeatCount="indefinite" path="M823,63 H875" keyPoints="0;0;1;1" keyTimes="0.0000;0.6800;0.7450;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.6750;0.6900;0.7350;0.7450;1.0000" dur="9.6s" repeatCount="indefinite"/></circle>
+</svg>
+  </div>
+  <div class="split">
+    <div>
+      <ul class="clean sm" data-a="rise" style="--i:3">
+        <li><strong>1 · Buka <span class="mono">vercel.com</span> → <em>Continue with GitHub</em>.</strong> Tidak ada password baru — akun GitHub dari langkah 02 yang dipakai.</li>
+        <li><strong>2 · <span class="mono">Add New → Project</span> → pilih repo <span class="mono">chl-[proyek]</span>.</strong> Next.js dikenali sendiri; jangan ubah setelan apa pun.</li>
+        <li><strong>3 · <em>Deploy</em>, tunggu hijau.</strong> Repo masih hampir kosong — memang itu maksudnya.</li>
+        <li><strong>4 · Buka alamatnya dari HP,</strong> bukan cuma dari laptop yang membangun.</li>
+        <li><strong>5 · Mulai detik ini tiap <span class="mono">push</span> otomatis tayang.</strong> Tidak ada lagi langkah publikasi di sore hari.</li>
+      </ul>
+      <div class="callout" data-a="rise" style="--i:4;margin-top:8px">
+        <span class="k">Kenapa disambungkan sekarang, bukan nanti</span>
+        <p>Diuji saat repo masih kosong, tidak ada kode yang bisa disalahkan waktu gagal. Ditunda ke sore, kita menguji dua hal sekaligus persis saat tenaga sudah habis.</p>
+      </div>
+    </div>
+    <div>
+      <div class="card teal" data-a="rise" style="--i:5;padding:18px 20px">
+        <span class="tag">Yang tidak perlu kita kerjakan</span>
+        <ul class="clean sm" style="margin-top:6px">
+          <li>Tidak ada workflow <span class="mono">GitHub Actions</span> yang ditulis</li>
+          <li>Tidak ada <em>base path</em> yang diperbaiki</li>
+          <li>Tidak ada server yang dipasang atau di-restart</li>
+          <li>Tidak ada perintah <em>deploy</em> yang diketik</li>
+        </ul>
+        <div class="rule" style="margin:16px 0 12px"></div>
+        <span class="tag">Bonus yang dipakai di langkah 10</span>
+        <p class="sub" style="font-size:13.5px">Tiap <em>branch</em> dapat alamat uji cobanya sendiri. Menguji perubahan tidak perlu merusak alamat utama yang sedang dilihat orang lain.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 31 · LANGKAH 04 -->
-<section class="slide padat" data-step="4" data-act="Sesi 03" data-title="Langkah 04 — PRD">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">04</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Claude Chat</p><h2 style="margin:0">Tulis PRD-nya</h2></div></div>
+<section class="slide padat" data-step="5" data-act="Sesi 03" data-title="Langkah 05 — PRD">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">05</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Claude Chat</p><h2 style="margin:0">Tulis PRD-nya</h2></div></div>
   <div class="rule" style="--i:1"></div>
   <div class="ipo" data-a="fade" style="--i:2">
 <svg class="mg" viewBox="0 0 1112 68" aria-hidden="true">
@@ -1330,7 +1392,7 @@ Setelah itu sebutkan nama branch-nya.</div>
       
       <ul class="clean" data-a="rise" style="--i:3">
         <li><strong>Lampirkan contoh PRD dulu.</strong> Model meniru bentuk yang kita tunjukkan. Tunjukkan yang bagus, hasilnya bagus.</li>
-        <li><strong>Sebutkan stack-nya di dalam PRD.</strong> Next.js, MySQL, MinIO, Docker — ditulis, bukan diasumsikan.</li>
+        <li><strong>Sebutkan stack-nya di dalam PRD.</strong> Next.js di Vercel, Vercel Postgres, Vercel Blob — ditulis, bukan diasumsikan.</li>
         <li><strong>Dokumen ini jadi batasan untuk Claude Design.</strong> Design tidak boleh mengarang scope yang tidak ada di sini.</li>
         <li><strong>Cukup dua halaman.</strong> PRD yang tidak pernah dibaca ulang cuma jadi hiasan.</li>
       </ul>
@@ -1348,7 +1410,7 @@ Tulis PRD untuk: <span class="cm">[masalah kita,
 3 kalimat]</span>
 
 Batasan:
-· Stack dikunci: <span class="hl">Next.js</span>, MySQL, MinIO
+· Stack dikunci: <span class="hl">Next.js</span>, Postgres, Blob
 · Mencakup web app, RAG, chatbot
 · Scope <span class="hl">satu hari kerja</span>, 3 orang
 · Sebutkan setiap layar eksplisit
@@ -1360,7 +1422,7 @@ belum jelas sebelum menulis.</div>
 </section>
 
 <!-- 32 · LANGKAH 04 · MUTU -->
-<section class="slide padat" data-step="4" data-act="Sesi 03" data-title="Mutu PRD">
+<section class="slide padat" data-step="5" data-act="Sesi 03" data-title="Mutu PRD">
   <p class="eyebrow" data-a="left" style="--i:0">Langkah 04 · Standar mutu</p>
   <h2 data-a="rise" style="--i:1">Beda PRD yang jadi kode dan yang jadi wacana.</h2>
   <div class="rule" style="--i:2"></div>
@@ -1370,7 +1432,7 @@ belum jelas sebelum menulis.</div>
       <tr><td class="k">Masalah</td><td class="no">"Meningkatkan komunikasi dengan pelanggan."</td><td>"Staf penjualan menjawab 12 pertanyaan unit yang sama lewat WhatsApp, 40 kali sehari, dari daftar harga yang sudah tertinggal 3 versi."</td></tr>
       <tr><td class="k">Pengguna</td><td class="no">"Pengguna internal dan eksternal."</td><td>"Admin penjualan (mengisi), agen penjualan (membaca di HP), manajer pemasaran (menyetujui)."</td></tr>
       <tr><td class="k">Layar</td><td class="no">"Dasbor dan halaman lainnya."</td><td>"Login · Daftar unit · Detail unit · Upload dokumen · Tanya dokumen · Chat · Pengaturan admin. Tujuh. Itu daftarnya."</td></tr>
-      <tr><td class="k">Data</td><td class="no">"Menyimpan data yang relevan."</td><td>"units, documents, chunks, conversations, users. Di MySQL. File di MinIO, jalurnya disimpan di documents.object_key."</td></tr>
+      <tr><td class="k">Data</td><td class="no">"Menyimpan data yang relevan."</td><td>"units, documents, chunks, conversations, users. Di Postgres. File di Blob, alamatnya disimpan di documents.blob_url."</td></tr>
       <tr><td class="k">Selesai berarti</td><td class="no">"Sistem berjalan dengan baik."</td><td>"Agen meng-upload spesifikasi 30 halaman lalu mendapat jawaban benar beserta sumbernya untuk 'berapa tinggi plafon tipe 45' dalam kurang dari 10 detik."</td></tr>
     </table>
     <div class="callout teal" data-a="rise" style="--i:5;margin-top:20px">
@@ -1381,8 +1443,8 @@ belum jelas sebelum menulis.</div>
 </section>
 
 <!-- 33 · LANGKAH 05 -->
-<section class="slide padat" data-step="5" data-act="Sesi 03" data-title="Langkah 05 — Design">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">05</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Design</p><h2 style="margin:0">Bikin designnya kelihatan</h2></div></div>
+<section class="slide padat" data-step="6" data-act="Sesi 03" data-title="Langkah 06 — Design">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">06</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Design</p><h2 style="margin:0">Bikin designnya kelihatan</h2></div></div>
   <div class="rule" style="--i:1"></div>
   <div class="ipo" data-a="fade" style="--i:2">
 <svg class="mg" viewBox="0 0 1112 68" aria-hidden="true">
@@ -1448,8 +1510,8 @@ belum jelas sebelum menulis.</div>
 </section>
 
 <!-- 34 · LANGKAH 06 -->
-<section class="slide padat" data-step="6" data-act="Sesi 03" data-title="Langkah 06 — Transfer & pilih repo">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">06</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Transfer</p><h2 style="margin:0">Pindahkan hasil design, pilih reponya di sini</h2></div></div>
+<section class="slide padat" data-step="6" data-act="Sesi 03" data-title="Langkah 06 — Transfer ke Claude Code">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">06</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Transfer</p><h2 style="margin:0">Pindahkan hasil design ke Claude Code</h2></div></div>
   <div class="rule" style="--i:1"></div>
   <div class="ipo" data-a="fade" style="--i:2">
 <svg class="mg" viewBox="0 0 1112 122" aria-hidden="true">
@@ -1490,14 +1552,14 @@ belum jelas sebelum menulis.</div>
     <div>
       <ul class="clean sm" data-a="rise" style="--i:3">
         <li><strong>1 · Dari hasil design, pilih transfer</strong> — lanjutkan pekerjaannya di Claude Code. Prototype-nya ikut terbawa, tanpa salin-tempel manual.</li>
-        <li><strong>2 · Saat diminta repository, pilih repo kelompok</strong> dari langkah 02 beserta branch-nya. Pilih di sini, bukan nanti — ini yang bikin sisa harinya tidak ribet.</li>
+        <li><strong>2 · Reponya sudah terpilih sejak langkah 03.</strong> Yang perlu dipastikan cuma satu: sesi Claude Code ini menunjuk ke repo kelompok kita, bukan repo contoh.</li>
         <li><strong>3 · Periksa nama repo dan branch</strong> di sesi Claude Code sebelum mengetik apa pun. Salah repo di sini, sore nanti kita mencari-cari pekerjaan sendiri.</li>
         <li><strong>4 · Minta commit pertama:</strong> struktur project, <span class="mono">PRD.md</span>, dan hasil design masuk ke repo.</li>
         <li><strong>5 · Buka <span class="mono">github.com</span> dan pastikan filenya ada.</strong> Kalau belum ada, jangan lanjut ke langkah 07.</li>
       </ul>
       <div class="callout" data-a="rise" style="--i:4;margin-top:8px">
-        <span class="k">Kenapa repo dipilih di titik ini</span>
-        <p>Sekali repo dipilih, tiap commit langsung mendarat di tempat yang benar — dan kalau ada yang rusak, kita punya titik untuk kembali.</p>
+        <span class="k">Commit pertama = tayangan pertama</span>
+        <p>Karena Vercel sudah tersambung di langkah 04, commit ini bukan cuma masuk repo — dalam satu menit alamat kelompok kita berubah isinya. Buka dari HP dan buktikan.</p>
       </div>
     </div>
     <div>
@@ -1519,9 +1581,124 @@ Lalu commit dan push ke branch baru.
   </div>
 </section>
 
+<!-- 36 · LANGKAH 07 -->
+<section class="slide padat" data-step="7" data-act="Sesi 03" data-title="Langkah 07 — Nyalakan data">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">07</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Database &amp; Storage</p><h2 style="margin:0">Dua klik, tanpa satu pun password diketik</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="ipo" data-a="fade" style="--i:2">
+<svg class="mg" viewBox="0 0 1112 122" aria-hidden="true">
+  <defs><marker id="chS" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A2731C"/></marker></defs>
+  <rect x="0" y="30" width="233" height="66" rx="4" fill="#ffffff" stroke="#E1E7EC">
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.0000;0.0150;0.1950;1.0000" dur="9.6s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.0000;0.0150;0.1950;1.0000" dur="9.6s" repeatCount="indefinite"/></rect>
+  <text x="116" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#A2731C">LANGKAH 1</text>
+  <text x="116" y="69" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">Tab Storage</text>
+  <text x="116" y="87" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">di project Vercel kita</text>
+  <rect x="293" y="30" width="233" height="66" rx="4" fill="#ffffff" stroke="#E1E7EC">
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.2500;0.2650;0.4450;1.0000" dur="9.6s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.2500;0.2650;0.4450;1.0000" dur="9.6s" repeatCount="indefinite"/></rect>
+  <text x="410" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#A2731C">LANGKAH 2</text>
+  <text x="410" y="69" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">Postgres + Blob</text>
+  <text x="410" y="87" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">baris data · file</text>
+  <path d="M237,63 H284" stroke="#A2731C" stroke-width="1.4" fill="none" marker-end="url(#chS)"/>
+  <circle class="gf" r="3.8" opacity="0"><animateMotion dur="9.6s" repeatCount="indefinite" path="M237,63 H289" keyPoints="0;0;1;1" keyTimes="0.0000;0.1800;0.2450;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.1750;0.1900;0.2350;0.2450;1.0000" dur="9.6s" repeatCount="indefinite"/></circle>
+  <rect x="586" y="30" width="233" height="66" rx="4" fill="#ffffff" stroke="#E1E7EC">
+    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.5000;0.5150;0.6950;1.0000" dur="9.6s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.5000;0.5150;0.6950;1.0000" dur="9.6s" repeatCount="indefinite"/></rect>
+  <text x="702" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#A2731C">LANGKAH 3</text>
+  <text x="702" y="69" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">Kredensial otomatis</text>
+  <text x="702" y="87" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">Vercel yang menempelkan</text>
+  <path d="M530,63 H577" stroke="#A2731C" stroke-width="1.4" fill="none" marker-end="url(#chS)"/>
+  <circle class="gf" r="3.8" opacity="0"><animateMotion dur="9.6s" repeatCount="indefinite" path="M530,63 H582" keyPoints="0;0;1;1" keyTimes="0.0000;0.4300;0.4950;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.4250;0.4400;0.4850;0.4950;1.0000" dur="9.6s" repeatCount="indefinite"/></circle>
+  <rect x="879" y="30" width="233" height="66" rx="4" fill="rgba(18,122,110,.06)" stroke="#127A6E" stroke-dasharray="6 5">
+    <animate attributeName="fill" values="rgba(18,122,110,.06);rgba(18,122,110,.06);rgba(18,122,110,.22);rgba(18,122,110,.06);rgba(18,122,110,.06)" keyTimes="0.0000;0.7500;0.7650;0.9450;1.0000" dur="9.6s" repeatCount="indefinite"/>
+    <animate attributeName="stroke" values="#127A6E;#127A6E;#0C5A51;#127A6E;#127A6E" keyTimes="0.0000;0.7500;0.7650;0.9450;1.0000" dur="9.6s" repeatCount="indefinite"/></rect>
+  <text x="996" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#127A6E">LANGKAH 4</text>
+  <text x="996" y="69" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">Redeploy sekali</text>
+  <text x="996" y="87" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">/api/health hijau</text>
+  <path d="M823,63 H870" stroke="#A2731C" stroke-width="1.4" fill="none" marker-end="url(#chS)"/>
+  <circle class="gt" r="3.8" opacity="0"><animateMotion dur="9.6s" repeatCount="indefinite" path="M823,63 H875" keyPoints="0;0;1;1" keyTimes="0.0000;0.6800;0.7450;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.6750;0.6900;0.7350;0.7450;1.0000" dur="9.6s" repeatCount="indefinite"/></circle>
+</svg>
+  </div>
+  <div class="split">
+    <div>
+      <ul class="clean sm" data-a="rise" style="--i:3">
+        <li><strong>1 · Tab <span class="mono">Storage</span> → <em>Create</em> → <em>Postgres</em>.</strong> Region terdekat: Singapore.</li>
+        <li><strong>2 · Ulangi untuk <em>Blob</em>.</strong> Rumah bagi file: PDF, foto, lampiran.</li>
+        <li><strong>3 · Kredensialnya ditempel Vercel sendiri</strong> sebagai <em>environment variable</em> — tidak ada yang disalin, tidak ada yang bisa salah ketik.</li>
+        <li><strong>4 · <em>Redeploy</em> sekali</strong> supaya variabel barunya terbaca.</li>
+        <li><strong>5 · Buktikan lewat <span class="mono">/api/health</span>.</strong> Dua-duanya <span class="mono">ok</span> dulu, baru bikin schema.</li>
+      </ul>
+      <div class="callout" data-a="rise" style="--i:4;margin-top:8px">
+        <span class="k">Satu-satunya kunci yang masih diketik manual</span>
+        <p><span class="mono">ANTHROPIC_API_KEY</span> dari lembar <em>ACCESS</em>, ditempel di <span class="mono">Settings → Environment Variables</span> — di Vercel, <strong>tidak pernah di dalam repo</strong>. Kunci ini yang menghidupkan langkah 09.</p>
+      </div>
+    </div>
+    <div>
+      <div class="card" data-a="rise" style="--i:5;padding:18px 20px">
+        <span class="tag">Yang muncul sendiri di project</span>
+        <div class="code" style="margin-top:6px"><span class="cm"># ditempel Vercel, jangan diubah</span>
+<span class="hl">POSTGRES_URL</span>
+<span class="hl">BLOB_READ_WRITE_TOKEN</span>
+
+<span class="cm"># kita tempel sendiri, sekali</span>
+<span class="hl">ANTHROPIC_API_KEY</span></div>
+        <div class="rule" style="margin:14px 0 10px"></div>
+        <span class="tag">Prompt untuk Claude Code</span>
+        <p style="font-size:13px;line-height:1.45">"Sambungkan app ini ke <span class="mono">Vercel Postgres</span> lewat <span class="mono">POSTGRES_URL</span> dan <span class="mono">Vercel Blob</span> lewat <span class="mono">BLOB_READ_WRITE_TOKEN</span>. Buat <span class="mono">GET /api/health</span> yang mengetes <span class="mono">SELECT 1</span> dan sekali <em>list</em> blob."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 36b · LANGKAH 07 · PRAKTIK -->
+<section class="slide padat" data-step="7" data-act="Sesi 03" data-title="Langkah 07 — Aturan data">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">07</span><div><p class="eyebrow" style="margin:0 0 4px">Praktik · Database &amp; Storage</p><h2 style="margin:0">Baris di Postgres, file di Blob</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="split">
+    <div>
+      <ul class="clean" data-a="rise" style="--i:3">
+        <li><strong>Jangan simpan file di dalam database.</strong> Yang masuk Postgres cuma <em>alamat</em> filenya, isinya biar di Blob. Database yang digemukkan file akan lambat, dan itu tidak bisa diperbaiki belakangan.</li>
+        <li><strong>Tiap kelompok punya database sendiri.</strong> Satu project, satu Postgres, satu Blob — tidak ada yang saling menimpa.</li>
+        <li><strong>Schema ditulis sesuai PRD,</strong> bukan sesuai yang terpikir saat itu. Buka <span class="mono">docs/PRD.md</span> bagian data, minta Claude Code membuat tabelnya dari situ.</li>
+        <li><strong>Isi data contoh secukupnya</strong> — lima sampai sepuluh baris yang mirip data asli. Menu kosong tidak bisa diuji dan tidak bisa ditunjukkan.</li>
+      </ul>
+      <div class="callout teal" data-a="rise" style="--i:4;margin-top:6px">
+        <span class="k">Kenapa data dinyalakan sebelum menu dibangun</span>
+        <p>Menu yang dibuat dengan data palsu harus dibongkar lagi nanti. Karena menyalakannya cuma dua klik, tidak ada alasan menunda.</p>
+      </div>
+    </div>
+    <div>
+      <div class="card" data-a="rise" style="--i:5;padding:24px">
+        <span class="tag">Bentuk yang benar</span>
+        <div class="code" style="margin-top:6px"><span class="cm">-- Postgres: alamatnya saja</span>
+documents
+  id
+  nama_file
+  <span class="hl">blob_url</span>   <span class="cm">← alamat di Blob</span>
+  ukuran
+  diunggah_oleh
+  dibuat_pada
+
+<span class="cm">-- Blob: isi filenya</span>
+<span class="hl">laporan-q3.pdf</span>  2.4 MB</div>
+        <div class="rule" style="margin:18px 0 12px"></div>
+        <span class="tag">Bukti sebelum lanjut ke langkah 08</span>
+        <ul class="clean sm" style="margin-top:6px">
+          <li><span class="mono">/api/health</span> hijau untuk dua-duanya</li>
+          <li>Tabel sudah ada dan berisi data contoh</li>
+          <li>Satu file berhasil diunggah dan alamatnya tersimpan</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 35 · LANGKAH 07 -->
-<section class="slide padat" data-step="7" data-act="Sesi 03" data-title="Langkah 07 — Hidupkan menu">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">07</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Claude Code</p><h2 style="margin:0">Hidupkan menunya</h2></div></div>
+<section class="slide padat" data-step="8" data-act="Sesi 03" data-title="Langkah 08 — Hidupkan menu">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">08</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Claude Code</p><h2 style="margin:0">Hidupkan menunya</h2></div></div>
   <div class="rule" style="--i:1"></div>
   <div class="ipo" data-a="fade" style="--i:2">
 <svg class="mg" viewBox="0 0 1112 68" aria-hidden="true">
@@ -1576,7 +1753,7 @@ Lalu commit dan push ke branch baru.
     <div class="card" data-a="rise" style="--i:5;padding:24px">
       <span class="tag">Urutan bangunnya — ikuti</span>
       <ul class="clean sm" style="margin-top:6px">
-        <li><strong>1 · Scaffold</strong> — project Next.js, lalu sambungkan ke MySQL dan MinIO yang sudah menyala.</li>
+        <li><strong>1 · Scaffold</strong> — project Next.js, memakai Postgres dan Blob yang sudah dinyalakan di langkah 07.</li>
         <li><strong>2 · Schema</strong> — tabel sesuai PRD + data contoh yang terlihat di layar.</li>
         <li><strong>3 · Read path</strong> — halaman list dan detail. Buktikan datanya mengalir dulu.</li>
         <li><strong>4 · Write path</strong> — form, upload, validasi.</li>
@@ -1588,139 +1765,8 @@ Lalu commit dan push ke branch baru.
   </div>
 </section>
 
-<!-- 36 · LANGKAH 08 -->
-<section class="slide padat" data-step="8" data-act="Sesi 03" data-title="Langkah 08 — Database">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">08</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Database &amp; Storage</p><h2 style="margin:0">Tinggal connect</h2></div></div>
-  <div class="rule" style="--i:1"></div>
-  <div class="ipo" data-a="fade" style="--i:2">
-<svg class="mg" viewBox="0 0 1112 68" aria-hidden="true">
-  <defs><marker id="ipoar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A2731C"/></marker></defs>
-  <text x="0" y="9" style="font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;fill:var(--gold-ink)">INPUT</text>
-  <rect x="0" y="15" width="248" height="46" rx="3" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#F9EFD9;#ffffff;#ffffff" keyTimes="0;0.0000;0.0250;0.2083;1" dur="4.8s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0;0.0000;0.0250;0.2083;1" dur="4.8s" repeatCount="indefinite"/></rect>
-  <text x="124" y="36" text-anchor="middle" style="font-family:var(--display);font-size:14.5px;font-weight:600;fill:var(--ink)">Schema dari PRD</text>
-  <text x="124" y="52" text-anchor="middle" style="font-family:var(--mono);font-size:9px;fill:var(--ink-3)">+ kredensial dari penyelenggara</text>
-  <text x="286" y="9" style="font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;fill:var(--gold-ink)">DIOLAH OLEH</text>
-  <rect x="286" y="15" width="248" height="46" rx="3" fill="#FFF6E2" stroke="#C9922B">
-    <animate attributeName="fill" values="#FFF6E2;#FFF6E2;#F6DFA8;#FFF6E2;#FFF6E2" keyTimes="0;0.2292;0.2750;0.4583;1" dur="4.8s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#C9922B;#C9922B;#8F6516;#C9922B;#C9922B" keyTimes="0;0.2292;0.2750;0.4583;1" dur="4.8s" repeatCount="indefinite"/></rect>
-  <text x="410" y="36" text-anchor="middle" style="font-family:var(--display);font-size:14.5px;font-weight:600;fill:var(--ink)">Connect &amp; prompt</text>
-  <text x="410" y="52" text-anchor="middle" style="font-family:var(--mono);font-size:9px;fill:var(--ink-3)">MySQL + MinIO sudah menyala</text>
-  <text x="572" y="9" style="font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;fill:var(--gold-ink)">OUTPUT</text>
-  <rect x="572" y="15" width="248" height="46" rx="3" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#F9EFD9;#ffffff;#ffffff" keyTimes="0;0.4792;0.5250;0.7083;1" dur="4.8s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0;0.4792;0.5250;0.7083;1" dur="4.8s" repeatCount="indefinite"/></rect>
-  <text x="696" y="36" text-anchor="middle" style="font-family:var(--display);font-size:14.5px;font-weight:600;fill:var(--ink)">Data tersimpan</text>
-  <text x="696" y="52" text-anchor="middle" style="font-family:var(--mono);font-size:9px;fill:var(--ink-3)">row di MySQL · file di MinIO</text>
-  <text x="858" y="9" style="font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;fill:var(--teal)">KIRIM KE</text>
-  <rect x="858" y="15" width="254" height="46" rx="3" fill="rgba(18,122,110,.06)" stroke="#127A6E" stroke-dasharray="6 5">
-    <animate attributeName="fill" values="rgba(18,122,110,.06);rgba(18,122,110,.06);rgba(18,122,110,.18);rgba(18,122,110,.06);rgba(18,122,110,.06)" keyTimes="0;0.7292;0.7750;0.9583;1" dur="4.8s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#127A6E;#127A6E;#0C5A51;#127A6E;#127A6E" keyTimes="0;0.7292;0.7750;0.9583;1" dur="4.8s" repeatCount="indefinite"/></rect>
-  <text x="985" y="36" text-anchor="middle" style="font-family:var(--display);font-size:14.5px;font-weight:600;fill:var(--ink)">Integrasi AI</text>
-  <text x="985" y="52" text-anchor="middle" style="font-family:var(--mono);font-size:9px;fill:var(--ink-3)">data siap dibaca model</text>
-  <path d="M250,38 H279" stroke="var(--gold-ink)" stroke-width="1.4" fill="none" marker-end="url(#ipoar)"/>
-  <circle class="gf" r="3.6" opacity="0"><animateMotion dur="4.8s" repeatCount="indefinite" path="M250,38 H284" keyPoints="0;0;1;1" keyTimes="0;0.1500;0.2458;1"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.1460;0.1580;0.2378;0.2458;1" dur="4.8s" repeatCount="indefinite"/></circle>
-  <path d="M536,38 H565" stroke="var(--gold-ink)" stroke-width="1.4" fill="none" marker-end="url(#ipoar)"/>
-  <circle class="gf" r="3.6" opacity="0"><animateMotion dur="4.8s" repeatCount="indefinite" path="M536,38 H570" keyPoints="0;0;1;1" keyTimes="0;0.4000;0.4958;1"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3960;0.4080;0.4878;0.4958;1" dur="4.8s" repeatCount="indefinite"/></circle>
-  <path d="M822,38 H851" stroke="var(--gold-ink)" stroke-width="1.4" fill="none" marker-end="url(#ipoar)"/>
-  <circle class="gf" r="3.6" opacity="0"><animateMotion dur="4.8s" repeatCount="indefinite" path="M822,38 H856" keyPoints="0;0;1;1" keyTimes="0;0.6500;0.7458;1"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.6460;0.6580;0.7378;0.7458;1" dur="4.8s" repeatCount="indefinite"/></circle>
-</svg>
-</div>
-    <div class="split">
-    <div>
-      
-      <div class="diagram" data-a="rise" style="--i:3;margin:16px 0 14px">
-        <div class="dlabel">Sudah menyala · kita tinggal menyambung</div>
-        <svg class="mg" style="max-width:425px" viewBox="0 0 560 210" aria-hidden="true">
-          <rect x="6" y="6" width="548" height="198" rx="6" fill="none" stroke="var(--gold)" stroke-dasharray="6 5" opacity=".65"/>
-          <text x="20" y="24" style="font-family:var(--mono);font-size:10px;fill:var(--gold-ink);letter-spacing:.16em">SERVER CHL · 103.59.160.126</text>
-          <path class="gs" style="stroke:var(--gold-ink);stroke-width:1.4" d="M232,78 C170,78 150,110 150,132"/>
-          <path class="gs" style="stroke:var(--gold-ink);stroke-width:1.4" d="M328,78 C390,78 410,110 410,132"/>
-          <circle class="gf" r="4"><animateMotion dur="2.2s" repeatCount="indefinite" path="M232,78 C170,78 150,110 150,132"/></circle>
-          <circle class="gf" r="4"><animateMotion dur="2.2s" begin="1.1s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" path="M232,78 C170,78 150,110 150,132"/></circle>
-          <circle class="gt" r="4"><animateMotion dur="2.2s" begin=".55s" repeatCount="indefinite" path="M328,78 C390,78 410,110 410,132"/></circle>
-          <circle class="gt" r="4"><animateMotion dur="2.2s" begin="1.65s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" path="M328,78 C390,78 410,110 410,132"/></circle>
-          <rect x="212" y="42" width="136" height="40" rx="3" fill="#FFF6E2" stroke="var(--gold)"/>
-          <text x="280" y="61" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">Aplikasi</text>
-          <text x="280" y="74" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">Next.js</text>
-          <rect x="72" y="130" width="156" height="52" rx="3" fill="#fff" stroke="var(--line)"/>
-          <text x="150" y="150" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">MySQL</text>
-          <text x="150" y="165" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">chl_kelompok_[n] · :23316</text>
-          <text x="150" y="177" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">unit · dokumen · percakapan</text>
-          <rect x="332" y="130" width="156" height="52" rx="3" fill="#fff" stroke="var(--line)"/>
-          <text x="410" y="150" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">MinIO</text>
-          <text x="410" y="165" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">chl-kelompok-[n] · :29010</text>
-          <text x="410" y="177" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">PDF · foto · S3-compatible</text>
-          <text x="132" y="108" style="font-family:var(--mono);font-size:9.5px;fill:var(--gold-ink)">row</text>
-          <text x="392" y="108" style="font-family:var(--mono);font-size:9.5px;fill:var(--teal)">object</text>
-        </svg>
-      </div>
-      <ul class="clean sm" data-a="rise" style="--i:6">
-        <li>Setiap kelompok punya satu database MySQL dan satu bucket MinIO yang <strong>terisolasi</strong> — sudah menyala di server CHL.</li>
-        <li>Kredensial ada di lembar <em>ACCESS</em> per kelompok. Jangan dibagikan ke kelompok lain, jangan pernah masuk repo.</li>
-        <li>Jangan simpan file di dalam database. Simpan kunci objeknya, isinya biar di MinIO.</li>
-      </ul>
-    </div>
-    <div>
-      <div class="card" data-a="rise" style="--i:7;padding:18px 20px">
-        <span class="tag">Akses kelompok · endpoint bersama</span>
-        <div class="code" style="margin-top:6px">Host MySQL     <span class="hl">103.59.160.126</span> : <span class="hl">23316</span>
-API MinIO      http://103.59.160.126:<span class="hl">29010</span>
-Konsol MinIO   http://103.59.160.126:<span class="hl">29011</span>
-Region S3      us-east-1 · path-style: true
 
-Database/user  chl_kelompok_<span class="cm">[1–6]</span>
-Bucket/key     chl-kelompok-<span class="cm">[1–6]</span>
-Password       <span class="cm">di lembar ACCESS kelompokmu</span></div>
-        <p class="sub" style="margin-top:12px;font-size:13.5px">Username MySQL = nama database. Access key MinIO = nama bucket. Password dan secret key dibagikan per kelompok — tidak ada di deck ini, dan memang tidak boleh ada.</p>
-        <div class="rule" style="margin:12px 0 10px"></div>
-        <span class="tag">Tenggat tetap menempel</span>
-        <p class="sub" style="font-size:13.5px"><strong>14 hari</strong> dari akhir training sampai migrasi ke server produksi CHL. Satu orang bernama jelas per tim memegang tanggalnya.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- 37 · LANGKAH 08 · PRAKTIK -->
-<section class="slide padat" data-step="8" data-act="Sesi 03" data-title="Langkah 08 — Praktik koneksi">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">08</span><div><p class="eyebrow" style="margin:0 0 4px">Praktik · Database &amp; Storage</p><h2 style="margin:0">Nempel kredensial di Claude Code</h2></div></div>
-  <div class="rule" style="--i:1"></div>
-  <div class="split">
-    <div>
-      <ul class="clean sm" data-a="rise" style="--i:2;margin-top:6px">
-        <li><strong>1 · Tulis <span class="mono">.env.local</span></strong> — di root project. Salin template di kanan, ganti <span class="mono">[n]</span> dengan nomor kelompokmu.</li>
-        <li><strong>2 · Isi kredensial</strong> — password MySQL dan secret key MinIO dari lembar <em>ACCESS</em> kelompokmu. Diketik langsung — jangan difoto, jangan dikirim ke grup chat.</li>
-        <li><strong>3 · Amankan dulu</strong> — pastikan <span class="mono">.env*</span> ada di <span class="mono">.gitignore</span> <em>sebelum</em> commit pertama, bukan sesudahnya.</li>
-        <li><strong>4 · Prompt Claude Code</strong> — pakai prompt di kanan bawah. Biarkan Claude yang menulis kode koneksinya; kita yang pegang kredensialnya.</li>
-        <li><strong>5 · Buktikan</strong> — jalankan app, buka <span class="mono">/api/health</span>. MySQL dan MinIO dua-duanya <em>ok</em> dulu, baru lanjut bikin schema.</li>
-        <li><strong>6 · Simpan contohnya ke GitHub</strong> — commit <span class="mono">.env.example</span> yang cuma berisi nama variabelnya, tanpa isi. Rekan setim jadi tahu apa yang harus diisi, tanpa ada password yang berkeliaran di grup chat.</li>
-      </ul>
-      <div class="callout" data-a="rise" style="--i:4;margin-top:10px">
-        <span class="k">Kalau gagal connect</span>
-        <p>Tempel pesan errornya utuh ke Claude Code. Jangan diceritakan ulang, jangan ganti-ganti kredensial secara acak — cek dulu nomor kelompok dan port-nya.</p>
-      </div>
-    </div>
-    <div>
-      <div class="card" data-a="rise" style="--i:3;padding:18px 20px">
-        <span class="tag">.env.local — template</span>
-        <div class="code" style="margin-top:6px"><span class="cm"># ganti [n] dengan nomor kelompok (1–6)</span>
-DATABASE_URL="mysql://chl_kelompok_<span class="hl">[n]</span>:<span class="hl">[password]</span>@103.59.160.126:23316/chl_kelompok_<span class="hl">[n]</span>"
-
-S3_ENDPOINT="http://103.59.160.126:29010"
-S3_REGION="us-east-1"
-S3_BUCKET="chl-kelompok-<span class="hl">[n]</span>"
-S3_ACCESS_KEY="chl-kelompok-<span class="hl">[n]</span>"
-S3_SECRET_KEY="<span class="hl">[secret key]</span>"
-S3_FORCE_PATH_STYLE="true"</div>
-      </div>
-      <div class="callout teal" data-a="rise" style="--i:5;margin-top:12px">
-        <span class="k">Prompt untuk Claude Code</span>
-        <p style="font-size:13.5px;line-height:1.5">"Baca <span class="mono">.env.local</span>. Sambungkan app ini ke MySQL (<span class="mono">mysql2</span>) dan MinIO (AWS SDK S3, <span class="mono">forcePathStyle: true</span>). Buat <span class="mono">GET /api/health</span> yang mengetes <span class="mono">SELECT 1</span> dan <span class="mono">ListObjects</span>, balas status keduanya."</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- 38 · LANGKAH 09 -->
 <section class="slide padat" data-step="9" data-act="Sesi 03" data-title="Langkah 09 — Menu ber-AI">
@@ -1778,7 +1824,7 @@ S3_FORCE_PATH_STYLE="true"</div>
     <div class="card" data-a="rise" style="--i:5;padding:24px">
       <span class="tag">RAG dalam tujuh langkah, tanpa mistis</span>
       <ul class="clean sm" style="margin-top:6px">
-        <li><strong>1 · Upload</strong> → file masuk MinIO, row-nya masuk MySQL</li>
+        <li><strong>1 · Upload</strong> → file masuk Blob, row-nya masuk Postgres</li>
         <li><strong>2 · Extract</strong> → tarik teks keluar dari PDF</li>
         <li><strong>3 · Chunk</strong> → 500–1.000 token, dengan sedikit overlap</li>
         <li><strong>4 · Embed</strong> → tiap chunk diubah jadi vektor</li>
@@ -1817,8 +1863,8 @@ S3_FORCE_PATH_STYLE="true"</div>
       <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0;0.0000;0.0214;0.1429;1" dur="5.6s" repeatCount="indefinite"/></rect>
     <text x="22" y="68" style="font-family:var(--mono);font-size:10px;fill:var(--gold-ink);letter-spacing:.16em">01</text>
     <text x="80" y="104" text-anchor="middle" style="font-family:var(--display);font-size:17px;font-weight:600;fill:var(--ink)">Upload</text>
-    <text x="80" y="122" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">file masuk ke MinIO</text>
-    <text x="80" y="152" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">row-nya ke MySQL</text>
+    <text x="80" y="122" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">file masuk ke Blob</text>
+    <text x="80" y="152" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">row-nya ke Postgres</text>
   </g>
   <g>
     <rect x="180" y="76" width="140" height="60" rx="3" fill="#ffffff" stroke="var(--line)">
@@ -1885,82 +1931,9 @@ S3_FORCE_PATH_STYLE="true"</div>
   </div>
 </section>
 
-<!-- 40 · LANGKAH 10 -->
-<section class="slide padat" data-step="10" data-act="Sesi 03" data-title="Langkah 10 — Publikasi ke GitHub Pages">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">10</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Publikasi</p><h2 style="margin:0">Naikkan ke GitHub Pages</h2></div></div>
-  <div class="rule" style="--i:1"></div>
-  <div class="ipo" data-a="fade" style="--i:2">
-<svg class="mg" viewBox="0 0 1112 122" aria-hidden="true">
-  <defs><marker id="chD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#A2731C"/></marker></defs>
-  <rect x="0" y="30" width="233" height="66" rx="4" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.0000;0.0150;0.1950;1.0000" dur="9.6s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.0000;0.0150;0.1950;1.0000" dur="9.6s" repeatCount="indefinite"/></rect>
-  <text x="116" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#A2731C">LANGKAH 1</text>
-  <text x="116" y="69" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">Commit &amp; push</text>
-  <text x="116" y="87" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">kode masuk ke repo</text>
-  <rect x="293" y="30" width="233" height="66" rx="4" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.2500;0.2650;0.4450;1.0000" dur="9.6s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.2500;0.2650;0.4450;1.0000" dur="9.6s" repeatCount="indefinite"/></rect>
-  <text x="410" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#A2731C">LANGKAH 2</text>
-  <text x="410" y="69" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">GitHub Actions</text>
-  <text x="410" y="87" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">build jalan sendiri</text>
-  <path d="M237,63 H284" stroke="63.0" stroke-width="1.4" fill="none" marker-end="url(#chD)"/>
-  <circle class="gf" r="3.8" opacity="0"><animateMotion dur="9.6s" repeatCount="indefinite" path="M237,63 H289" keyPoints="0;0;1;1" keyTimes="0.0000;0.1800;0.2450;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.1750;0.1900;0.2350;0.2450;1.0000" dur="9.6s" repeatCount="indefinite"/></circle>
-  <rect x="586" y="30" width="233" height="66" rx="4" fill="#ffffff" stroke="#E1E7EC">
-    <animate attributeName="fill" values="#ffffff;#ffffff;#FFF6E2;#ffffff;#ffffff" keyTimes="0.0000;0.5000;0.5150;0.6950;1.0000" dur="9.6s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0.0000;0.5000;0.5150;0.6950;1.0000" dur="9.6s" repeatCount="indefinite"/></rect>
-  <text x="702" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#A2731C">LANGKAH 3</text>
-  <text x="702" y="69" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">Pages aktif</text>
-  <text x="702" y="87" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">Settings → Pages</text>
-  <path d="M530,63 H577" stroke="63.0" stroke-width="1.4" fill="none" marker-end="url(#chD)"/>
-  <circle class="gf" r="3.8" opacity="0"><animateMotion dur="9.6s" repeatCount="indefinite" path="M530,63 H582" keyPoints="0;0;1;1" keyTimes="0.0000;0.4300;0.4950;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.4250;0.4400;0.4850;0.4950;1.0000" dur="9.6s" repeatCount="indefinite"/></circle>
-  <rect x="879" y="30" width="233" height="66" rx="4" fill="rgba(18,122,110,.06)" stroke="#127A6E" stroke-dasharray="6 5">
-    <animate attributeName="fill" values="rgba(18,122,110,.06);rgba(18,122,110,.06);rgba(18,122,110,.22);rgba(18,122,110,.06);rgba(18,122,110,.06)" keyTimes="0.0000;0.7500;0.7650;0.9450;1.0000" dur="9.6s" repeatCount="indefinite"/>
-    <animate attributeName="stroke" values="#127A6E;#127A6E;#0C5A51;#127A6E;#127A6E" keyTimes="0.0000;0.7500;0.7650;0.9450;1.0000" dur="9.6s" repeatCount="indefinite"/></rect>
-  <text x="996" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:#127A6E">LANGKAH 4</text>
-  <text x="996" y="69" text-anchor="middle" style="font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)">Alamat publik</text>
-  <text x="996" y="87" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;fill:var(--ink-3)">dibuka dari HP siapa pun</text>
-  <path d="M823,63 H870" stroke="63.0" stroke-width="1.4" fill="none" marker-end="url(#chD)"/>
-  <circle class="gt" r="3.8" opacity="0"><animateMotion dur="9.6s" repeatCount="indefinite" path="M823,63 H875" keyPoints="0;0;1;1" keyTimes="0.0000;0.6800;0.7450;1.0000"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0.0000;0.6750;0.6900;0.7350;0.7450;1.0000" dur="9.6s" repeatCount="indefinite"/></circle>
-</svg>
-  </div>
-  <div class="split">
-    <div>
-      <ul class="clean sm" data-a="rise" style="--i:3">
-        <li><strong>1 · Minta Claude Code menyiapkan publikasinya</strong> — build statis plus satu workflow GitHub Actions di <span class="mono">.github/workflows</span>.</li>
-        <li><strong>2 · Di GitHub:</strong> <span class="mono">Settings → Pages</span> → <em>Source: GitHub Actions</em> → simpan.</li>
-        <li><strong>3 · Push, lalu buka tab <em>Actions</em>.</strong> Tunggu centangnya hijau. Kalau merah, tempel isi log-nya ke Claude Code.</li>
-        <li><strong>4 · Alamatnya muncul di <span class="mono">Settings → Pages</span></strong> — <span class="mono">https://[akun].github.io/chl-[proyek]/</span>. Buka dari HP, bukan cuma dari laptop yang membangun.</li>
-        <li><strong>5 · Halaman kosong atau berantakan?</strong> Hampir selalu soal <em>base path</em> yang belum sesuai nama repo.</li>
-      </ul>
-      <div class="callout" data-a="rise" style="--i:4;margin-top:8px">
-        <span class="k">Yang perlu diluruskan</span>
-        <p>GitHub Pages cuma menyajikan file statis — tidak ada server di sana. Menu yang memanggil database dan API AI tetap butuh server: Pages jadi alamat resmi tim, API-nya diarahkan ke server CHL lewat satu variabel.</p>
-      </div>
-    </div>
-    <div>
-      <div class="card" data-a="rise" style="--i:5;padding:18px 20px">
-        <span class="tag">Prompt untuk Claude Code</span>
-        <div class="code" style="margin-top:6px">Siapkan aplikasi ini supaya bisa
-dipublikasikan lewat <span class="hl">GitHub Pages</span>:
-
-· build statis untuk halamannya
-· workflow GitHub Actions untuk deploy
-· perbaiki <span class="hl">base path</span> sesuai nama repo
-
-Alamat API taruh di satu variabel:
-<span class="hl">NEXT_PUBLIC_API_URL</span>.
-<span class="hl">Jangan ikutkan API key apa pun</span>
-ke dalam hasil build.</div>
-        <p class="sub" style="margin-top:10px;font-size:13px"><strong>Aturan keras:</strong> apa pun yang ikut ke build statis bisa dibaca siapa saja lewat browser. Kunci API tetap di sisi server.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- 41 · LANGKAH 11 -->
-<section class="slide padat" data-step="11" data-act="Sesi 03" data-title="Langkah 11 — Uji semua menu">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">11</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Uji</p><h2 style="margin:0">Uji menunya satu per satu</h2></div></div>
+<section class="slide padat" data-step="10" data-act="Sesi 03" data-title="Langkah 10 — Uji semua menu">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">10</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Uji</p><h2 style="margin:0">Uji menunya satu per satu</h2></div></div>
   <div class="rule" style="--i:1"></div>
   <div class="split">
     <div>
@@ -2009,7 +1982,7 @@ ke dalam hasil build.</div>
   <rect x="2" y="212" width="516" height="26" rx="3" fill="#F6F8FA" stroke="#E1E7EC"><animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#127A6E;#127A6E" keyTimes="0;0.9286;0.9486;1" dur="10.0s" repeatCount="indefinite"/></rect>
   <rect x="12" y="218" width="14" height="14" rx="2" fill="#ffffff" stroke="#C9922B"><animate attributeName="fill" values="#ffffff;#ffffff;#127A6E;#127A6E" keyTimes="0;0.9286;0.9486;1" dur="10.0s" repeatCount="indefinite"/><animate attributeName="stroke" values="#C9922B;#C9922B;#127A6E;#127A6E" keyTimes="0;0.9286;0.9486;1" dur="10.0s" repeatCount="indefinite"/></rect>
   <path d="M16,225 l3.6,4 l6.4,-7.6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.9286;0.9586;1" dur="10.0s" repeatCount="indefinite"/></path>
-  <text x="38" y="229" style="font-family:var(--mono);font-size:11px;fill:var(--ink-2)">Alamat GitHub Pages dibuka dari HP</text>
+  <text x="38" y="229" style="font-family:var(--mono);font-size:11px;fill:var(--ink-2)">Alamat Vercel dibuka dari HP</text>
 </svg>
       </div>
       <ul class="clean sm" data-a="rise" style="--i:5;margin-top:14px">
@@ -2037,7 +2010,7 @@ ke dalam hasil build.</div>
     </div>
     <div class="callout" data-a="rise" style="--i:8;margin-top:26px">
       <span class="k">Cara memakainya</span>
-      <p>Sebelas langkah tadi urutan kerjanya. Delapan halaman berikut ini isinya — dibuka kalau ada yang mentok, tidak perlu dihafal.</p>
+      <p>Sepuluh langkah tadi urutan kerjanya. Delapan halaman berikut ini isinya — dibuka kalau ada yang mentok, tidak perlu dihafal.</p>
     </div>
   </div>
 </section>
@@ -2063,7 +2036,7 @@ ke dalam hasil build.</div>
           <animate attributeName="stroke" values="#E1E7EC;#E1E7EC;#C9922B;#E1E7EC;#E1E7EC" keyTimes="0;0.20;0.28;0.40;1" dur="10s" repeatCount="indefinite"/></rect>
         <text x="331" y="48" text-anchor="middle" style="font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;fill:#A2731C">BAGIAN 2</text>
         <text x="331" y="76" text-anchor="middle" style="font-family:var(--display);font-size:19px;font-weight:600;fill:#111A22">Batasan</text>
-        <text x="331" y="102" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#69798A">Next.js, MySQL, MinIO</text>
+        <text x="331" y="102" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#69798A">Next.js, Postgres, Blob</text>
         <text x="331" y="118" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:#69798A">— jangan diganti</text>
       </g>
       <g>
@@ -2112,7 +2085,7 @@ ke dalam hasil build.</div>
 <span class="cm">Konteks:</span> aplikasi internal untuk tim
 <span class="hl">[divisi]</span>, dipakai <span class="hl">[siapa]</span> untuk <span class="hl">[apa]</span>.
 
-<span class="cm">Batasan:</span> Next.js, MySQL, MinIO.
+<span class="cm">Batasan:</span> Next.js, Postgres, Blob.
 Jangan ganti stack-nya.
 
 <span class="cm">Tugas pertama:</span> baca PRD, lalu buat
@@ -2129,7 +2102,7 @@ rencana kerja per layar dan urutannya.
 <span class="cm">Context:</span> internal app for the <span class="hl">[division]</span> team,
 used by <span class="hl">[who]</span> to <span class="hl">[do what]</span>.
 
-<span class="cm">Constraints:</span> Next.js, MySQL, MinIO.
+<span class="cm">Constraints:</span> Next.js, Postgres, Blob.
 Do not substitute the stack.
 
 <span class="cm">First task:</span> read the PRD, then propose a
@@ -2155,7 +2128,7 @@ screen-by-screen build plan in order.
         <span class="tag">🇮🇩 Bahasa Indonesia</span>
         <div class="code" style="margin-top:6px;font-size:11.5px">Bangun <span class="hl">HANYA</span> layar "Daftar Unit".
 
-- Ambil data dari tabel <span class="hl">units</span> di MySQL.
+- Ambil data dari tabel <span class="hl">units</span> di Postgres.
 - Tampilkan: nama, tipe, harga, status.
 - Ada kolom pencarian dan filter status.
 - Kalau data kosong, tampilkan pesan ramah.
@@ -2171,7 +2144,7 @@ dan tunjukkan hasilnya ke aku.
         <span class="tag">🇬🇧 English</span>
         <div class="code" style="margin-top:6px;font-size:11.5px;border-left-color:#127A6E">Build <span class="hl">ONLY</span> the "Unit List" screen.
 
-- Read from the <span class="hl">units</span> table in MySQL.
+- Read from the <span class="hl">units</span> table in Postgres.
 - Show: name, type, price, status.
 - Include a search box and a status filter.
 - If there is no data, show a friendly empty state.
@@ -2384,12 +2357,11 @@ Jangan perbaiki tambal sulam.</div>
 ├── README.md        <span class="cm">apa · bagaimana · siapa</span>
 ├── .env.example     <span class="cm">nama kunci, tanpa isi</span>
 ├── .gitignore       <span class="cm">.env, node_modules</span>
-├── docker-compose.yml
 ├── app/             <span class="cm">Next.js</span>
 ├── db/
 │   └── schema.sql
 └── docs/
-    └── PRD.md       <span class="cm">hasil langkah 04</span></div>
+    └── PRD.md       <span class="cm">hasil langkah 05</span></div>
       <p class="sub" style="margin-top:14px;font-size:13.5px">Masukkan PRD ke dalam repo. Enam bulan lagi, itu satu-satunya yang bisa menjelaskan kenapa kodenya berbentuk seperti itu.</p>
     </div>
   </div>
@@ -2409,8 +2381,8 @@ Jangan perbaiki tambal sulam.</div>
     </div>
     <div>
       <div class="check done" data-a="left" style="--i:7"><span class="box"></span><span class="t"><b><span class="mono">.gitignore</span> menutup file environment</b> — diperiksa <em>sebelum</em> push pertama.</span><span class="who ok">Wajib</span></div>
-      <div class="check done" data-a="left" style="--i:8"><span class="box"></span><span class="t"><b>Kredensial database terpasang</b> — MySQL &amp; MinIO dari lembar ACCESS kelompok.</span><span class="who ok">1 org</span></div>
-      <div class="check done" data-a="left" style="--i:9"><span class="box"></span><span class="t"><b><span class="mono">/api/health</span> hijau</b> — MySQL dan MinIO dua-duanya <span class="mono">ok</span>.</span><span class="who ok">Bukti</span></div>
+      <div class="check done" data-a="left" style="--i:8"><span class="box"></span><span class="t"><b>Postgres &amp; Blob menyala</b> — dibuat dari tab Storage, kredensialnya ditempel Vercel sendiri.</span><span class="who ok">1 org</span></div>
+      <div class="check done" data-a="left" style="--i:9"><span class="box"></span><span class="t"><b><span class="mono">/api/health</span> hijau</b> — Postgres dan Blob dua-duanya <span class="mono">ok</span>.</span><span class="who ok">Bukti</span></div>
       <div class="callout" data-a="rise" style="--i:10;margin-top:18px">
         <span class="k">Kalau satu saja merah</span>
         <p>Berhenti di situ, panggil fasilitator. Membangun fitur di atas setup yang setengah jadi adalah cara tercepat membuang satu jam pertama.</p>
@@ -2426,10 +2398,10 @@ Jangan perbaiki tambal sulam.</div>
   <div class="rule" style="--i:2"></div>
   <div class="body-area">
     <div class="cols c4">
-      <div class="card" data-a="rise" style="--i:3"><span class="tag">Di PRD</span><h3 style="font-size:20px">Ditulis</h3><p class="sub">"Next.js, MySQL, MinIO, Docker." Satu kalimat di bagian batasan.</p></div>
+      <div class="card" data-a="rise" style="--i:3"><span class="tag">Di PRD</span><h3 style="font-size:20px">Ditulis</h3><p class="sub">"Next.js di Vercel, Postgres, Blob." Satu kalimat di bagian batasan.</p></div>
       <div class="card" data-a="rise" style="--i:4"><span class="tag">Di Claude Design</span><h3 style="font-size:20px">Diulang</h3><p class="sub">Supaya prototypenya bisa dibangun di stack itu, bukan jadi jalan buntu yang cantik.</p></div>
       <div class="card" data-a="rise" style="--i:5"><span class="tag">Di Claude Code</span><h3 style="font-size:20px">Diulang lagi</h3><p class="sub">Di pesan pertama tiap sesi. Setiap sesi.</p></div>
-      <div class="card teal" data-a="rise" style="--i:6"><span class="tag">Hasilnya</span><h3 style="font-size:20px">Tidak melenceng</h3><p class="sub">Sebelas langkah, satu bentuk. Tidak ada yang perlu diterjemahkan di sambungannya.</p></div>
+      <div class="card teal" data-a="rise" style="--i:6"><span class="tag">Hasilnya</span><h3 style="font-size:20px">Tidak melenceng</h3><p class="sub">Sepuluh langkah, satu bentuk. Tidak ada yang perlu diterjemahkan di sambungannya.</p></div>
     </div>
     <div class="callout" data-a="rise" style="--i:8;margin-top:26px">
       <span class="k">Kenapa sekaku ini</span>
@@ -2466,8 +2438,8 @@ Jangan perbaiki tambal sulam.</div>
   <div class="rule" style="--i:2"></div>
   <div class="body-area">
     <div class="cols c4">
-      <div class="card" data-a="rise" style="--i:3"><span class="tag">Hari 1–3</span><h3>Server &amp; akses</h3><p class="sub">Ajukan host, aturan jaringan, dan kredensialnya. Ini antrean yang tidak bisa dipercepat, jadi masuklah paling awal.</p></div>
-      <div class="card" data-a="rise" style="--i:4"><span class="tag">Hari 4–8</span><h3>Migrasi</h3><p class="sub">Jalankan compose di server sungguhan. Masukkan data asli. Atur backup, lalu uji sekali pemulihannya.</p></div>
+      <div class="card" data-a="rise" style="--i:3"><span class="tag">Hari 1–3</span><h3>Akun &amp; akses</h3><p class="sub">Ajukan akun Vercel perusahaan, domain, dan siapa yang memegang kuncinya. Ini antrean yang tidak bisa dipercepat, jadi masuklah paling awal.</p></div>
+      <div class="card" data-a="rise" style="--i:4"><span class="tag">Hari 4–8</span><h3>Pindahkan</h3><p class="sub">Pindahkan project ke akun perusahaan. Masukkan data asli. Atur backup database, lalu uji sekali pemulihannya.</p></div>
       <div class="card" data-a="rise" style="--i:5"><span class="tag">Hari 9–12</span><h3>Lima pengguna asli</h3><p class="sub">Bukan tim pembangun. Lima orang dari departemen yang masalahnya kita selesaikan. Perhatikan mereka, jangan dibantu.</p></div>
       <div class="card teal" data-a="rise" style="--i:6"><span class="tag">Hari 13–14</span><h3>Putuskan</h3><p class="sub">Lanjutkan, kembangkan, atau hentikan — secara tertulis. Menghentikan dengan sadar itu hasil yang baik. Diam-diam menghilang, tidak.</p></div>
     </div>
@@ -2493,7 +2465,7 @@ Jangan perbaiki tambal sulam.</div>
       <li style="font-size:18.5px;margin-bottom:19px"><strong>Mulai murah, naik kalau ada buktinya.</strong> Sonnet sebagai bawaan; pindah ke Opus saat kita bisa menyebut kenapa gagalnya.</li>
       <li style="font-size:18.5px;margin-bottom:19px"><strong>PRD itu produknya.</strong> Semua tahap sesudahnya cuma terjemahan dari dokumen itu. PRD lemah, semuanya ikut lemah.</li>
       <li style="font-size:18.5px;margin-bottom:19px"><strong>Satu stack, dari awal sampai akhir.</strong> Ditulis di PRD, diulang di Design, diulang lagi di Code.</li>
-      <li style="font-size:18.5px"><strong>Kuasai data kita, dan kuasai tanggalnya.</strong> Docker, MySQL, MinIO — di server kita sendiri, dalam empat belas hari, dengan satu nama yang bertanggung jawab.</li>
+      <li style="font-size:18.5px"><strong>Kuasai data kita, dan kuasai tanggalnya.</strong> Postgres dan Blob — dipindah ke akun perusahaan dalam empat belas hari, dengan satu nama yang bertanggung jawab.</li>
     </ul>
   </div>
 </section>
@@ -2559,8 +2531,8 @@ Jangan perbaiki tambal sulam.</div>
     document.getElementById('hudleft').textContent='Cipta Harmoni Lestari'+(act?' — '+act:' — Bangun Aplikasi Integrasi AI dengan Claude');
   }
 
-  var LANGKAH=['01 Login','02 Repo','03 Sambung','04 PRD','05 Design','06 Transfer',
-               '07 Menu','08 Data','09 AI','10 Publish','11 Uji'];
+  var LANGKAH=['01 Login','02 Repo','03 Sambung','04 Vercel','05 PRD','06 Design',
+               '07 Data','08 Menu','09 AI','10 Uji'];
 
   var grid=document.getElementById('ovgrid');
   slides.forEach(function(s,n){
@@ -2573,7 +2545,7 @@ Jangan perbaiki tambal sulam.</div>
     var st=s.getAttribute('data-step');
     if(st!==null){
       var step=parseInt(st,10), mm=document.createElement('div');
-      mm.className='minimap m11'; mm.setAttribute('data-a','fade'); mm.style.setProperty('--i','12');
+      mm.className='minimap m10'; mm.setAttribute('data-a','fade'); mm.style.setProperty('--i','12');
       mm.innerHTML=LANGKAH.map(function(t,k){
         var c=(k+1<step)?'mm done':(k+1===step?'mm on':'mm');
         return '<span class="'+c+'">'+t+'</span>';
