@@ -41,13 +41,25 @@ berdampingan.
 Tiap langkah punya diagram beranimasi dan pita kemajuan 01–10 di kaki slide, jadi selalu
 jelas kita sedang di langkah ke berapa.
 
-### Album — sembilan halaman tangkapan layar nyata
+### Album — tangkapan layar nyata, menempel di langkahnya
 
-Layar asli dari satu sesi build, urut sesuai langkahnya: membuat repo, import ke Vercel,
-menyalakan Neon dan Blob, menempel kunci, PRD jadi design, transfer ke Claude Code, sampai
-tujuh tabel muncul di Neon. Tiga di antaranya ditandai **"perhatikan di sini"** karena di
-layar itulah macetnya lahir — centang *Add README* yang mati, *Application Preset: Other*,
-dan pilihan *Access: Private* pada Blob.
+Sembilan halaman berisi layar asli dari satu sesi build. Tiap halaman **langsung menyusul
+slide penjelasan langkahnya**, jadi alurnya: dijelaskan dulu, lalu ditunjukkan wujud
+layarnya.
+
+| Setelah slide | Muncul halaman album |
+|---------------|----------------------|
+| Langkah 02 — Akun & repo GitHub | Membuat repo di GitHub |
+| Langkah 04 — Sambungkan Vercel | Import & deploy pertama |
+| Langkah 06 — Design | PRD jadi layar yang bisa diklik |
+| Langkah 06 — Transfer ke Claude Code | Ekspor design & mulai sesi |
+| Langkah 07 — Nyalakan data | Neon · Blob · kunci OpenAI (3 halaman) |
+| Langkah 07 — Aturan data | Tujuh tabel di Neon |
+| Langkah 08 — Hidupkan menu | Claude Code bertanya sebelum membangun |
+
+Tiga layar ditandai **"perhatikan di sini"** karena di situlah macetnya lahir — centang
+*Add README* yang mati, *Application Preset: Other*, dan pilihan *Access: Private* pada
+Blob.
 
 Semua tangkapan layar sudah diperiksa: tidak ada nilai kunci yang terbuka — semuanya
 ter-*mask* oleh Vercel sendiri.

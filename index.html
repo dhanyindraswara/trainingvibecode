@@ -1228,6 +1228,26 @@ Settings → Collaborators → <span class="hl">+ 1 rekan</span></div>
   </div>
 </section>
 
+<!-- A01 · ALBUM 01 — REPO GITHUB -->
+<section class="slide padat" data-step="2" data-act="Sesi 03" data-title="Album 01 — Repo GitHub">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A1</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 02</p><h2 style="margin:0">Membuat repo — dan satu centang yang terlewat</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="body-area">
+    <div class="shots c3" data-a="rise" style="--i:2">
+      <div class="shot"><figure><img src="img/01-gh-tombol-new.png" alt="Tombol New repository di GitHub"></figure>
+        <div class="cap"><span class="num">01 · github.com</span><p>Dari dashboard GitHub, tombol hijau <b>New</b> di sebelah "Top repositories".</p></div></div>
+      <div class="shot warn"><figure><img src="img/02-gh-buat-repo.png" alt="Form Create a new repository"></figure>
+        <div class="cap"><span class="num">02 · Perhatikan di sini</span><p><b>Add README masih Off.</b> Justru inilah yang membuat repo lahir benar-benar kosong — dan Vercel menolaknya beberapa menit kemudian.</p></div></div>
+      <div class="shot"><figure><img src="img/03-gh-repo-kosong.png" alt="Halaman repo kosong dengan Quick setup"></figure>
+        <div class="cap"><span class="num">03 · Repo kosong</span><p>Layar <b>Quick setup</b>. Klik <em>creating a new file</em>, buat <span class="mono">README.md</span>, commit — repo pun berisi.</p></div></div>
+    </div>
+    <div class="callout" data-a="rise" style="--i:3;margin-top:14px">
+      <span class="k">Satu klik, satu macet</span>
+      <p>Perbedaan antara hari yang lancar dan sepuluh menit kebingungan cuma satu <em>toggle</em> di layar tengah. Nyalakan <b>Add README</b> sejak awal, dan macet pertama tidak pernah terjadi.</p>
+    </div>
+  </div>
+</section>
+
 <!-- 30 · LANGKAH 03 -->
 <section class="slide padat" data-step="3" data-act="Sesi 03" data-title="Langkah 03 — Sambungkan Claude ke GitHub">
   <div class="stagehead" data-a="left" style="--i:0"><span class="sn">03</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Sambungan</p><h2 style="margin:0">Sambungkan Claude ke GitHub</h2></div></div>
@@ -1364,6 +1384,28 @@ Setelah itu sebutkan nama branch-nya.</div>
         <span class="tag">Bonus yang dipakai di langkah 10</span>
         <p class="sub" style="font-size:13.5px">Tiap <em>branch</em> dapat alamat uji cobanya sendiri. Menguji perubahan tidak perlu merusak alamat utama yang sedang dilihat orang lain.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- A02 · ALBUM 02 — IMPORT & DEPLOY VERCEL -->
+<section class="slide padat" data-step="4" data-act="Sesi 03" data-title="Album 02 — Import & deploy Vercel">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A2</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 04</p><h2 style="margin:0">Dari repo ke alamat publik, empat layar</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="body-area">
+    <div class="shots c4" data-a="rise" style="--i:2">
+      <div class="shot"><figure><img src="img/04-vercel-add-new.png" alt="Menu Add New di Vercel"></figure>
+        <div class="cap"><span class="num">01 · Add New</span><p>Di dashboard Vercel: <b>Add New → Project</b>.</p></div></div>
+      <div class="shot"><figure><img src="img/05-vercel-import.png" alt="Daftar repo untuk diimport"></figure>
+        <div class="cap"><span class="num">02 · Import</span><p>Repo GitHub muncul sendiri karena login memakai <b>Continue with GitHub</b>.</p></div></div>
+      <div class="shot warn"><figure><img src="img/06-vercel-config.png" alt="Halaman konfigurasi project baru"></figure>
+        <div class="cap"><span class="num">03 · Perhatikan di sini</span><p><b>Application Preset: Other.</b> Tebakan inilah yang nanti mencari folder <span class="mono">public</span> dan menggagalkan build.</p></div></div>
+      <div class="shot"><figure><img src="img/07-vercel-congrats.png" alt="Layar Congratulations setelah deploy"></figure>
+        <div class="cap"><span class="num">04 · Hidup</span><p>Alamat publik menyala. Isinya <span class="mono">404</span> — memang begitu, repo baru berisi README.</p></div></div>
+    </div>
+    <div class="callout teal" data-a="rise" style="--i:3;margin-top:14px">
+      <span class="k">Yang dibuktikan layar keempat</span>
+      <p>Halaman <span class="mono">404</span> itu <em>bukan</em> kegagalan — itu bukti bahwa jalur GitHub → Vercel sudah tersambung dan bekerja. Mulai detik itu, setiap <span class="mono">push</span> tayang otomatis tanpa satu perintah pun.</p>
     </div>
   </div>
 </section>
@@ -1529,6 +1571,24 @@ belum jelas sebelum menulis.</div>
   </div>
 </section>
 
+<!-- A06 · ALBUM 06 — PRD JADI DESIGN -->
+<section class="slide padat" data-step="6" data-act="Sesi 03" data-title="Album 06 — PRD jadi design">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A6</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 05–06</p><h2 style="margin:0">Dokumen dua halaman jadi layar yang bisa diklik</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="body-area">
+    <div class="shots c2" data-a="rise" style="--i:2">
+      <div class="shot"><figure><img src="img/14-design-prompt.png" alt="PRD dan prompt di Claude Design"></figure>
+        <div class="cap"><span class="num">01 · PRD masuk</span><p>File <span class="mono">PRD.md</span> dilampirkan, lalu satu prompt: buat prototype yang bisa diklik, <b>lima menu persis seperti di PRD</b>.</p></div></div>
+      <div class="shot"><figure><img src="img/15-design-prototype.png" alt="Prototype Harmoni AI Workspace hasil Claude Design"></figure>
+        <div class="cap"><span class="num">02 · Prototype hidup</span><p>Sidebar lima menu, dashboard, kartu tiap alat — masih data contoh, tapi sudah bisa diklik dan direvisi sambil dilihat.</p></div></div>
+    </div>
+    <div class="callout teal" data-a="rise" style="--i:3;margin-top:14px">
+      <span class="k">Di sinilah daftar menu dikunci</span>
+      <p>Prototype ini murni tampilan — belum tersambung ke AI maupun database, dan memang tidak perlu. Fungsinya menyepakati bentuk sebelum ada kode yang ditulis, supaya tidak ada tiga versi layar yang sama di sore hari.</p>
+    </div>
+  </div>
+</section>
+
 <!-- 34 · LANGKAH 06 -->
 <section class="slide padat" data-step="6" data-act="Sesi 03" data-title="Langkah 06 — Transfer ke Claude Code">
   <div class="stagehead" data-a="left" style="--i:0"><span class="sn">06</span><div><p class="eyebrow" style="margin:0 0 4px">Langkah · Transfer</p><h2 style="margin:0">Pindahkan hasil design ke Claude Code</h2></div></div>
@@ -1597,6 +1657,26 @@ Lalu commit dan push ke branch baru.
 <span class="cm">Belum usah menulis fitur apa pun.</span></div>
         <p class="sub" style="margin-top:10px;font-size:13px">Setelah commit ini, repo sudah berisi rencana dan tampilannya. Langkah 07 tinggal menghidupkan isinya.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- A07 · ALBUM 07 — TRANSFER KE CLAUDE CODE -->
+<section class="slide padat" data-step="6" data-act="Sesi 03" data-title="Album 07 — Transfer ke Claude Code">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A7</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 06</p><h2 style="margin:0">Menyerahkan design ke yang membangun</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="body-area">
+    <div class="shots c3" data-a="rise" style="--i:2">
+      <div class="shot"><figure><img src="img/16-design-export.png" alt="Menu export dengan tujuan Claude Code"></figure>
+        <div class="cap"><span class="num">01 · Kirim</span><p>Dari Claude Design, tujuan ekspornya langsung tersedia: <b>Claude Code</b>.</p></div></div>
+      <div class="shot"><figure><img src="img/17-handoff.png" alt="Dialog Hand off to Claude Code dengan pilihan Web session"></figure>
+        <div class="cap"><span class="num">02 · Web session</span><p>Pilih <b>Web session</b> — sesinya jalan di browser. Tidak ada yang dipasang di laptop.</p></div></div>
+      <div class="shot"><figure><img src="img/18-cc-sesi-mulai.png" alt="Sesi Claude Code dimulai membaca workspace"></figure>
+        <div class="cap"><span class="num">03 · Mulai membaca</span><p>Design dan catatannya ikut terkirim. Claude Code membaca dulu isinya sebelum menulis apa pun.</p></div></div>
+    </div>
+    <div class="callout" data-a="rise" style="--i:3;margin-top:14px">
+      <span class="k">Rantainya utuh</span>
+      <p>PRD → Design → Claude Code → GitHub → Vercel. Tidak ada berkas yang dikirim lewat chat, tidak ada zip yang diunduh, dan tidak ada yang disalin manual antar aplikasi.</p>
     </div>
   </div>
 </section>
@@ -1671,6 +1751,60 @@ Lalu commit dan push ke branch baru.
   </div>
 </section>
 
+<!-- A03 · ALBUM 03 — DATABASE NEON -->
+<section class="slide padat" data-step="7" data-act="Sesi 03" data-title="Album 03 — Database Neon">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A3</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 07</p><h2 style="margin:0">Menyalakan database tanpa mengetik kredensial</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="body-area">
+    <div class="shots c2" data-a="rise" style="--i:2">
+      <div class="shot"><figure><img src="img/08-storage-create.png" alt="Tab Storage dan tombol Create Database"></figure>
+        <div class="cap"><span class="num">01 · Tab Storage</span><p>Di dalam project, buka tab <b>Storage</b> → tombol <b>Create Database</b> di kanan atas.</p></div></div>
+      <div class="shot"><figure><img src="img/09-neon-region.png" alt="Install Integration Neon, region Singapore, plan Free"></figure>
+        <div class="cap"><span class="num">02 · Neon</span><p>Postgres di Vercel disediakan lewat <b>Neon</b>. Region <b>Singapore</b>, plan <b>Free</b> — tanpa kartu kredit.</p></div></div>
+    </div>
+    <div class="callout" data-a="rise" style="--i:3;margin-top:14px">
+      <span class="k">Nama variabelnya ikut penyedianya</span>
+      <p>Karena databasenya Neon, variabel yang ditempelkan adalah <span class="mono">DATABASE_URL</span> — bukan <span class="mono">POSTGRES_URL</span>. Sebutkan nama yang benar-benar ada ke Claude Code; menebak nama variabel adalah salah satu macet yang paling sering.</p>
+    </div>
+  </div>
+</section>
+
+<!-- A04 · ALBUM 04 — BLOB & PILIHAN AKSES -->
+<section class="slide padat" data-step="7" data-act="Sesi 03" data-title="Album 04 — Blob & pilihan akses">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A4</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 07</p><h2 style="margin:0">Satu pilihan yang tidak bisa ditarik kembali</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="body-area">
+    <div class="shots c2" data-a="rise" style="--i:2">
+      <div class="shot"><figure><img src="img/10-browse-blob.png" alt="Browse Storage dengan pilihan Blob"></figure>
+        <div class="cap"><span class="num">01 · Browse Storage</span><p>Di daftar penyimpanan, pilih <b>Blob — Fast object storage</b>. Ini gudang berkasnya.</p></div></div>
+      <div class="shot warn"><figure><img src="img/11-blob-access.png" alt="Create Blob Store dengan pilihan Access Private atau Public"></figure>
+        <div class="cap"><span class="num">02 · Perhatikan di sini</span><p><b>Access: Private (Recommended).</b> Vercel menyarankan privat, dan aplikasi kita butuh <b>Public</b>. Salah pilih di layar ini = store harus dibuat ulang.</p></div></div>
+    </div>
+    <div class="callout" data-a="rise" style="--i:3;margin-top:14px">
+      <span class="k">Kenapa aplikasi ini butuh Public</span>
+      <p>Gambar carousel dan dokumen ditampilkan langsung di layar lewat alamatnya. Layar ini sendiri sudah memberi tahu: <em>"Use this for assets like images and documents."</em> Sifat store dipilih sekali saat pembuatan dan tidak bisa diubah — persis seperti keterangan regionnya.</p>
+    </div>
+  </div>
+</section>
+
+<!-- A05 · ALBUM 05 — KUNCI OPENAI -->
+<section class="slide padat" data-step="7" data-act="Sesi 03" data-title="Album 05 — Kunci OpenAI">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A5</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 07</p><h2 style="margin:0">Satu kunci, ditempel sekali, di satu tempat</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="body-area">
+    <div class="shots c2" data-a="rise" style="--i:2">
+      <div class="shot"><figure><img src="img/12-env-tambah-key.png" alt="Dialog Add Environment Variable untuk OPENAI_API_KEY"></figure>
+        <div class="cap"><span class="num">01 · Menempel kunci</span><p>Project → <b>Settings</b> → <b>Environment Variables</b> → <em>Add</em>. Nilainya langsung tersembunyi, dan penanda <b>Sensitive</b> menyala sendiri.</p></div></div>
+      <div class="shot"><figure><img src="img/13-env-daftar.png" alt="Daftar environment variables project"></figure>
+        <div class="cap"><span class="num">02 · Hasil akhirnya</span><p>Hanya <span class="mono">OPENAI_API_KEY</span> yang kita tempel sendiri. Sisanya — Blob dan Neon — ditempelkan Vercel otomatis.</p></div></div>
+    </div>
+    <div class="callout" data-a="rise" style="--i:3;margin-top:14px">
+      <span class="k">Aman ditayangkan, karena tersembunyi</span>
+      <p>Dua layar ini bisa dipresentasikan tanpa risiko justru karena nilainya ter-<em>mask</em>. Aturannya: jangan pernah menekan tombol mata saat merekam, dan jangan pernah menyalin kunci ke catatan atau materi. Kunci yang sudah terlihat orang lain harus dicabut, bukan dijaga.</p>
+    </div>
+  </div>
+</section>
+
 
 
 <!-- 36b · LANGKAH 07 · PRAKTIK -->
@@ -1711,6 +1845,30 @@ documents
           <li>Tabel sudah ada dan berisi data contoh</li>
           <li>Satu file berhasil diunggah dan alamatnya tersimpan</li>
         </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A09 · ALBUM 09 — TUJUH TABEL DI NEON -->
+<section class="slide padat" data-step="7" data-act="Sesi 03" data-title="Album 09 — Tujuh tabel di Neon">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A9</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 07</p><h2 style="margin:0">Bukti bahwa datanya benar-benar siap</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="split">
+    <div>
+      <div class="shot" data-a="rise" style="--i:2"><figure style="height:360px"><img src="img/22-neon-sql-7tabel.png" alt="Neon SQL Editor menampilkan tujuh tabel"></figure>
+        <div class="cap"><span class="num">Neon · SQL Editor</span><p>Hasil <span class="mono">SELECT table_name …</span> — tujuh baris, persis seperti yang diminta <span class="mono">schema.sql</span>.</p></div></div>
+    </div>
+    <div>
+      <ul class="clean sm" data-a="rise" style="--i:3">
+        <li><strong>Kenapa layar ini penting.</strong> Database yang menyala belum tentu punya tabel. Sampai tujuh baris ini muncul, menu apa pun yang menyimpan data akan gagal — dan yang gagal bukan menunya.</li>
+        <li><strong>Jalannya:</strong> Vercel → <em>Storage</em> → klik database → <em>Open in Neon</em> → <em>SQL Editor</em> → tempel <span class="mono">schema.sql</span> → <em>Run</em>.</li>
+        <li><strong>Sekali saja,</strong> dan aman diulang karena setiap perintahnya memakai <span class="mono">IF NOT EXISTS</span>.</li>
+        <li><strong>Jangan lewatkan baris pertamanya:</strong> <span class="mono">CREATE EXTENSION vector</span> — itulah yang membuat menu Knowledge bisa mengingat isi dokumen.</li>
+      </ul>
+      <div class="callout" data-a="rise" style="--i:4;margin-top:12px">
+        <span class="k">Gerbang sebelum menguji</span>
+        <p>Jalankan kueri ini sebelum mencoba menu mana pun. Sepuluh detik di sini menghemat setengah jam menebak-nebak kenapa unggahan gagal.</p>
       </div>
     </div>
   </div>
@@ -1781,6 +1939,26 @@ documents
         <li><strong>6 · Chatbot</strong> — juga langkah 09, memakai pencarian yang sama.</li>
         <li><strong>7 · Menu bebas</strong> — tantangan kita, dikerjakan setelah semua menu wajib jalan.</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- A08 · ALBUM 08 — CLAUDE CODE BERTANYA -->
+<section class="slide padat" data-step="8" data-act="Sesi 03" data-title="Album 08 — Claude Code bertanya">
+  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A8</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 08</p><h2 style="margin:0">Ditanya dulu, baru dibangun</h2></div></div>
+  <div class="rule" style="--i:1"></div>
+  <div class="body-area">
+    <div class="shots c3" data-a="rise" style="--i:2">
+      <div class="shot"><figure><img src="img/19-cc-tanya-stack.png" alt="Claude Code menanyakan pilihan stack"></figure>
+        <div class="cap"><span class="num">01 · Pakai apa</span><p>"Repo ini masih kosong. Mau saya implementasi pakai stack apa?" — pilih <b>Next.js</b>, sesuai PRD.</p></div></div>
+      <div class="shot"><figure><img src="img/20-cc-tanya-cakupan.png" alt="Claude Code menanyakan sejauh mana implementasi"></figure>
+        <div class="cap"><span class="num">02 · Sejauh apa</span><p>Tampilan saja, kerangka kosong, atau <b>integrasi nyata</b>? Menjawab di sini menghemat setengah hari.</p></div></div>
+      <div class="shot"><figure><img src="img/21-cc-minta-push.png" alt="Laporan Claude Code dan permintaan izin push"></figure>
+        <div class="cap"><span class="num">03 · Lapor, lalu izin</span><p>Selesai membangun, ia melaporkan apa yang diuji dan apa yang belum — lalu <b>minta izin</b> sebelum commit dan push.</p></div></div>
+    </div>
+    <div class="callout teal" data-a="rise" style="--i:3;margin-top:14px">
+      <span class="k">Pertanyaan adalah tanda sehat</span>
+      <p>Perhatikan layar ketiga: ia menyebut sendiri apa yang <em>belum</em> terbukti — "tidak ada API key di environment ini, jadi jalur ke OpenAI belum pernah dieksekusi sungguhan". Laporan yang menyebutkan batasnya jauh lebih berguna daripada laporan yang serba hijau.</p>
     </div>
   </div>
 </section>
@@ -2411,185 +2589,14 @@ Jangan perbaiki tambal sulam.</div>
   </div>
 </section>
 
-<!-- ============ ALBUM · 9 SLIDE TANGKAPAN LAYAR ============ -->
 
-<!-- A01 · REPO GITHUB -->
-<section class="slide padat" data-act="Sesi 03" data-title="Album 01 — Repo GitHub">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A1</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 02</p><h2 style="margin:0">Membuat repo — dan satu centang yang terlewat</h2></div></div>
-  <div class="rule" style="--i:1"></div>
-  <div class="body-area">
-    <div class="shots c3" data-a="rise" style="--i:2">
-      <div class="shot"><figure><img src="img/01-gh-tombol-new.png" alt="Tombol New repository di GitHub"></figure>
-        <div class="cap"><span class="num">01 · github.com</span><p>Dari dashboard GitHub, tombol hijau <b>New</b> di sebelah "Top repositories".</p></div></div>
-      <div class="shot warn"><figure><img src="img/02-gh-buat-repo.png" alt="Form Create a new repository"></figure>
-        <div class="cap"><span class="num">02 · Perhatikan di sini</span><p><b>Add README masih Off.</b> Justru inilah yang membuat repo lahir benar-benar kosong — dan Vercel menolaknya beberapa menit kemudian.</p></div></div>
-      <div class="shot"><figure><img src="img/03-gh-repo-kosong.png" alt="Halaman repo kosong dengan Quick setup"></figure>
-        <div class="cap"><span class="num">03 · Repo kosong</span><p>Layar <b>Quick setup</b>. Klik <em>creating a new file</em>, buat <span class="mono">README.md</span>, commit — repo pun berisi.</p></div></div>
-    </div>
-    <div class="callout" data-a="rise" style="--i:3;margin-top:14px">
-      <span class="k">Satu klik, satu macet</span>
-      <p>Perbedaan antara hari yang lancar dan sepuluh menit kebingungan cuma satu <em>toggle</em> di layar tengah. Nyalakan <b>Add README</b> sejak awal, dan macet pertama tidak pernah terjadi.</p>
-    </div>
-  </div>
-</section>
 
-<!-- A02 · VERCEL -->
-<section class="slide padat" data-act="Sesi 03" data-title="Album 02 — Import & deploy Vercel">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A2</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 04</p><h2 style="margin:0">Dari repo ke alamat publik, empat layar</h2></div></div>
-  <div class="rule" style="--i:1"></div>
-  <div class="body-area">
-    <div class="shots c4" data-a="rise" style="--i:2">
-      <div class="shot"><figure><img src="img/04-vercel-add-new.png" alt="Menu Add New di Vercel"></figure>
-        <div class="cap"><span class="num">01 · Add New</span><p>Di dashboard Vercel: <b>Add New → Project</b>.</p></div></div>
-      <div class="shot"><figure><img src="img/05-vercel-import.png" alt="Daftar repo untuk diimport"></figure>
-        <div class="cap"><span class="num">02 · Import</span><p>Repo GitHub muncul sendiri karena login memakai <b>Continue with GitHub</b>.</p></div></div>
-      <div class="shot warn"><figure><img src="img/06-vercel-config.png" alt="Halaman konfigurasi project baru"></figure>
-        <div class="cap"><span class="num">03 · Perhatikan di sini</span><p><b>Application Preset: Other.</b> Tebakan inilah yang nanti mencari folder <span class="mono">public</span> dan menggagalkan build.</p></div></div>
-      <div class="shot"><figure><img src="img/07-vercel-congrats.png" alt="Layar Congratulations setelah deploy"></figure>
-        <div class="cap"><span class="num">04 · Hidup</span><p>Alamat publik menyala. Isinya <span class="mono">404</span> — memang begitu, repo baru berisi README.</p></div></div>
-    </div>
-    <div class="callout teal" data-a="rise" style="--i:3;margin-top:14px">
-      <span class="k">Yang dibuktikan layar keempat</span>
-      <p>Halaman <span class="mono">404</span> itu <em>bukan</em> kegagalan — itu bukti bahwa jalur GitHub → Vercel sudah tersambung dan bekerja. Mulai detik itu, setiap <span class="mono">push</span> tayang otomatis tanpa satu perintah pun.</p>
-    </div>
-  </div>
-</section>
 
-<!-- A03 · POSTGRES -->
-<section class="slide padat" data-act="Sesi 03" data-title="Album 03 — Database Neon">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A3</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 07</p><h2 style="margin:0">Menyalakan database tanpa mengetik kredensial</h2></div></div>
-  <div class="rule" style="--i:1"></div>
-  <div class="body-area">
-    <div class="shots c2" data-a="rise" style="--i:2">
-      <div class="shot"><figure><img src="img/08-storage-create.png" alt="Tab Storage dan tombol Create Database"></figure>
-        <div class="cap"><span class="num">01 · Tab Storage</span><p>Di dalam project, buka tab <b>Storage</b> → tombol <b>Create Database</b> di kanan atas.</p></div></div>
-      <div class="shot"><figure><img src="img/09-neon-region.png" alt="Install Integration Neon, region Singapore, plan Free"></figure>
-        <div class="cap"><span class="num">02 · Neon</span><p>Postgres di Vercel disediakan lewat <b>Neon</b>. Region <b>Singapore</b>, plan <b>Free</b> — tanpa kartu kredit.</p></div></div>
-    </div>
-    <div class="callout" data-a="rise" style="--i:3;margin-top:14px">
-      <span class="k">Nama variabelnya ikut penyedianya</span>
-      <p>Karena databasenya Neon, variabel yang ditempelkan adalah <span class="mono">DATABASE_URL</span> — bukan <span class="mono">POSTGRES_URL</span>. Sebutkan nama yang benar-benar ada ke Claude Code; menebak nama variabel adalah salah satu macet yang paling sering.</p>
-    </div>
-  </div>
-</section>
 
-<!-- A04 · BLOB -->
-<section class="slide padat" data-act="Sesi 03" data-title="Album 04 — Blob & pilihan akses">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A4</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 07</p><h2 style="margin:0">Satu pilihan yang tidak bisa ditarik kembali</h2></div></div>
-  <div class="rule" style="--i:1"></div>
-  <div class="body-area">
-    <div class="shots c2" data-a="rise" style="--i:2">
-      <div class="shot"><figure><img src="img/10-browse-blob.png" alt="Browse Storage dengan pilihan Blob"></figure>
-        <div class="cap"><span class="num">01 · Browse Storage</span><p>Di daftar penyimpanan, pilih <b>Blob — Fast object storage</b>. Ini gudang berkasnya.</p></div></div>
-      <div class="shot warn"><figure><img src="img/11-blob-access.png" alt="Create Blob Store dengan pilihan Access Private atau Public"></figure>
-        <div class="cap"><span class="num">02 · Perhatikan di sini</span><p><b>Access: Private (Recommended).</b> Vercel menyarankan privat, dan aplikasi kita butuh <b>Public</b>. Salah pilih di layar ini = store harus dibuat ulang.</p></div></div>
-    </div>
-    <div class="callout" data-a="rise" style="--i:3;margin-top:14px">
-      <span class="k">Kenapa aplikasi ini butuh Public</span>
-      <p>Gambar carousel dan dokumen ditampilkan langsung di layar lewat alamatnya. Layar ini sendiri sudah memberi tahu: <em>"Use this for assets like images and documents."</em> Sifat store dipilih sekali saat pembuatan dan tidak bisa diubah — persis seperti keterangan regionnya.</p>
-    </div>
-  </div>
-</section>
 
-<!-- A05 · KUNCI -->
-<section class="slide padat" data-act="Sesi 03" data-title="Album 05 — Kunci OpenAI">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A5</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 07</p><h2 style="margin:0">Satu kunci, ditempel sekali, di satu tempat</h2></div></div>
-  <div class="rule" style="--i:1"></div>
-  <div class="body-area">
-    <div class="shots c2" data-a="rise" style="--i:2">
-      <div class="shot"><figure><img src="img/12-env-tambah-key.png" alt="Dialog Add Environment Variable untuk OPENAI_API_KEY"></figure>
-        <div class="cap"><span class="num">01 · Menempel kunci</span><p>Project → <b>Settings</b> → <b>Environment Variables</b> → <em>Add</em>. Nilainya langsung tersembunyi, dan penanda <b>Sensitive</b> menyala sendiri.</p></div></div>
-      <div class="shot"><figure><img src="img/13-env-daftar.png" alt="Daftar environment variables project"></figure>
-        <div class="cap"><span class="num">02 · Hasil akhirnya</span><p>Hanya <span class="mono">OPENAI_API_KEY</span> yang kita tempel sendiri. Sisanya — Blob dan Neon — ditempelkan Vercel otomatis.</p></div></div>
-    </div>
-    <div class="callout" data-a="rise" style="--i:3;margin-top:14px">
-      <span class="k">Aman ditayangkan, karena tersembunyi</span>
-      <p>Dua layar ini bisa dipresentasikan tanpa risiko justru karena nilainya ter-<em>mask</em>. Aturannya: jangan pernah menekan tombol mata saat merekam, dan jangan pernah menyalin kunci ke catatan atau materi. Kunci yang sudah terlihat orang lain harus dicabut, bukan dijaga.</p>
-    </div>
-  </div>
-</section>
 
-<!-- A06 · PRD & DESIGN -->
-<section class="slide padat" data-act="Sesi 03" data-title="Album 06 — PRD jadi design">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A6</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 05–06</p><h2 style="margin:0">Dokumen dua halaman jadi layar yang bisa diklik</h2></div></div>
-  <div class="rule" style="--i:1"></div>
-  <div class="body-area">
-    <div class="shots c2" data-a="rise" style="--i:2">
-      <div class="shot"><figure><img src="img/14-design-prompt.png" alt="PRD dan prompt di Claude Design"></figure>
-        <div class="cap"><span class="num">01 · PRD masuk</span><p>File <span class="mono">PRD.md</span> dilampirkan, lalu satu prompt: buat prototype yang bisa diklik, <b>lima menu persis seperti di PRD</b>.</p></div></div>
-      <div class="shot"><figure><img src="img/15-design-prototype.png" alt="Prototype Harmoni AI Workspace hasil Claude Design"></figure>
-        <div class="cap"><span class="num">02 · Prototype hidup</span><p>Sidebar lima menu, dashboard, kartu tiap alat — masih data contoh, tapi sudah bisa diklik dan direvisi sambil dilihat.</p></div></div>
-    </div>
-    <div class="callout teal" data-a="rise" style="--i:3;margin-top:14px">
-      <span class="k">Di sinilah daftar menu dikunci</span>
-      <p>Prototype ini murni tampilan — belum tersambung ke AI maupun database, dan memang tidak perlu. Fungsinya menyepakati bentuk sebelum ada kode yang ditulis, supaya tidak ada tiga versi layar yang sama di sore hari.</p>
-    </div>
-  </div>
-</section>
 
-<!-- A07 · HANDOFF -->
-<section class="slide padat" data-act="Sesi 03" data-title="Album 07 — Transfer ke Claude Code">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A7</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 06</p><h2 style="margin:0">Menyerahkan design ke yang membangun</h2></div></div>
-  <div class="rule" style="--i:1"></div>
-  <div class="body-area">
-    <div class="shots c3" data-a="rise" style="--i:2">
-      <div class="shot"><figure><img src="img/16-design-export.png" alt="Menu export dengan tujuan Claude Code"></figure>
-        <div class="cap"><span class="num">01 · Kirim</span><p>Dari Claude Design, tujuan ekspornya langsung tersedia: <b>Claude Code</b>.</p></div></div>
-      <div class="shot"><figure><img src="img/17-handoff.png" alt="Dialog Hand off to Claude Code dengan pilihan Web session"></figure>
-        <div class="cap"><span class="num">02 · Web session</span><p>Pilih <b>Web session</b> — sesinya jalan di browser. Tidak ada yang dipasang di laptop.</p></div></div>
-      <div class="shot"><figure><img src="img/18-cc-sesi-mulai.png" alt="Sesi Claude Code dimulai membaca workspace"></figure>
-        <div class="cap"><span class="num">03 · Mulai membaca</span><p>Design dan catatannya ikut terkirim. Claude Code membaca dulu isinya sebelum menulis apa pun.</p></div></div>
-    </div>
-    <div class="callout" data-a="rise" style="--i:3;margin-top:14px">
-      <span class="k">Rantainya utuh</span>
-      <p>PRD → Design → Claude Code → GitHub → Vercel. Tidak ada berkas yang dikirim lewat chat, tidak ada zip yang diunduh, dan tidak ada yang disalin manual antar aplikasi.</p>
-    </div>
-  </div>
-</section>
 
-<!-- A08 · CLAUDE CODE BERTANYA -->
-<section class="slide padat" data-act="Sesi 03" data-title="Album 08 — Claude Code bertanya">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A8</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 08</p><h2 style="margin:0">Ditanya dulu, baru dibangun</h2></div></div>
-  <div class="rule" style="--i:1"></div>
-  <div class="body-area">
-    <div class="shots c3" data-a="rise" style="--i:2">
-      <div class="shot"><figure><img src="img/19-cc-tanya-stack.png" alt="Claude Code menanyakan pilihan stack"></figure>
-        <div class="cap"><span class="num">01 · Pakai apa</span><p>"Repo ini masih kosong. Mau saya implementasi pakai stack apa?" — pilih <b>Next.js</b>, sesuai PRD.</p></div></div>
-      <div class="shot"><figure><img src="img/20-cc-tanya-cakupan.png" alt="Claude Code menanyakan sejauh mana implementasi"></figure>
-        <div class="cap"><span class="num">02 · Sejauh apa</span><p>Tampilan saja, kerangka kosong, atau <b>integrasi nyata</b>? Menjawab di sini menghemat setengah hari.</p></div></div>
-      <div class="shot"><figure><img src="img/21-cc-minta-push.png" alt="Laporan Claude Code dan permintaan izin push"></figure>
-        <div class="cap"><span class="num">03 · Lapor, lalu izin</span><p>Selesai membangun, ia melaporkan apa yang diuji dan apa yang belum — lalu <b>minta izin</b> sebelum commit dan push.</p></div></div>
-    </div>
-    <div class="callout teal" data-a="rise" style="--i:3;margin-top:14px">
-      <span class="k">Pertanyaan adalah tanda sehat</span>
-      <p>Perhatikan layar ketiga: ia menyebut sendiri apa yang <em>belum</em> terbukti — "tidak ada API key di environment ini, jadi jalur ke OpenAI belum pernah dieksekusi sungguhan". Laporan yang menyebutkan batasnya jauh lebih berguna daripada laporan yang serba hijau.</p>
-    </div>
-  </div>
-</section>
-
-<!-- A09 · NEON SQL -->
-<section class="slide padat" data-act="Sesi 03" data-title="Album 09 — Tujuh tabel di Neon">
-  <div class="stagehead" data-a="left" style="--i:0"><span class="sn">A9</span><div><p class="eyebrow" style="margin:0 0 4px">Album · Layar nyata · Langkah 07</p><h2 style="margin:0">Bukti bahwa datanya benar-benar siap</h2></div></div>
-  <div class="rule" style="--i:1"></div>
-  <div class="split">
-    <div>
-      <div class="shot" data-a="rise" style="--i:2"><figure style="height:360px"><img src="img/22-neon-sql-7tabel.png" alt="Neon SQL Editor menampilkan tujuh tabel"></figure>
-        <div class="cap"><span class="num">Neon · SQL Editor</span><p>Hasil <span class="mono">SELECT table_name …</span> — tujuh baris, persis seperti yang diminta <span class="mono">schema.sql</span>.</p></div></div>
-    </div>
-    <div>
-      <ul class="clean sm" data-a="rise" style="--i:3">
-        <li><strong>Kenapa layar ini penting.</strong> Database yang menyala belum tentu punya tabel. Sampai tujuh baris ini muncul, menu apa pun yang menyimpan data akan gagal — dan yang gagal bukan menunya.</li>
-        <li><strong>Jalannya:</strong> Vercel → <em>Storage</em> → klik database → <em>Open in Neon</em> → <em>SQL Editor</em> → tempel <span class="mono">schema.sql</span> → <em>Run</em>.</li>
-        <li><strong>Sekali saja,</strong> dan aman diulang karena setiap perintahnya memakai <span class="mono">IF NOT EXISTS</span>.</li>
-        <li><strong>Jangan lewatkan baris pertamanya:</strong> <span class="mono">CREATE EXTENSION vector</span> — itulah yang membuat menu Knowledge bisa mengingat isi dokumen.</li>
-      </ul>
-      <div class="callout" data-a="rise" style="--i:4;margin-top:12px">
-        <span class="k">Gerbang sebelum menguji</span>
-        <p>Jalankan kueri ini sebelum mencoba menu mana pun. Sepuluh detik di sini menghemat setengah jam menebak-nebak kenapa unggahan gagal.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ BENGKEL · 9 SLIDE ============ -->
 
