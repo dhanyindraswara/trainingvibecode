@@ -14,31 +14,30 @@ Materi training **Bangun Aplikasi Integrasi AI dengan Claude**.
 |------|-----|
 | **Sesi 01** | Model AI (Haiku 4.5 → Sonnet 5 → Opus 5 → Fable 5 → Mythos 5) dan 7 fitur Claude: Chat, Projects, Artifacts, Tasks & Scheduled, Cowork, Claude Code, Claude Design |
 | **Sesi 02** | Peta persaingan: ChatGPT, Gemini, Copilot, Grok, DeepSeek, Perplexity, Llama — beserta harga dan kesimpulan jujurnya |
-| **Sesi 03** | Build day — 11 langkah berurutan, dari login sampai semua menu diuji (lihat di bawah) |
+| **Sesi 03** | Build day — 10 langkah berurutan, dari login sampai semua menu diuji (lihat di bawah) |
 
-### Sesi 03 · 11 langkah build day
+### Sesi 03 · 10 langkah build day
 
 | # | Langkah | Isinya |
 |---|---------|--------|
 | 01 | Login Claude Max | claude.ai di browser, satu akun per kelompok, cek paketnya benar-benar Max |
 | 02 | Akun & repo GitHub | daftar, buat repo privat `chl-[proyek]`, undang rekan setim dengan akses Write |
 | 03 | Sambungkan Claude ↔ GitHub | Connect GitHub, authorize, pilih repo — Claude bisa pull, commit, push, merge |
-| 04 | Tulis PRD | masalah nyata jadi dokumen dua halaman, plus standar mutunya |
-| 05 | Bikin design | prototype yang bisa diklik, daftar menu dikunci di sini |
-| 06 | Transfer & pilih repo | hasil design dibawa ke ruang kerja, repo GitHub dipilih di titik ini |
-| 07 | Hidupkan menunya | logic dan struktur data, satu menu dituntaskan sebelum pindah |
-| 08 | Sambungkan database | MySQL + MinIO, `.env.local`, `/api/health`, `.env.example` ke GitHub |
+| 04 | Sambungkan Vercel | login pakai akun GitHub, import repo, deploy — alamat publik hidup sejak repo masih kosong |
+| 05 | Tulis PRD | masalah nyata jadi dokumen dua halaman, plus standar mutunya |
+| 06 | Bikin design | prototype yang bisa diklik, daftar menu dikunci di sini, lalu ditransfer ke Claude Code |
+| 07 | Nyalakan data | Vercel Postgres + Blob dari tab Storage, kredensial ditempel Vercel sendiri, `/api/health` |
+| 08 | Hidupkan menunya | logic dan struktur data, satu menu dituntaskan sebelum pindah |
 | 09 | Menu ber-AI | API + database = RAG, chatbot, dan gambar |
-| 10 | Publikasi | GitHub Pages lewat GitHub Actions, plus batas jujurnya |
-| 11 | Uji semua menu | diuji orang yang tidak membangunnya, temuan dicatat, baru serah terima |
+| 10 | Uji semua menu | diuji orang yang tidak membangunnya, temuan dicatat, baru serah terima |
 
-Setelah 11 langkah itu ada **Bekal praktis** — delapan halaman yang dibuka saat macet:
+Setelah 10 langkah itu ada **Bekal praktis** — delapan halaman yang dibuka saat macet:
 anatomi prompt, prompt pembuka, prompt per menu, prompt saat ngadat, perintah harian
 Claude Code, commit sebagai save point, isi repository yang rapi, dan checklist sebelum
 menulis fitur pertama. Contoh promptnya ditulis Bahasa Indonesia **dan** English
 berdampingan.
 
-Tiap langkah punya diagram beranimasi dan pita kemajuan 01–11 di kaki slide, jadi selalu
+Tiap langkah punya diagram beranimasi dan pita kemajuan 01–10 di kaki slide, jadi selalu
 jelas kita sedang di langkah ke berapa.
 
 ## Cara pakai
@@ -54,50 +53,53 @@ jelas kita sedang di langkah ke berapa.
 ## Yang disiapkan peserta sebelum hari H
 
 1. Akun **GitHub** sudah dibuat dan bisa login
-2. Akun **Claude Max 5×** — bukan paket Pro — bisa login di **Claude web** (claude.ai). Cukup satu akun per kelompok
+2. Akun **Claude Max 5×** — bukan paket Pro — bisa login di **Claude web** (claude.ai). Cukup satu akun per kelompok. Catatan: langganan Max **tidak** termasuk akses API — API key Anthropic untuk menu ber-AI disiapkan panitia
 3. Laptop dan koneksi internet yang stabil sepanjang hari
 4. **Satu masalah nyata** dari departemen sendiri, ditulis dalam tiga kalimat
 
-Database, storage, environment, dan API key sudah disiapkan tim INSYNTIVE. Tidak perlu instalasi server maupun setup Docker.
+Database, storage, alamat publik, dan API key sudah diurus tim INSYNTIVE. Tidak ada instalasi server, tidak ada Docker, dan tidak ada kredensial database yang diketik manual.
 
-## Akses database & storage saat praktik (Sesi 03 · Langkah 08)
+## Akses database & storage saat praktik (Sesi 03 · Langkah 07)
 
-Setiap kelompok mendapat satu database **MySQL** dan satu bucket **MinIO** yang terisolasi di server CHL. Endpoint bersama:
+Semuanya di **Vercel** — tidak ada server yang dipasang dan tidak ada kredensial
+database yang diketik manual.
 
-| Layanan | Alamat |
-|---------|--------|
-| MySQL | `103.59.160.126:23316` |
-| MinIO API (S3) | `http://103.59.160.126:29010` |
-| MinIO Console | `http://103.59.160.126:29011` |
-| Region S3 | `us-east-1` (path-style: `true`) |
+| Kebutuhan | Layanan |
+|-----------|---------|
+| Aplikasi jalan + alamat publik | Vercel (Next.js) |
+| Database | Vercel Postgres |
+| File: PDF, foto, lampiran | Vercel Blob |
 
-Konvensi nama: database/user MySQL = `chl_kelompok_[n]`, bucket/access key MinIO = `chl-kelompok-[n]`. Username MySQL sama dengan nama database; access key MinIO sama dengan nama bucket. **Password MySQL dan secret key MinIO dibagikan per kelompok lewat lembar ACCESS di hari H — tidak ada di repo ini, dan jangan pernah di-commit.**
+Satu project Vercel per kelompok, dibuat dengan login **Continue with GitHub** —
+tidak ada pendaftaran atau password baru.
 
-### Langkah nempel kredensial di Claude Code
+### Langkah menyalakan datanya
 
-1. Buat `.env.local` di root project:
+1. Di project Vercel: tab **Storage** → **Create** → **Postgres**. Region terdekat: Singapore.
+2. Ulangi untuk **Blob**.
+3. Vercel menempelkan kredensialnya sendiri ke project sebagai environment variable:
 
    ```env
-   # ganti [n] dengan nomor kelompok (1–6)
-   DATABASE_URL="mysql://chl_kelompok_[n]:[password]@103.59.160.126:23316/chl_kelompok_[n]"
+   # ditempel Vercel, jangan diubah
+   POSTGRES_URL
+   BLOB_READ_WRITE_TOKEN
 
-   S3_ENDPOINT="http://103.59.160.126:29010"
-   S3_REGION="us-east-1"
-   S3_BUCKET="chl-kelompok-[n]"
-   S3_ACCESS_KEY="chl-kelompok-[n]"
-   S3_SECRET_KEY="[secret key]"
-   S3_FORCE_PATH_STYLE="true"
+   # ditempel sendiri, sekali, di Settings → Environment Variables
+   ANTHROPIC_API_KEY
    ```
 
-2. Isi `[password]` dan `[secret key]` dari lembar ACCESS kelompokmu — diketik langsung, jangan difoto atau dikirim ke grup chat.
-3. Pastikan `.env*` ada di `.gitignore` **sebelum** commit pertama.
-4. Prompt ke Claude Code:
+4. **Redeploy** sekali supaya variabel barunya terbaca.
+5. Prompt ke Claude Code:
 
-   > Baca `.env.local`. Sambungkan app ini ke MySQL pakai `mysql2` dan ke MinIO pakai AWS SDK S3 dengan `forcePathStyle: true`. Buat endpoint `GET /api/health` yang menjalankan `SELECT 1` ke MySQL dan `ListObjects` ke bucket, lalu balas status keduanya.
+   > Sambungkan app ini ke Vercel Postgres lewat `POSTGRES_URL` dan Vercel Blob lewat
+   > `BLOB_READ_WRITE_TOKEN`. Buat endpoint `GET /api/health` yang menjalankan `SELECT 1`
+   > dan sekali *list* blob, lalu balas status keduanya.
 
-5. Jalankan app, buka `/api/health` — MySQL dan MinIO dua-duanya `ok` dulu, baru lanjut bikin schema.
+6. Buka `/api/health` — dua-duanya `ok` dulu, baru lanjut bikin schema.
 
-Kalau gagal connect: tempel pesan errornya utuh ke Claude Code, dan cek ulang nomor kelompok serta port-nya.
+**Aturan keras:** jangan simpan file di dalam database. Yang masuk Postgres cuma
+alamat filenya; isinya di Blob. `ANTHROPIC_API_KEY` ditempel di Vercel, tidak pernah
+di dalam repo — pastikan `.env*` ada di `.gitignore` sebelum commit pertama.
 
 ## Form persiapan & tes peserta
 
@@ -116,9 +118,9 @@ menampilkan banner peringatan dan belum menyimpan apa pun.
 - RAG atas dokumen sendiri
 - Chatbot
 - Satu menu bebas — tantangan tiap tim
-- Semuanya tayang lewat GitHub Pages dan sudah diuji menu per menu
+- Semuanya tayang lewat Vercel sejak pagi dan sudah diuji menu per menu
 
-Migrasi ke server CHL maksimal **14 hari** setelah training.
+Pindah ke akun Vercel perusahaan maksimal **14 hari** setelah training.
 
 ---
 
