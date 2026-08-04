@@ -8,7 +8,7 @@ Materi training **Bangun Aplikasi Integrasi AI dengan Claude**.
 
 ## Isi deck
 
-55 slide, satu file HTML, tanpa dependensi apa pun selain font Google.
+64 slide, satu file HTML, tanpa dependensi apa pun selain font Google.
 
 | Sesi | Isi |
 |------|-----|
@@ -39,6 +39,27 @@ berdampingan.
 
 Tiap langkah punya diagram beranimasi dan pita kemajuan 01–10 di kaki slide, jadi selalu
 jelas kita sedang di langkah ke berapa.
+
+### Bengkel — sembilan halaman untuk saat layar merah
+
+Ditulis dari satu sesi build nyata (empat menu ber-AI, dibangun seluruhnya lewat browser),
+lengkap dengan delapan macet yang benar-benar ditemui dan cara keluarnya.
+
+| Halaman | Isinya |
+|---------|--------|
+| Studi kasus | Kronologi satu sesi: di tahap mana macetnya menumpuk, dan kenapa |
+| Peta macet | Tabel rujukan: gejala di layar → penyebab sebenarnya → obatnya |
+| Bengkel 01 | Build gagal di Vercel — repo kosong, dan Vercel salah menebak framework |
+| Bengkel 02 | Membaca tab Deployments, menemukan Environment Variables, nama variabel Neon |
+| Bengkel 03 | Database menyala tapi belum bertabel — menjalankan schema, memastikan pgvector |
+| Bengkel 04 | Blob publik vs privat — sifat yang dipilih sekali dan tidak bisa diubah |
+| Bengkel 05 | Jawaban AI ngawir dan penuh tanda bintang — dua kalimat perintah yang kurang |
+| Bengkel 06 | Kunci API bocor — mencabut, mengganti, dan kebiasaan yang mencegahnya |
+| Bengkel 07 | Lingkaran perbaikan: lapor → Claude perbaiki → push → tunggu Ready → uji ulang |
+
+Intinya satu: tujuh dari delapan macet itu bukan kesalahan kode, melainkan setelan layanan
+atau kalimat perintah — dan refleks "berarti kodenya salah" adalah yang paling banyak
+membuang waktu.
 
 ## Cara pakai
 
