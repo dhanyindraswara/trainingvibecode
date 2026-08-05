@@ -80,25 +80,59 @@ Firestore. Banner peringatan kuning otomatis hilang setelah config terisi.
 ## 6 · Melihat & mengunduh jawaban
 
 - **Dashboard (disarankan):** buka `…/form/admin.html` — langsung tampil, tanpa
-  login. Ada ringkasan per kelompok/divisi, kesiapan, tabel lengkap, dan tombol
-  **Download CSV** untuk `peserta` dan `pretest`.
+  login. Ada ringkasan per kelompok/divisi, kesiapan, **nilai pre-test**
+  (rata-rata, sebaran, rata-rata per kelompok, dan soal mana yang paling banyak
+  salah), tabel lengkap, dan tombol **Download CSV** untuk `peserta` dan
+  `pretest`. CSV pre-test sudah memuat kolom `Nilai`, `Benar`, dan `Total`.
 - **Mentah:** Firebase Console → **Firestore Database → Data** → koleksi
   `peserta`, `pretest`, `posttest`.
 
-## Membuka post-test
+## Membuka pre-test / post-test
 
-Post-test dikunci secara default. Untuk membukanya (mis. hari Jumat), buka
-`posttest.html`, cari baris `const TERKUNCI = true;` dan ganti jadi `false`,
-lalu commit & push.
+Dua-duanya dikunci secara default, dan kuncinya ada di **dua tempat** — harus
+diubah dua-duanya:
 
-## Menambah / mengubah pertanyaan tes
+| Yang diubah | File | Barisnya |
+|---|---|---|
+| Halamannya | `pretest.html` / `posttest.html` | `const TERKUNCI = true;` → `false` |
+| Ubin di menu | `index.html` | hapus baris `pretest: "Kamis",` (atau `posttest`) dari objek `TERKUNCI` |
 
-Buka `pretest.html` atau `posttest.html`, cari komentar `EDIT DI SINI` dan ubah
-array `SOAL`. Tiap item:
+Lalu commit & push.
+
+**Mengintip lebih dulu tanpa membukanya untuk peserta:** buka
+`pretest.html?preview=1`. Formnya tampil lengkap dan bisa dicoba sampai keluar
+nilainya, tapi jawabannya **tidak** tersimpan ke Firestore.
+
+## Menambah / mengubah soal pre-test
+
+Soal pre-test dan kunci jawabannya ada di satu file: **`form/soal-pretest.js`**.
+File itu dipakai bersama oleh halaman pre-test (untuk menampilkan soal dan
+menghitung nilai) dan oleh dashboard admin (untuk analisa per soal), jadi cukup
+diubah di satu tempat.
 
 ```js
-{ id:"q1", tipe:"pilihan", teks:"Pertanyaanmu?", opsi:["A","B","C"] }  // pilihan ganda
-{ id:"q2", tipe:"isian",   teks:"Pertanyaan isian bebas?" }            // jawaban teks
+{ id:"q16", sesi:"Sesi 03",
+  teks:"Pertanyaanmu?",
+  opsi:["Pilihan A","Pilihan B","Pilihan C","Pilihan D"],
+  benar:1 },   // indeks jawaban benar — 0 = pilihan pertama
 ```
 
-Pastikan tiap `id` unik dalam satu file.
+- `id` harus unik, dan sebaiknya berurutan (`q01`, `q02`, …) supaya kolom di
+  tabel admin ikut rapi.
+- `sesi` hanya label yang tampil di atas soal.
+- Nilai dihitung otomatis: `benar ÷ jumlah soal × 100`, dibulatkan. Jadi jumlah
+  soal boleh ditambah atau dikurangi tanpa mengubah apa pun yang lain.
+
+Post-test masih memakai format lama (array `SOAL` di dalam `posttest.html`,
+dengan `tipe:"pilihan"` / `tipe:"isian"`, tanpa penilaian).
+
+> ⚠️ **Kunci jawabannya ada di sisi browser.** `soal-pretest.js` ikut terkirim ke
+> laptop peserta, jadi siapa pun yang membuka View Source bisa melihat mana
+> jawaban yang benar. Untuk pre-test yang tujuannya mengukur titik awal, ini
+> masih wajar. Kalau nanti ada tes yang benar-benar menentukan sesuatu,
+> penilaiannya harus dipindah ke sisi server.
+
+> ⚠️ **Nilai ikut terbaca publik.** Security Rules di langkah 3 memakai
+> `allow read: if true`, jadi nama beserta nilainya bisa ditarik siapa saja yang
+> tahu caranya — bukan cuma lewat `admin.html`. Kalau nilai dianggap sensitif,
+> kunci dulu `read`-nya seperti dijelaskan di langkah 3.

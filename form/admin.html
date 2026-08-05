@@ -65,6 +65,25 @@
       <div class="tablewrap"><table class="data" id="tbl-peserta"></table></div>
     </div>
 
+    <div class="grid2">
+      <div class="panel">
+        <h2>Sebaran Nilai Pre-Test</h2>
+        <p class="cap">Berapa orang di tiap rentang</p>
+        <div class="bars" id="bars-nilai"></div>
+      </div>
+      <div class="panel">
+        <h2>Rata-rata per Kelompok</h2>
+        <p class="cap">Nilai pre-test</p>
+        <div class="bars" id="bars-nilai-kelompok"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Soal yang Paling Banyak Salah</h2>
+      <p class="cap">Persentase yang menjawab benar — makin pendek, makin perlu ditekankan saat training</p>
+      <div class="bars lebar" id="bars-soal"></div>
+    </div>
+
     <div class="panel">
       <div class="panel-head">
         <div><h2>Data Pre-Test</h2><p class="cap" id="cap-pretest">Jawaban pre-test</p></div>
@@ -80,6 +99,7 @@
 <script type="module">
 import { ambilSemua, konfigurasiTerisi } from "./firebase.js";
 import { DIVISI, KELOMPOK, KELOMPOK_LABEL } from "./opsi.js";
+import { SOAL_PRETEST } from "./soal-pretest.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;" }[c]));
@@ -126,12 +146,14 @@ function render() {
   const total = peserta.length;
   const lengkap = peserta.filter(p => (p.siap||[]).length >= 3).length;
   const kelompokAktif = new Set(peserta.map(p => p.kelompok).filter(Boolean)).size;
+  const rataNilai = rerata(pretest.map(p => p.nilai));
 
   $("stats").innerHTML = `
     <div class="stat-card"><div class="num">${total}</div><div class="lbl">Peserta</div></div>
     <div class="stat-card teal"><div class="num">${pretest.length}</div><div class="lbl">Pre-Test masuk</div></div>
     <div class="stat-card"><div class="num">${lengkap}</div><div class="lbl">Kesiapan lengkap</div></div>
-    <div class="stat-card"><div class="num">${kelompokAktif}<span style="font-size:20px;color:var(--muted)">/5</span></div><div class="lbl">Kelompok terisi</div></div>`;
+    <div class="stat-card"><div class="num">${kelompokAktif}<span style="font-size:20px;color:var(--muted)">/5</span></div><div class="lbl">Kelompok terisi</div></div>
+    <div class="stat-card teal"><div class="num">${rataNilai == null ? "—" : rataNilai}</div><div class="lbl">Rata-rata pre-test</div></div>`;
 
   // per kelompok
   const pk = hitung(peserta, p => p.kelompok);
@@ -149,6 +171,7 @@ function render() {
   const pd = hitung(peserta, p => p.divisi || "—");
   bars($("bars-divisi"), Object.entries(pd).map(([l,v]) => ({l,v})).sort((a,b)=>b.v-a.v));
 
+  renderNilai();
   renderAnalisa();
 
   // tabel peserta
@@ -165,13 +188,64 @@ function render() {
 
   // tabel pretest — kolom pertanyaan dinamis
   const qks = [...new Set(pretest.flatMap(p => Object.keys(p.jawaban||{})))].sort();
+  const urutNilai = [...pretest].sort((a,b) => (b.nilai ?? -1) - (a.nilai ?? -1));
   tabel($("tbl-pretest"),
-    ["Nama","Kelompok","Divisi", ...qks.map(q => q.toUpperCase())],
-    pretest.map(p => [
+    ["Nama","Kelompok","Divisi","Nilai","Benar", ...qks.map(q => q.toUpperCase())],
+    urutNilai.map(p => [
       esc(p.nama), `<span class="pill">${esc(kel(p.kelompok))}</span>`, esc(p.divisi),
-      ...qks.map(q => wrapCell(p.jawaban?.[q])),
+      p.nilai == null ? `<span class="muted">—</span>` : `<b>${p.nilai}</b>`,
+      p.benar == null ? `<span class="muted">—</span>` : `${p.benar}/${p.total ?? SOAL_PRETEST.length}`,
+      ...qks.map(q => selBenar(p, q)),
     ]));
   $("cap-pretest").textContent = `Jawaban pre-test · ${pretest.length} baris`;
+}
+
+// -------- Nilai pre-test --------
+function rerata(arr) {
+  const a = arr.filter(v => typeof v === "number" && !Number.isNaN(v));
+  return a.length ? Math.round(a.reduce((x, y) => x + y, 0) / a.length) : null;
+}
+
+// sel jawaban: hijau kalau benar, merah kalau salah, abu kalau tidak terekam
+function selBenar(p, q) {
+  const teks = p.jawaban?.[q];
+  if (teks == null || teks === "") return `<span class="muted">—</span>`;
+  const soal = SOAL_PRETEST.find(x => x.id === q);
+  const idx = p.dipilih?.[q];
+  if (!soal || typeof idx !== "number") return wrapCell(teks);
+  const ok = idx === soal.benar;
+  const warna = ok ? "var(--teal)" : "var(--danger)";
+  return `<span style="color:${warna}"><b>${ok ? "✓" : "✕"}</b> ${esc(teks)}</span>`;
+}
+
+function renderNilai() {
+  // sebaran nilai
+  const rentang = [
+    { l: "0–39",   uji: (v) => v < 40 },
+    { l: "40–59",  uji: (v) => v >= 40 && v < 60 },
+    { l: "60–79",  uji: (v) => v >= 60 && v < 80 },
+    { l: "80–100", uji: (v) => v >= 80 },
+  ];
+  const nilai = pretest.map(p => p.nilai).filter(v => typeof v === "number");
+  bars($("bars-nilai"), rentang.map(r => ({ l: r.l, v: nilai.filter(r.uji).length })));
+
+  // rata-rata per kelompok
+  bars($("bars-nilai-kelompok"), KELOMPOK.map(k => ({
+    l: KELOMPOK_LABEL[k].replace(/ \(.*/, ""),
+    v: rerata(pretest.filter(p => p.kelompok === k).map(p => p.nilai)) ?? 0,
+  })));
+
+  // persentase benar per soal — yang paling merah naik ke atas
+  const terjawab = pretest.filter(p => p.dipilih);
+  const perSoal = SOAL_PRETEST.map((soal, i) => {
+    const isi = terjawab.filter(p => typeof p.dipilih[soal.id] === "number");
+    const benar = isi.filter(p => p.dipilih[soal.id] === soal.benar).length;
+    return {
+      l: `${String(i + 1).padStart(2, "0")} · ${soal.teks}`,
+      v: isi.length ? Math.round(benar / isi.length * 100) : 0,
+    };
+  }).sort((a, b) => a.v - b.v);
+  bars($("bars-soal"), terjawab.length ? perSoal : []);
 }
 
 function wrapCell(v) {
@@ -239,8 +313,11 @@ $("csv-peserta").addEventListener("click", () => {
 $("csv-pretest").addEventListener("click", () => {
   const qks = [...new Set(pretest.flatMap(p => Object.keys(p.jawaban||{})))].sort();
   unduhCSV("pretest.csv",
-    ["Nama","Kelompok","Divisi", ...qks],
-    pretest.map(p => [p.nama, kelPlain(p.kelompok), p.divisi, ...qks.map(q => p.jawaban?.[q] ?? "")]));
+    ["Nama","Kelompok","Divisi","Nilai","Benar","Total", ...qks],
+    [...pretest].sort((a,b) => (b.nilai ?? -1) - (a.nilai ?? -1))
+      .map(p => [p.nama, kelPlain(p.kelompok), p.divisi,
+        p.nilai ?? "", p.benar ?? "", p.total ?? "",
+        ...qks.map(q => p.jawaban?.[q] ?? "")]));
 });
 </script>
 </body>

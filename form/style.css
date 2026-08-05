@@ -127,7 +127,7 @@ textarea{min-height:96px;resize:vertical;line-height:1.5}
 .btn-sm.solid{background:var(--gold-ink);color:#fff;border-color:var(--gold-ink)}
 .btn-sm.solid:hover{background:#8a6014;color:#fff}
 
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:14px;margin-bottom:14px}
 .stat-card{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:16px 18px;position:relative;overflow:hidden}
 .stat-card::after{content:"";position:absolute;top:0;left:0;width:34px;height:2px;background:var(--gold-bright)}
 .stat-card .num{font-family:var(--display);font-size:38px;font-weight:600;color:var(--gold-ink);line-height:1}
@@ -212,4 +212,39 @@ table.data .muted{color:var(--muted)}
   h1{font-size:32px}
   .menu{grid-template-columns:1fr}
   .card{padding:22px 18px}
+}
+
+/* ============ Pre/Post-test: progres & nilai ============ */
+.progress{position:sticky;top:0;z-index:5;background:var(--paper);
+  padding:12px 0 13px;margin:0 0 20px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:13px}
+.progress .plbl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gold-ink);white-space:nowrap}
+.ptrack{flex:1;height:6px;background:#EEF2F5;border-radius:3px;overflow:hidden}
+.ptrack i{display:block;height:100%;width:0;border-radius:3px;
+  background:linear-gradient(90deg,var(--gold-ink),var(--gold-bright));
+  transition:width .25s cubic-bezier(.2,.7,.3,1)}
+
+.q .qn{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold-ink);display:block;margin-bottom:5px}
+.q{padding-top:4px}
+
+.skor{display:flex;align-items:baseline;justify-content:center;gap:10px;margin:0 0 6px}
+.skor .angka{font-family:var(--display);font-size:64px;font-weight:600;
+  color:var(--gold-ink);line-height:1}
+.skor .dari{font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted)}
+.skor-cap{font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--teal);margin:0 0 18px}
+
+.preview-note{display:flex;gap:10px;align-items:flex-start;padding:12px 15px;
+  border-radius:4px;font-size:13.5px;line-height:1.5;margin-bottom:22px;
+  background:var(--teal-wash);border:1px solid rgba(18,122,110,.3);color:#0c5a51}
+
+/* bar chart dengan label panjang (analisa per soal) */
+.bars.lebar .bar-row{grid-template-columns:minmax(0,1fr) 190px 40px}
+.bars.lebar .bar-row .bl{white-space:normal;line-height:1.35;font-size:13px}
+.bars.lebar .bar-row .bv{font-weight:600;color:var(--gold-ink)}
+@media (max-width:640px){
+  .bars.lebar .bar-row{grid-template-columns:minmax(0,1fr) 90px 38px}
 }
