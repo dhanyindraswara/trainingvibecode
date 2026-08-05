@@ -88,11 +88,12 @@ import { SOAL_PRETEST } from "./soal-pretest.js";
 
 // ============================================================
 //  BUKA / KUNCI PRE-TEST
-//  Ganti ke false pada hari Kamis untuk membuka pre-test.
-//  Panitia bisa melihat isinya lebih dulu lewat pretest.html?preview=1
-//  (jawaban dari mode itu tidak tersimpan).
+//  true  = peserta lihat layar "Belum dibuka".
+//  false = pre-test terbuka (kondisi sekarang).
+//  Saat terkunci, panitia tetap bisa mengintip lewat pretest.html?preview=1
+//  — jawaban dari mode itu tidak tersimpan.
 // ============================================================
-const TERKUNCI = true;
+const TERKUNCI = false;
 // ============================================================
 
 const PREVIEW = new URLSearchParams(location.search).get("preview") === "1";
