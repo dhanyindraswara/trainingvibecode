@@ -8,14 +8,28 @@ Materi training **Bangun Aplikasi Integrasi AI dengan Claude**.
 
 ## Isi deck
 
-73 slide dalam satu file HTML — tanpa dependensi apa pun selain font Google dan
+78 slide dalam satu file HTML — tanpa dependensi apa pun selain font Google dan
 tangkapan layar di folder [`img/`](img/).
 
 | Sesi | Isi |
 |------|-----|
 | **Sesi 01** | Model AI (Haiku 4.5 → Sonnet 5 → Opus 5 → Fable 5 → Mythos 5) dan 7 fitur Claude: Chat, Projects, Artifacts, Tasks & Scheduled, Cowork, Claude Code, Claude Design |
 | **Sesi 02** | Peta persaingan: ChatGPT, Gemini, Copilot, Grok, DeepSeek, Perplexity, Llama — beserta harga dan kesimpulan jujurnya |
-| **Sesi 03** | Build day — 10 langkah berurutan, dari login sampai semua menu diuji (lihat di bawah) |
+| **Sesi 03** | Build day — dibuka lima halaman gambaran besar (arsitektur, cara antar-komponen ngobrol, tempat knowledge disimpan, bagian mana yang ditulis Claude, dan jalur git → Vercel → Neon), lalu 10 langkah berurutan dari login sampai semua menu diuji (lihat di bawah) |
+
+### Sesi 03 · Gambaran besar dulu, baru langkahnya
+
+Lima halaman pembuka — dipasang tepat setelah pembatas **Sesi 3** dan sebelum *Alur 10
+langkah* — supaya peserta sudah kebayang bentuk aplikasinya sebelum tangan menyentuh
+keyboard.
+
+| # | Halaman | Isinya |
+|---|---------|--------|
+| A | Arsitektur — bentuk aplikasinya | Diagram beranimasi: browser → server aplikasi di Vercel → Neon Postgres, Vercel Blob, dan API OpenAI/Claude. Tiap kotak menyebut cara sambungnya (SQL lewat `DATABASE_URL`, `BLOB_READ_WRITE_TOKEN`, REST API + `OPENAI_API_KEY`) |
+| B | Siapa ngobrol sama siapa | Analogi restoran + tabel protokol per jalur: REST API lewat HTTPS, koneksi SQL, SDK Blob — dan kenapa browser sengaja tidak punya jalur ke OpenAI |
+| C | Knowledge disimpan di mana | Tiga lapis: file asli di Blob, potongan teks + vektor di Postgres, dan 3–5 potongan yang cuma nempel di prompt saat ditanya |
+| D | Yang dibangun Claude Code | Pemetaan tiap kotak arsitektur ke file nyata di repo (`app/api/…/route.ts`, `lib/db.ts`, `lib/blob.ts`, `lib/ai.ts`), plus yang tetap harus kita klik sendiri |
+| E | Dari ketikan sampai tayang | Alur beranimasi: minta → Claude Code menulis → commit & push → GitHub → Vercel membangun ulang → `Ready` → alamat publik berubah, lengkap dengan kunci yang dibaca saat build |
 
 ### Sesi 03 · 10 langkah build day
 
