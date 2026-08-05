@@ -344,18 +344,19 @@ svg.flow .out{font-family:var(--mono);font-size:12px;fill:var(--gold-ink);letter
 </section>
 
 <!-- 2 · PROMISE -->
-<section class="slide" data-act="Pembuka" data-title="Yang kita bawa pulang">
+<section class="slide" data-act="Pembuka" data-title="Empat fitur yang kita bangun">
   <p class="eyebrow" data-a="left" style="--i:0">Janji hari ini</p>
-  <h2 data-a="rise" style="--i:1">Kita tidak pulang membawa catatan.<br>Kita pulang membawa aplikasi yang jalan.</h2>
+  <h2 data-a="rise" style="--i:1">Empat fitur yang kita bangun hari ini.</h2>
   <div class="rule" style="--i:2"></div>
   <div class="body-area">
+    <p class="lede" data-a="fade" style="--i:3;margin-bottom:22px">Bukan contoh, bukan demo. Empat-empatnya benar-benar jalan di satu alamat yang bisa dibuka dari HP siapa pun — sebelum kita pulang sore ini.</p>
     <div class="cols c4">
-      <div class="card" data-a="rise" style="--i:3"><span class="tag">Hasil 01</span><h3>Web App</h3><p class="sub">Aplikasi beberapa halaman yang benar-benar jalan, bukan cuma tampilan.</p></div>
-      <div class="card" data-a="rise" style="--i:4"><span class="tag">Hasil 02</span><h3>RAG</h3><p class="sub">Dokumen milik kita sendiri, bisa ditanyai pakai bahasa sehari-hari.</p></div>
-      <div class="card" data-a="rise" style="--i:5"><span class="tag">Hasil 03</span><h3>Chatbot</h3><p class="sub">Pintu masuk lain ke data yang sama — cuma bentuknya percakapan.</p></div>
-      <div class="card teal" data-a="rise" style="--i:6"><span class="tag">Tantangan</span><h3>Satu menu bebas</h3><p class="sub">Terserah kita. Tim kita yang menentukan. Bagian inilah yang kami nilai.</p></div>
+      <div class="card" data-a="rise" style="--i:4"><span class="tag">Fitur 01</span><h3>Web App</h3><p class="sub">Beberapa halaman yang saling nyambung, dan datanya benar-benar tersimpan — bukan cuma tampilan.</p></div>
+      <div class="card" data-a="rise" style="--i:5"><span class="tag">Fitur 02</span><h3>Tanya Dokumen</h3><p class="sub">Upload spesifikasi atau kontrak kita, lalu tanya isinya pakai bahasa sehari-hari. Nama tekniknya RAG.</p></div>
+      <div class="card" data-a="rise" style="--i:6"><span class="tag">Fitur 03</span><h3>Chatbot</h3><p class="sub">Pintu masuk lain ke data yang sama — cuma bentuknya ngobrol, dan dia ingat pertanyaan sebelumnya.</p></div>
+      <div class="card teal" data-a="rise" style="--i:7"><span class="tag">Fitur 04 · tantangan</span><h3>Satu menu bebas</h3><p class="sub">Terserah kita. Tim kita yang menentukan mau bikin apa. Bagian inilah yang kami nilai.</p></div>
     </div>
-    <div class="callout" data-a="rise" style="--i:8;margin-top:26px">
+    <div class="callout" data-a="rise" style="--i:9;margin-top:22px">
       <span class="k">Aturan dasar</span>
       <p>Semuanya jalan di akun yang kita pegang sendiri. Tidak ada akun coba-coba yang dua bulan lagi tiba-tiba menyandera data kita.</p>
     </div>
@@ -479,7 +480,7 @@ svg.flow .out{font-family:var(--mono);font-size:12px;fill:var(--gold-ink);letter
         <div class="meter" style="--i:7"><i style="--w:100%"></i></div><div class="price">—<small>tidak tersedia</small></div>
       </div>
     </div>
-    <p class="sub" data-a="fade" style="--i:9;margin-top:18px;font-size:13.5px">Harga di atas itu tarif API per satu juta token, masuk / keluar. Kalau kita pakai langganan Pro atau Max, kita tidak ditagih per token — tapi tangga ini tetap berguna buat tahu siapa yang lagi berpikir untuk kita.</p>
+    <p class="sub" data-a="fade" style="--i:9;margin-top:18px;font-size:13.5px">Harga di atas itu tarif API per satu juta <em>token</em>, masuk / keluar. Token itu potongan kata — kira-kira 750 kata Bahasa Indonesia setara 1.000 token. Kalau kita pakai langganan Pro atau Max, kita tidak ditagih per token; tangga ini tetap berguna buat tahu siapa yang lagi berpikir untuk kita.</p>
   </div>
 </section>
 
@@ -1528,6 +1529,7 @@ Selesai itu, jangan sentuh menu lain.</div>
   <div class="split">
     <div>
       <ul class="clean sm" data-a="rise" style="--i:3">
+        <li><em>Repo</em> itu gudang kode satu project — semua file, plus catatan siapa mengubah apa dan kapan. Satu aplikasi, satu repo.</li>
         <li><strong>1 · Daftar di <span class="mono">github.com</span></strong> pakai email kantor, lalu klik verifikasi yang dikirim ke email itu. Yang sudah punya akun tinggal login — pastikan benar-benar bisa masuk.</li>
         <li><strong>2 · Tekan <em>New</em></strong> → nama repo <span class="mono">chl-[proyek]</span> → pilih <em>Private</em> → centang <em>Add a README</em> → <em>Create repository</em>.</li>
         <li><strong>3 · <span class="mono">Settings → Collaborators</span></strong> → undang satu rekan setim dengan akses <em>Write</em>. Repo jangan menggantung di satu orang.</li>
@@ -1781,8 +1783,9 @@ Setelah itu sebutkan nama branch-nya.</div>
     <div>
       
       <ul class="clean" data-a="rise" style="--i:3">
+        <li><strong>PRD itu apa?</strong> <em>Product Requirements Document</em> — dua halaman yang menjawab satu hal: aplikasi ini buat siapa, dan harus bisa apa saja.</li>
         <li><strong>Lampirkan contoh PRD dulu.</strong> Model meniru bentuk yang kita tunjukkan. Tunjukkan yang bagus, hasilnya bagus.</li>
-        <li><strong>Sebutkan stack-nya di dalam PRD.</strong> Next.js di Vercel, Vercel Postgres, Vercel Blob — ditulis, bukan diasumsikan.</li>
+        <li><strong>Sebutkan <em>stack</em>-nya di dalam PRD</strong> — daftar alat yang dipakai. Next.js di Vercel, Vercel Postgres, Vercel Blob. Ditulis, bukan diasumsikan.</li>
         <li><strong>Dokumen ini jadi batasan untuk Claude Design.</strong> Design tidak boleh mengarang cakupan yang tidak ada di sini.</li>
         <li><strong>Cukup dua halaman.</strong> PRD yang tidak pernah dibaca ulang cuma jadi hiasan.</li>
       </ul>
@@ -2110,7 +2113,7 @@ Lalu commit dan push ke branch baru.
     </div>
     <div class="callout" data-a="rise" style="--i:3;margin-top:14px">
       <span class="k">Kenapa aplikasi ini butuh Public</span>
-      <p>Gambar carousel dan dokumen ditampilkan langsung di layar lewat alamatnya. Layar ini sendiri sudah memberi tahu: <em>"Use this for assets like images and documents."</em> Sifat store ini dipilih sekali waktu dibuat dan tidak bisa diubah lagi — sama seperti pilihan regionnya.</p>
+      <p>Gambar galeri dan dokumen ditampilkan langsung di layar lewat alamatnya. Layar ini sendiri sudah memberi tahu: <em>"Use this for assets like images and documents."</em> Sifat store ini dipilih sekali waktu dibuat dan tidak bisa diubah lagi — sama seperti pilihan regionnya.</p>
     </div>
   </div>
 </section>
@@ -2906,7 +2909,7 @@ Jangan perbaiki tambal sulam.</div>
       <div class="check done" data-a="left" style="--i:6"><span class="box"></span><span class="t"><b>GitHub tersambung</b> — repo kelompok muncul di Claude Code, dan Claude sudah pernah berhasil push. <span class="mono">(langkah 03)</span></span><span class="who ok">1 org</span></div>
     </div>
     <div>
-      <div class="check done" data-a="left" style="--i:7"><span class="box"></span><span class="t"><b><span class="mono">.gitignore</span> menutup file environment</b> — diperiksa <em>sebelum</em> push pertama.</span><span class="who ok">Wajib</span></div>
+      <div class="check done" data-a="left" style="--i:7"><span class="box"></span><span class="t"><b><span class="mono">.gitignore</span> menutup file environment</b> — file tempat kunci disimpan, jangan sampai ikut ter-<em>push</em>. Diperiksa <em>sebelum</em> push pertama.</span><span class="who ok">Wajib</span></div>
       <div class="check done" data-a="left" style="--i:8"><span class="box"></span><span class="t"><b>Postgres &amp; Blob menyala</b> — dibuat dari tab Storage, kredensialnya ditempel Vercel sendiri.</span><span class="who ok">1 org</span></div>
       <div class="check done" data-a="left" style="--i:9"><span class="box"></span><span class="t"><b><span class="mono">/api/health</span> hijau</b> — Postgres dan Blob dua-duanya <span class="mono">ok</span>.</span><span class="who ok">Bukti</span></div>
       <div class="callout" data-a="rise" style="--i:10;margin-top:18px">
@@ -3169,12 +3172,12 @@ configured with private access.</div>
         <li><strong>1 · Periksa dulu isinya.</strong> Kalau store lama sudah menyimpan berkas yang dipakai, jangan dihapus — pindahkan dulu. Dalam kasus kami upload memang belum pernah berhasil, jadi tidak ada yang hilang.</li>
         <li><strong>2 · Hapus store lama</strong> dari <em>Storage</em> → pilih store → <em>Settings</em> → <em>Delete Store</em>. Token lamanya ikut tercabut.</li>
         <li><strong>3 · Buat store baru,</strong> dan saat ditanya <em>Access</em> pilih <span class="mono">Public</span>.</li>
-        <li><strong>4 · Sambungkan ke project,</strong> centang semua environment.</li>
+        <li><strong>4 · Sambungkan ke project,</strong> centang semua <em>environment</em> — Production, Preview, dan Development.</li>
         <li><strong>5 · Redeploy sekali</strong> supaya token barunya terbaca.</li>
       </ul>
       <div class="card teal" data-a="rise" style="--i:5;padding:14px 16px;margin-top:10px">
         <span class="tag">Memilihnya sejak awal</span>
-        <p class="sub" style="font-size:13.5px;margin:0"><strong>Public</strong> — untuk yang memang ditampilkan di layar: gambar carousel, lampiran yang dibuka pengguna. <strong>Private</strong> — untuk berkas yang tidak boleh terbuka lewat tautan. Untuk aplikasi hari ini, publik yang dipakai.</p>
+        <p class="sub" style="font-size:13.5px;margin:0"><strong>Public</strong> — untuk yang memang ditampilkan di layar: gambar galeri, lampiran yang dibuka pengguna. <strong>Private</strong> — untuk berkas yang tidak boleh terbuka lewat tautan. Untuk aplikasi hari ini, publik yang dipakai.</p>
       </div>
     </div>
   </div>
