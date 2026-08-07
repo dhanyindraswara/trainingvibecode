@@ -18,7 +18,7 @@
 
   <p class="eyebrow">Bangun Aplikasi Integrasi AI dengan Claude</p>
   <h1>Persiapan Training</h1>
-  <p class="lede">Selamat datang! Isi <strong>Form Persiapan</strong> dulu, lalu lanjut ke <strong>Pre-Test</strong>. Materinya sudah bisa dibuka kapan saja. Post-test menyusul setelah training.</p>
+  <p class="lede">Selamat datang! Isi <strong>Form Persiapan</strong> dulu, lalu lanjut ke <strong>Pre-Test</strong>. Materinya bisa dibuka kapan saja. <strong>Post-test sudah dibuka</strong> — silakan diisi sekarang.</p>
   <div class="rule"></div>
 
   <div class="menu">
@@ -41,7 +41,7 @@
     <a class="tile" data-key="posttest" href="posttest.html">
       <span class="n">03</span>
       <h3>Post-Test</h3>
-      <p>Diisi setelah training selesai, buat lihat seberapa jauh nilainya naik.</p>
+      <p>15 soal pilihan ganda, sekitar 10 menit. Semuanya dari materi yang tadi dikerjakan bareng.</p>
       <span class="go">Mulai post-test →</span>
     </a>
     <a class="tile teal" data-key="materi" href="../">
@@ -62,7 +62,8 @@
 // ============================================================
 (function(){
   var TERKUNCI = {
-    posttest: "Jumat",
+    // Semua sudah terbuka. Contoh kalau mau mengunci lagi:
+    // posttest: "Jumat",
   };
   document.querySelectorAll(".tile").forEach(function(t){
     var hari = TERKUNCI[t.getAttribute("data-key")];
