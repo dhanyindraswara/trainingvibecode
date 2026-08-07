@@ -127,7 +127,25 @@ oleh dashboard admin (untuk analisa per soal), jadi cukup diubah di satu tempat.
 - Nilai dihitung otomatis: `benar ÷ jumlah soal × 100`, dibulatkan. Jadi jumlah
   soal boleh ditambah atau dikurangi tanpa mengubah apa pun yang lain.
 
-Di post-test ada tambahan: dua kolom **masukan** (`m1`, `m2`) di bagian bawah
+## Nama di post-test diambil dari daftar
+
+Kolom **Nama** di post-test bukan ketikan bebas: isinya dropdown yang bisa
+dicari, diambil dari nama-nama yang sudah masuk lewat **Form Persiapan** dan
+**Pre-Test**. Begitu satu nama dipilih, **kelompok dan divisinya ikut terisi**
+dari data lama (masih boleh diubah kalau ada yang keliru).
+
+Ini penting karena pasangan pre → post di dashboard dicocokkan dari nama —
+beda ejaan sedikit saja, pasangannya tidak ketemu. Pencocokannya sendiri sudah
+mengabaikan huruf besar/kecil dan spasi berlebih.
+
+Kalau ada peserta yang namanya memang belum pernah masuk, ada pilihan terakhir
+di dropdown: **"Nama saya tidak ada di daftar"** — field-nya berubah jadi
+ketikan bebas. Kalau daftarnya gagal dimuat (mis. koneksi putus), field-nya juga
+otomatis balik jadi ketikan bebas, jadi tidak pernah bikin peserta buntu.
+
+Kodenya ada di `form/pilih-nama.js`.
+
+Di post-test ada tambahan lain: dua kolom **masukan** (`m1`, `m2`) di bagian bawah
 halaman. Isinya teks bebas, tidak wajib, tidak ikut dinilai — hasilnya muncul di
 panel "Masukan Peserta" pada dashboard. Daftarnya ada di array `MASUKAN` di dalam
 `posttest.html`.

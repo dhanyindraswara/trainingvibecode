@@ -72,6 +72,29 @@ input[type=text],input[type=email],select,textarea{
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(233,184,75,.18)}
 textarea{min-height:96px;resize:vertical;line-height:1.5}
 
+/* dropdown nama yang bisa dicari */
+.combo{position:relative}
+.combo input[type=text]{padding-right:34px}
+.combo::after{
+  content:"";position:absolute;right:13px;top:19px;pointer-events:none;
+  width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);
+  transform:rotate(45deg) translateY(-2px)}
+.combo.manual::after{display:none}
+.combo.terpilih input[type=text]{border-color:var(--teal);background:var(--teal-wash)}
+.combo-list{
+  position:absolute;z-index:20;top:calc(100% + 4px);left:0;right:0;max-height:264px;overflow-y:auto;
+  background:#fff;border:1px solid var(--line);border-radius:4px;
+  box-shadow:0 10px 26px rgba(17,26,34,.13)}
+.combo-opt{display:flex;flex-direction:column;gap:2px;padding:10px 13px;cursor:pointer;border-bottom:1px solid var(--line)}
+.combo-opt:last-child{border-bottom:none}
+.combo-opt:hover,.combo-opt.on{background:rgba(233,184,75,.12)}
+.combo-opt .cn{font-size:15px;color:var(--ink);line-height:1.3}
+.combo-opt .cs{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muted)}
+.combo-opt.manual{background:var(--panel);border-top:1px solid var(--line);position:sticky;bottom:0}
+.combo-opt.manual:hover,.combo-opt.manual.on{background:rgba(233,184,75,.16)}
+.combo-opt.manual .cn{color:var(--ink-3);font-size:14px}
+.combo-kosong{padding:12px 13px;font-size:14px;color:var(--muted)}
+
 /* pilihan (radio/checkbox) */
 .q{margin-bottom:22px}
 .q>.qt{font-size:16px;font-weight:600;color:var(--ink);margin:0 0 10px;line-height:1.4}

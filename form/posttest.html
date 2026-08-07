@@ -42,7 +42,8 @@
     <form id="form">
       <div class="field">
         <label for="nama">Nama lengkap <span style="color:var(--danger)">*</span></label>
-        <input type="text" id="nama" name="nama" required autocomplete="name" placeholder="Nama kamu">
+        <span class="hint" id="nama-hint">Memuat daftar nama…</span>
+        <input type="text" id="nama" name="nama" required autocomplete="off" placeholder="Memuat daftar nama…" disabled>
       </div>
       <div class="field">
         <label for="kelompok">Kelompok <span style="color:var(--danger)">*</span></label>
@@ -86,6 +87,7 @@
 import { simpanData, konfigurasiTerisi } from "./firebase.js";
 import { DIVISI, KELOMPOK, KELOMPOK_LABEL } from "./opsi.js";
 import { SOAL_POSTTEST } from "./soal-posttest.js";
+import { ambilDaftarNama, pasangPilihNama } from "./pilih-nama.js";
 
 // ============================================================
 //  BUKA / KUNCI POST-TEST
@@ -154,6 +156,48 @@ function mulai() {
 
   document.getElementById("pcount").textContent = `0 / ${TOTAL} terjawab`;
   if (!konfigurasiTerisi()) document.getElementById("banner").style.display = "flex";
+
+  siapkanPilihNama();
+
+  // ------------------------------------------------------------
+  //  Nama diambil dari daftar yang sudah masuk lewat Form Persiapan
+  //  dan Pre-Test, supaya ejaannya persis sama — kalau meleset, pasangan
+  //  pre → post di dashboard tidak akan ketemu.
+  // ------------------------------------------------------------
+  async function siapkanPilihNama() {
+    const input = document.getElementById("nama");
+    const hint = document.getElementById("nama-hint");
+
+    const bebas = (pesan) => {
+      input.disabled = false;
+      input.placeholder = "Nama kamu";
+      hint.textContent = pesan;
+    };
+
+    if (!konfigurasiTerisi()) return bebas("Ketik nama lengkapmu.");
+
+    let daftar = [];
+    try {
+      daftar = await ambilDaftarNama();
+    } catch {
+      return bebas("Daftar nama gagal dimuat — ketik saja nama lengkapmu.");
+    }
+    if (!daftar.length) return bebas("Ketik nama lengkapmu.");
+
+    input.disabled = false;
+    input.placeholder = "Ketik untuk mencari namamu…";
+    hint.textContent = `Pilih namamu dari daftar (${daftar.length} nama) — biar cocok dengan pre-test.`;
+
+    pasangPilihNama({
+      input, daftar,
+      onPilih: (d) => {
+        if (!d) return;
+        // kelompok & divisi ikut terbawa; tetap bisa diubah kalau ada yang keliru
+        if (d.kelompok && KELOMPOK.includes(d.kelompok)) sel.value = d.kelompok;
+        if (d.divisi) document.getElementById("divisi").value = d.divisi;
+      },
+    });
+  }
 
   function perbaruiProgres() {
     const n = SOAL.filter(s => form.elements[s.id].value !== "").length;
