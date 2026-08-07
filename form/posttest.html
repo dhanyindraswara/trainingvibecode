@@ -18,7 +18,7 @@
 
   <p class="eyebrow">Langkah 03</p>
   <h1>Post-Test</h1>
-  <p class="lede">Diisi setelah training selesai. Untuk mengukur apa yang bertambah dan mengumpulkan masukan.</p>
+  <p class="lede">15 soal pilihan ganda, sekitar 10 menit. Semuanya dari yang tadi kita kerjakan bareng: <strong>Claude Code</strong> sebagai tempat kita ngeprompt, <strong>kunci API</strong> dan bedanya model dengan fitur, serta <strong>data yang disimpan di database</strong> yang tinggal di server. Santai saja — kalau tadi ikut sampai selesai, harusnya semuanya kejawab.</p>
 
   <!-- Tampilan saat terkunci -->
   <div class="card" id="terkunci-box" style="display:none">
@@ -32,6 +32,9 @@
 
   <!-- Tampilan saat terbuka -->
   <div class="card" id="form-box" style="display:none">
+    <div id="preview-box" class="preview-note" style="display:none">
+      <span>👁️</span><span><b>Mode pratinjau (panitia).</b> Post-test masih terkunci untuk peserta. Jawaban dari halaman ini <b>tidak</b> ikut tersimpan.</span>
+    </div>
     <div id="banner" class="banner warn" style="display:none">
       <span>⚠️</span><span><b>Firebase belum dikonfigurasi.</b> Jawaban belum akan tersimpan sampai <code>form/firebase-config.js</code> diisi.</span>
     </div>
@@ -39,7 +42,8 @@
     <form id="form">
       <div class="field">
         <label for="nama">Nama lengkap <span style="color:var(--danger)">*</span></label>
-        <input type="text" id="nama" name="nama" required autocomplete="name" placeholder="Nama kamu">
+        <span class="hint" id="nama-hint">Memuat daftar nama…</span>
+        <input type="text" id="nama" name="nama" required autocomplete="off" placeholder="Memuat daftar nama…" disabled>
       </div>
       <div class="field">
         <label for="kelompok">Kelompok <span style="color:var(--danger)">*</span></label>
@@ -53,16 +57,25 @@
         <datalist id="divisi-list"></datalist>
       </div>
 
+      <div class="progress">
+        <span class="plbl" id="pcount">0 / 15 terjawab</span>
+        <span class="ptrack"><i id="pfill"></i></span>
+      </div>
+
       <div id="soal"></div>
 
+      <div id="masukan"></div>
+
       <button type="submit" class="btn" id="submit">Kirim post-test</button>
-      <p class="note">Untuk edit pertanyaan: ubah array SOAL di dalam file ini.</p>
+      <p class="note">Untuk edit pertanyaan atau kunci jawaban: buka <code>form/soal-posttest.js</code>.</p>
     </form>
 
     <div class="done" id="done">
       <div class="mark">✓</div>
       <h2>Post-test terkirim!</h2>
-      <p>Terima kasih sudah ikut sampai selesai. Jangan lupa: migrasi ke server CHL maksimal 14 hari.</p>
+      <div class="skor"><span class="angka" id="skor-angka">—</span><span class="dari">/ 100</span></div>
+      <p class="skor-cap" id="skor-cap"></p>
+      <p id="skor-pesan">Terima kasih sudah ikut sampai selesai. Jangan lupa: migrasi ke server CHL maksimal 14 hari.</p>
       <a href="./">← Kembali ke menu</a>
     </div>
   </div>
@@ -73,42 +86,45 @@
 <script type="module">
 import { simpanData, konfigurasiTerisi } from "./firebase.js";
 import { DIVISI, KELOMPOK, KELOMPOK_LABEL } from "./opsi.js";
+import { SOAL_POSTTEST } from "./soal-posttest.js";
+import { ambilDaftarNama, pasangPilihNama } from "./pilih-nama.js";
 
 // ============================================================
 //  BUKA / KUNCI POST-TEST
-//  Ganti ke false pada hari Jumat untuk membuka post-test.
+//  true  = peserta lihat layar "Belum dibuka".
+//  false = post-test terbuka (kondisi sekarang).
+//  Saat terkunci, panitia tetap bisa mengintip lewat posttest.html?preview=1
+//  — jawaban dari mode itu tidak tersimpan.
 // ============================================================
-const TERKUNCI = true;
+const TERKUNCI = false;
 // ============================================================
 
-if (TERKUNCI) {
+const PREVIEW = new URLSearchParams(location.search).get("preview") === "1";
+
+if (TERKUNCI && !PREVIEW) {
   document.getElementById("terkunci-box").style.display = "block";
 } else {
   document.getElementById("form-box").style.display = "block";
+  if (TERKUNCI && PREVIEW) document.getElementById("preview-box").style.display = "flex";
   mulai();
 }
 
 function mulai() {
   // ============================================================
-  //  EDIT DI SINI — daftar pertanyaan post-test.
-  //  Tipe "pilihan" = satu jawaban. Tipe "isian" = teks bebas.
+  //  Soal & kunci jawabannya ada di form/soal-posttest.js
+  //  supaya dashboard admin bisa memakai daftar yang sama.
   // ============================================================
-  const SOAL = [
-    { id:"q1", tipe:"pilihan", teks:"Setelah training, seberapa yakin kamu bisa membangun aplikasi sederhana dengan Claude?",
-      opsi:["Belum yakin","Cukup yakin","Yakin"] },
-    { id:"q2", tipe:"pilihan", teks:"Paham alur PRD → Design → Code → GitHub → Database → Integrasi AI?",
-      opsi:["Belum","Sebagian","Paham utuh"] },
-    { id:"q3", tipe:"pilihan", teks:"Apakah kelompokmu berhasil menyambungkan aplikasi ke database & storage?",
-      opsi:["Belum","Sebagian jalan","Berhasil"] },
-    { id:"q4", tipe:"isian", teks:"Bagian mana yang paling bermanfaat dari training ini?" },
-    { id:"q5", tipe:"isian", teks:"Apa yang masih membingungkan atau perlu diperdalam?" },
-    { id:"q6", tipe:"pilihan", teks:"Seberapa besar kemungkinan kamu memakai ini di pekerjaan nyata?",
-      opsi:["Kecil","Mungkin","Besar"] },
+  const SOAL = SOAL_POSTTEST;
+
+  // Dua pertanyaan masukan di bawah — tidak dinilai, tidak wajib.
+  const MASUKAN = [
+    { id:"m1", teks:"Bagian mana yang paling bermanfaat dari training ini?" },
+    { id:"m2", teks:"Apa yang masih membingungkan atau perlu diperdalam?" },
   ];
-  // ============================================================
 
   const form = document.getElementById("form");
   const btn = document.getElementById("submit");
+  const TOTAL = SOAL.length;
 
   // isi kelompok & divisi
   const sel = document.getElementById("kelompok");
@@ -116,46 +132,133 @@ function mulai() {
   const dl = document.getElementById("divisi-list");
   DIVISI.forEach(d => { const o = document.createElement("option"); o.value = d; dl.appendChild(o); });
 
-  // render soal
+  const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+
+  // render soal — nilai radio = indeks opsi, jadi tidak bergantung teksnya
   const wrap = document.getElementById("soal");
   SOAL.forEach((s, i) => {
     const q = document.createElement("div"); q.className = "q";
-    const label = `${i+1}. ${s.teks}`;
-    if (s.tipe === "isian") {
-      q.innerHTML = `<p class="qt">${label} <span class="req">*</span></p><textarea name="${s.id}" required placeholder="Tulis jawabanmu…"></textarea>`;
-    } else {
-      const opts = s.opsi.map(o => `<label class="opt"><input type="radio" name="${s.id}" value="${o}" required><span>${o}</span></label>`).join("");
-      q.innerHTML = `<p class="qt">${label} <span class="req">*</span></p>${opts}`;
-    }
+    const opts = s.opsi.map((o, j) =>
+      `<label class="opt"><input type="radio" name="${s.id}" value="${j}" required><span>${esc(o)}</span></label>`
+    ).join("");
+    q.innerHTML = `<p class="qt"><span class="qn">Soal ${i+1} dari ${TOTAL} · ${esc(s.sesi)}</span>${esc(s.teks)} <span class="req">*</span></p>${opts}`;
     wrap.appendChild(q);
   });
 
+  // render kolom masukan
+  const wrapM = document.getElementById("masukan");
+  MASUKAN.forEach(m => {
+    const q = document.createElement("div"); q.className = "q";
+    q.innerHTML = `<p class="qt"><span class="qn">Masukan · tidak dinilai</span>${esc(m.teks)}</p>
+      <textarea name="${m.id}" placeholder="Boleh dikosongkan…"></textarea>`;
+    wrapM.appendChild(q);
+  });
+
+  document.getElementById("pcount").textContent = `0 / ${TOTAL} terjawab`;
   if (!konfigurasiTerisi()) document.getElementById("banner").style.display = "flex";
+
+  siapkanPilihNama();
+
+  // ------------------------------------------------------------
+  //  Nama diambil dari daftar yang sudah masuk lewat Form Persiapan
+  //  dan Pre-Test, supaya ejaannya persis sama — kalau meleset, pasangan
+  //  pre → post di dashboard tidak akan ketemu.
+  // ------------------------------------------------------------
+  async function siapkanPilihNama() {
+    const input = document.getElementById("nama");
+    const hint = document.getElementById("nama-hint");
+
+    const bebas = (pesan) => {
+      input.disabled = false;
+      input.placeholder = "Nama kamu";
+      hint.textContent = pesan;
+    };
+
+    if (!konfigurasiTerisi()) return bebas("Ketik nama lengkapmu.");
+
+    let daftar = [];
+    try {
+      daftar = await ambilDaftarNama();
+    } catch {
+      return bebas("Daftar nama gagal dimuat — ketik saja nama lengkapmu.");
+    }
+    if (!daftar.length) return bebas("Ketik nama lengkapmu.");
+
+    input.disabled = false;
+    input.placeholder = "Ketik untuk mencari namamu…";
+    hint.textContent = `Pilih namamu dari daftar (${daftar.length} nama) — biar cocok dengan pre-test.`;
+
+    pasangPilihNama({
+      input, daftar,
+      onPilih: (d) => {
+        if (!d) return;
+        // kelompok & divisi ikut terbawa; tetap bisa diubah kalau ada yang keliru
+        if (d.kelompok && KELOMPOK.includes(d.kelompok)) sel.value = d.kelompok;
+        if (d.divisi) document.getElementById("divisi").value = d.divisi;
+      },
+    });
+  }
+
+  function perbaruiProgres() {
+    const n = SOAL.filter(s => form.elements[s.id].value !== "").length;
+    document.getElementById("pcount").textContent = `${n} / ${TOTAL} terjawab`;
+    document.getElementById("pfill").style.width = (n / TOTAL * 100) + "%";
+  }
 
   document.addEventListener("change", (e) => {
     if (e.target.matches(".opt input[type=radio]")) {
       e.target.closest(".q").querySelectorAll(".opt").forEach(o => o.classList.remove("checked"));
       e.target.closest(".opt").classList.add("checked");
+      perbaruiProgres();
     }
   });
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const jawaban = {};
-    SOAL.forEach(s => { jawaban[s.id] = form.elements[s.id].value; });
-    const data = { nama: form.nama.value.trim(), kelompok: form.kelompok.value, divisi: form.divisi.value.trim(), jawaban };
+
+    // kumpulkan jawaban + hitung nilai
+    const jawaban = {}, dipilih = {};
+    let benar = 0;
+    SOAL.forEach(s => {
+      const idx = Number(form.elements[s.id].value);
+      dipilih[s.id] = idx;                 // indeks — dipakai untuk analisa per soal
+      jawaban[s.id] = s.opsi[idx];         // teksnya — biar tabel admin tetap kebaca
+      if (idx === s.benar) benar++;
+    });
+    const nilai = Math.round(benar / TOTAL * 100);
+
+    const masukan = {};
+    MASUKAN.forEach(m => { masukan[m.id] = form.elements[m.id].value.trim(); });
+
+    const data = {
+      nama: form.nama.value.trim(),
+      kelompok: form.kelompok.value,
+      divisi: form.divisi.value.trim(),
+      jawaban, dipilih, benar, total: TOTAL, nilai, masukan,
+    };
 
     btn.disabled = true; btn.textContent = "Mengirim…";
     try {
-      await simpanData("posttest", data);
-      form.style.display = "none";
-      document.getElementById("done").style.display = "block";
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (!PREVIEW) await simpanData("posttest", data);
+      tampilkanHasil(benar, TOTAL, nilai);
     } catch (err) {
       btn.disabled = false; btn.textContent = "Kirim post-test";
       alert("Gagal mengirim: " + err.message + "\n\nCek koneksi internet, lalu coba lagi.");
     }
   });
+
+  function tampilkanHasil(benar, total, nilai) {
+    form.style.display = "none";
+    document.getElementById("skor-angka").textContent = nilai;
+    document.getElementById("skor-cap").textContent = `${benar} dari ${total} soal benar`;
+    document.getElementById("skor-pesan").textContent = PREVIEW
+      ? "Mode pratinjau — jawaban ini tidak tersimpan."
+      : (nilai >= 80
+          ? "Mantap. Bandingkan angka ini dengan nilai pre-testmu — itu jarak yang kita tempuh hari ini. Jangan lupa migrasi ke server CHL maksimal 14 hari."
+          : "Terima kasih sudah ikut sampai selesai. Materinya tetap bisa dibuka kapan saja lewat menu. Jangan lupa migrasi ke server CHL maksimal 14 hari.");
+    document.getElementById("done").style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 }
 </script>
 </body>

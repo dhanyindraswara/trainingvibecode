@@ -167,6 +167,11 @@ Hub satu-pintu untuk peserta ada di folder [`form/`](form/) — tayang di
 Persiapan · Pre-Test · Post-Test · Buka Materi**. Jawaban tersimpan ke Cloud
 Firestore (situs statik, tanpa server).
 
+Pre-test dan post-test masing-masing 15 soal pilihan ganda bernilai; soal dan
+kunci jawabannya ada di `form/soal-pretest.js` dan `form/soal-posttest.js`.
+Dashboard panitia di `form/admin.html` menampilkan nilai keduanya, soal yang
+paling banyak salah, dan perbandingan pre → post per orang.
+
 Sebelum dipakai, sambungkan Firebase satu kali — panduannya di
 [`form/SETUP-FIREBASE.md`](form/SETUP-FIREBASE.md). Sebelum config diisi, form
 menampilkan banner peringatan dan belum menyimpan apa pun.

@@ -82,33 +82,37 @@ Firestore. Banner peringatan kuning otomatis hilang setelah config terisi.
 - **Dashboard (disarankan):** buka `…/form/admin.html` — langsung tampil, tanpa
   login. Ada ringkasan per kelompok/divisi, kesiapan, **nilai pre-test**
   (rata-rata, sebaran, rata-rata per kelompok, dan soal mana yang paling banyak
-  salah), tabel lengkap, dan tombol **Download CSV** untuk `peserta` dan
-  `pretest`. CSV pre-test sudah memuat kolom `Nilai`, `Benar`, dan `Total`.
+  salah), **nilai post-test** dengan susunan yang sama, perbandingan
+  **pre → post** (per orang, dicocokkan dari nama, plus kolom selisih di tabel),
+  kumpulan masukan peserta, tabel lengkap, dan tombol **Download CSV** untuk
+  `peserta`, `pretest`, dan `posttest`. CSV pre-test memuat kolom `Nilai`,
+  `Benar`, dan `Total`; CSV post-test menambah `Nilai pre-test` dan `Selisih`.
 - **Mentah:** Firebase Console → **Firestore Database → Data** → koleksi
   `peserta`, `pretest`, `posttest`.
 
-## Membuka pre-test / post-test
+## Membuka / mengunci pre-test & post-test
 
-Dua-duanya dikunci secara default, dan kuncinya ada di **dua tempat** — harus
-diubah dua-duanya:
+Sekarang **dua-duanya sudah terbuka.** Kuncinya ada di **dua tempat** — kalau mau
+mengunci lagi (atau membuka yang terkunci), keduanya harus diubah:
 
 | Yang diubah | File | Barisnya |
 |---|---|---|
-| Halamannya | `pretest.html` / `posttest.html` | `const TERKUNCI = true;` → `false` |
-| Ubin di menu | `index.html` | hapus baris `pretest: "Kamis",` (atau `posttest`) dari objek `TERKUNCI` |
+| Halamannya | `pretest.html` / `posttest.html` | `const TERKUNCI = false;` ↔ `true` |
+| Ubin di menu | `index.html` | tambah/hapus baris `posttest: "Jumat",` di objek `TERKUNCI` |
 
 Lalu commit & push.
 
 **Mengintip lebih dulu tanpa membukanya untuk peserta:** buka
-`pretest.html?preview=1`. Formnya tampil lengkap dan bisa dicoba sampai keluar
-nilainya, tapi jawabannya **tidak** tersimpan ke Firestore.
+`pretest.html?preview=1` atau `posttest.html?preview=1`. Formnya tampil lengkap
+dan bisa dicoba sampai keluar nilainya, tapi jawabannya **tidak** tersimpan ke
+Firestore.
 
-## Menambah / mengubah soal pre-test
+## Menambah / mengubah soal
 
-Soal pre-test dan kunci jawabannya ada di satu file: **`form/soal-pretest.js`**.
-File itu dipakai bersama oleh halaman pre-test (untuk menampilkan soal dan
-menghitung nilai) dan oleh dashboard admin (untuk analisa per soal), jadi cukup
-diubah di satu tempat.
+Soal dan kunci jawabannya ada di dua file terpisah dengan format yang sama:
+**`form/soal-pretest.js`** dan **`form/soal-posttest.js`**. Masing-masing dipakai
+bersama oleh halaman tesnya (untuk menampilkan soal dan menghitung nilai) dan
+oleh dashboard admin (untuk analisa per soal), jadi cukup diubah di satu tempat.
 
 ```js
 { id:"q16", sesi:"Sesi 03",
@@ -123,8 +127,28 @@ diubah di satu tempat.
 - Nilai dihitung otomatis: `benar ÷ jumlah soal × 100`, dibulatkan. Jadi jumlah
   soal boleh ditambah atau dikurangi tanpa mengubah apa pun yang lain.
 
-Post-test masih memakai format lama (array `SOAL` di dalam `posttest.html`,
-dengan `tipe:"pilihan"` / `tipe:"isian"`, tanpa penilaian).
+## Nama di post-test diambil dari daftar
+
+Kolom **Nama** di post-test bukan ketikan bebas: isinya dropdown yang bisa
+dicari, diambil dari nama-nama yang sudah masuk lewat **Form Persiapan** dan
+**Pre-Test**. Begitu satu nama dipilih, **kelompok dan divisinya ikut terisi**
+dari data lama (masih boleh diubah kalau ada yang keliru).
+
+Ini penting karena pasangan pre → post di dashboard dicocokkan dari nama —
+beda ejaan sedikit saja, pasangannya tidak ketemu. Pencocokannya sendiri sudah
+mengabaikan huruf besar/kecil dan spasi berlebih.
+
+Kalau ada peserta yang namanya memang belum pernah masuk, ada pilihan terakhir
+di dropdown: **"Nama saya tidak ada di daftar"** — field-nya berubah jadi
+ketikan bebas. Kalau daftarnya gagal dimuat (mis. koneksi putus), field-nya juga
+otomatis balik jadi ketikan bebas, jadi tidak pernah bikin peserta buntu.
+
+Kodenya ada di `form/pilih-nama.js`.
+
+Di post-test ada tambahan lain: dua kolom **masukan** (`m1`, `m2`) di bagian bawah
+halaman. Isinya teks bebas, tidak wajib, tidak ikut dinilai — hasilnya muncul di
+panel "Masukan Peserta" pada dashboard. Daftarnya ada di array `MASUKAN` di dalam
+`posttest.html`.
 
 > ⚠️ **Kunci jawabannya ada di sisi browser.** `soal-pretest.js` ikut terkirim ke
 > laptop peserta, jadi siapa pun yang membuka View Source bisa melihat mana

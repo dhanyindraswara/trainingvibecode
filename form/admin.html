@@ -92,6 +92,40 @@
       <div class="tablewrap"><table class="data" id="tbl-pretest"></table></div>
     </div>
 
+    <div class="grid2">
+      <div class="panel">
+        <h2>Sebaran Nilai Post-Test</h2>
+        <p class="cap">Berapa orang di tiap rentang</p>
+        <div class="bars" id="bars-nilai-post"></div>
+      </div>
+      <div class="panel">
+        <h2>Pre-Test → Post-Test</h2>
+        <p class="cap">Rata-rata nilai, per orang yang mengisi keduanya</p>
+        <div class="bars" id="bars-delta"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Soal Post-Test yang Paling Banyak Salah</h2>
+      <p class="cap">Persentase yang menjawab benar — makin pendek, makin perlu diulang di materi berikutnya</p>
+      <div class="bars lebar" id="bars-soal-post"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div><h2>Data Post-Test</h2><p class="cap" id="cap-posttest">Jawaban post-test</p></div>
+        <button class="btn-sm solid" id="csv-posttest">⬇ Download CSV</button>
+      </div>
+      <div class="tablewrap"><table class="data" id="tbl-posttest"></table></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div><h2>Masukan Peserta</h2><p class="cap">Yang paling bermanfaat · yang masih membingungkan</p></div>
+      </div>
+      <div class="analisa" id="masukan"></div>
+    </div>
+
     <p class="foot">Training by INSYNTIVE · Cipta Harmoni Lestari · 2026</p>
   </div>
 </div>
@@ -100,11 +134,12 @@
 import { ambilSemua, konfigurasiTerisi } from "./firebase.js";
 import { DIVISI, KELOMPOK, KELOMPOK_LABEL } from "./opsi.js";
 import { SOAL_PRETEST } from "./soal-pretest.js";
+import { SOAL_POSTTEST } from "./soal-posttest.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;" }[c]));
 
-let peserta = [], pretest = [];
+let peserta = [], pretest = [], posttest = [];
 
 if (!konfigurasiTerisi()) {
   $("loading").textContent = "Firebase belum dikonfigurasi (firebase-config.js).";
@@ -120,7 +155,9 @@ async function muat() {
   $("loading").textContent = "Memuat…";
   $("dash").style.display = "none";
   try {
-    [peserta, pretest] = await Promise.all([ambilSemua("peserta"), ambilSemua("pretest")]);
+    [peserta, pretest, posttest] = await Promise.all([
+      ambilSemua("peserta"), ambilSemua("pretest"), ambilSemua("posttest"),
+    ]);
     render();
     $("loading").style.display = "none";
     $("dash").style.display = "block";
@@ -147,13 +184,18 @@ function render() {
   const lengkap = peserta.filter(p => (p.siap||[]).length >= 3).length;
   const kelompokAktif = new Set(peserta.map(p => p.kelompok).filter(Boolean)).size;
   const rataNilai = rerata(pretest.map(p => p.nilai));
+  const rataPost = rerata(posttest.map(p => p.nilai));
+  const naik = (rataNilai == null || rataPost == null) ? null : rataPost - rataNilai;
 
   $("stats").innerHTML = `
     <div class="stat-card"><div class="num">${total}</div><div class="lbl">Peserta</div></div>
     <div class="stat-card teal"><div class="num">${pretest.length}</div><div class="lbl">Pre-Test masuk</div></div>
+    <div class="stat-card teal"><div class="num">${posttest.length}</div><div class="lbl">Post-Test masuk</div></div>
     <div class="stat-card"><div class="num">${lengkap}</div><div class="lbl">Kesiapan lengkap</div></div>
     <div class="stat-card"><div class="num">${kelompokAktif}<span style="font-size:20px;color:var(--muted)">/5</span></div><div class="lbl">Kelompok terisi</div></div>
-    <div class="stat-card teal"><div class="num">${rataNilai == null ? "—" : rataNilai}</div><div class="lbl">Rata-rata pre-test</div></div>`;
+    <div class="stat-card teal"><div class="num">${rataNilai == null ? "—" : rataNilai}</div><div class="lbl">Rata-rata pre-test</div></div>
+    <div class="stat-card teal"><div class="num">${rataPost == null ? "—" : rataPost}</div><div class="lbl">Rata-rata post-test</div></div>
+    <div class="stat-card"><div class="num">${naik == null ? "—" : (naik > 0 ? "+" : "") + naik}</div><div class="lbl">Selisih rata-rata</div></div>`;
 
   // per kelompok
   const pk = hitung(peserta, p => p.kelompok);
@@ -172,7 +214,9 @@ function render() {
   bars($("bars-divisi"), Object.entries(pd).map(([l,v]) => ({l,v})).sort((a,b)=>b.v-a.v));
 
   renderNilai();
+  renderNilaiPost();
   renderAnalisa();
+  renderMasukan();
 
   // tabel peserta
   tabel($("tbl-peserta"),
@@ -195,9 +239,40 @@ function render() {
       esc(p.nama), `<span class="pill">${esc(kel(p.kelompok))}</span>`, esc(p.divisi),
       p.nilai == null ? `<span class="muted">—</span>` : `<b>${p.nilai}</b>`,
       p.benar == null ? `<span class="muted">—</span>` : `${p.benar}/${p.total ?? SOAL_PRETEST.length}`,
-      ...qks.map(q => selBenar(p, q)),
+      ...qks.map(q => selBenar(p, q, SOAL_PRETEST)),
     ]));
   $("cap-pretest").textContent = `Jawaban pre-test · ${pretest.length} baris`;
+
+  // tabel posttest — susunannya sama, kunci jawabannya dari SOAL_POSTTEST
+  const qksPost = [...new Set(posttest.flatMap(p => Object.keys(p.jawaban||{})))].sort();
+  const urutPost = [...posttest].sort((a,b) => (b.nilai ?? -1) - (a.nilai ?? -1));
+  tabel($("tbl-posttest"),
+    ["Nama","Kelompok","Divisi","Nilai","Benar","Δ Pre", ...qksPost.map(q => q.toUpperCase())],
+    urutPost.map(p => [
+      esc(p.nama), `<span class="pill">${esc(kel(p.kelompok))}</span>`, esc(p.divisi),
+      p.nilai == null ? `<span class="muted">—</span>` : `<b>${p.nilai}</b>`,
+      p.benar == null ? `<span class="muted">—</span>` : `${p.benar}/${p.total ?? SOAL_POSTTEST.length}`,
+      selDelta(p),
+      ...qksPost.map(q => selBenar(p, q, SOAL_POSTTEST)),
+    ]));
+  $("cap-posttest").textContent = `Jawaban post-test · ${posttest.length} baris`;
+}
+
+// -------- Pasangan pre & post per orang (dicocokkan dari nama) --------
+const kunciNama = (n) => String(n ?? "").trim().toLowerCase().replace(/\s+/g, " ");
+
+function nilaiPreDari(nama) {
+  const k = kunciNama(nama);
+  const c = pretest.find(p => kunciNama(p.nama) === k);
+  return typeof c?.nilai === "number" ? c.nilai : null;
+}
+
+function selDelta(p) {
+  const pre = nilaiPreDari(p.nama);
+  if (pre == null || typeof p.nilai !== "number") return `<span class="muted">—</span>`;
+  const d = p.nilai - pre;
+  const warna = d > 0 ? "var(--teal)" : (d < 0 ? "var(--danger)" : "var(--muted)");
+  return `<span style="color:${warna}"><b>${d > 0 ? "+" : ""}${d}</b></span>`;
 }
 
 // -------- Nilai pre-test --------
@@ -207,10 +282,10 @@ function rerata(arr) {
 }
 
 // sel jawaban: hijau kalau benar, merah kalau salah, abu kalau tidak terekam
-function selBenar(p, q) {
+function selBenar(p, q, daftarSoal) {
   const teks = p.jawaban?.[q];
   if (teks == null || teks === "") return `<span class="muted">—</span>`;
-  const soal = SOAL_PRETEST.find(x => x.id === q);
+  const soal = daftarSoal.find(x => x.id === q);
   const idx = p.dipilih?.[q];
   if (!soal || typeof idx !== "number") return wrapCell(teks);
   const ok = idx === soal.benar;
@@ -220,14 +295,8 @@ function selBenar(p, q) {
 
 function renderNilai() {
   // sebaran nilai
-  const rentang = [
-    { l: "0–39",   uji: (v) => v < 40 },
-    { l: "40–59",  uji: (v) => v >= 40 && v < 60 },
-    { l: "60–79",  uji: (v) => v >= 60 && v < 80 },
-    { l: "80–100", uji: (v) => v >= 80 },
-  ];
   const nilai = pretest.map(p => p.nilai).filter(v => typeof v === "number");
-  bars($("bars-nilai"), rentang.map(r => ({ l: r.l, v: nilai.filter(r.uji).length })));
+  bars($("bars-nilai"), RENTANG.map(r => ({ l: r.l, v: nilai.filter(r.uji).length })));
 
   // rata-rata per kelompok
   bars($("bars-nilai-kelompok"), KELOMPOK.map(k => ({
@@ -246,6 +315,52 @@ function renderNilai() {
     };
   }).sort((a, b) => a.v - b.v);
   bars($("bars-soal"), terjawab.length ? perSoal : []);
+}
+
+const RENTANG = [
+  { l: "0–39",   uji: (v) => v < 40 },
+  { l: "40–59",  uji: (v) => v >= 40 && v < 60 },
+  { l: "60–79",  uji: (v) => v >= 60 && v < 80 },
+  { l: "80–100", uji: (v) => v >= 80 },
+];
+
+function renderNilaiPost() {
+  // sebaran nilai post-test
+  const nilai = posttest.map(p => p.nilai).filter(v => typeof v === "number");
+  bars($("bars-nilai-post"), RENTANG.map(r => ({ l: r.l, v: nilai.filter(r.uji).length })));
+
+  // pre → post, hanya orang yang mengisi keduanya supaya perbandingannya adil
+  const pasangan = posttest
+    .map(p => ({ post: p.nilai, pre: nilaiPreDari(p.nama) }))
+    .filter(x => typeof x.post === "number" && typeof x.pre === "number");
+  bars($("bars-delta"), pasangan.length ? [
+    { l: `Pre-test (${pasangan.length} orang)`,  v: rerata(pasangan.map(x => x.pre))  ?? 0 },
+    { l: `Post-test (${pasangan.length} orang)`, v: rerata(pasangan.map(x => x.post)) ?? 0 },
+  ] : []);
+
+  // persentase benar per soal post-test
+  const terjawab = posttest.filter(p => p.dipilih);
+  const perSoal = SOAL_POSTTEST.map((soal, i) => {
+    const isi = terjawab.filter(p => typeof p.dipilih[soal.id] === "number");
+    const benar = isi.filter(p => p.dipilih[soal.id] === soal.benar).length;
+    return {
+      l: `${String(i + 1).padStart(2, "0")} · ${soal.teks}`,
+      v: isi.length ? Math.round(benar / isi.length * 100) : 0,
+    };
+  }).sort((a, b) => a.v - b.v);
+  bars($("bars-soal-post"), terjawab.length ? perSoal : []);
+}
+
+// -------- Masukan dari post-test --------
+function renderMasukan() {
+  const ada = posttest.filter(p => (p.masukan?.m1 || p.masukan?.m2));
+  $("masukan").innerHTML = ada.length ? `<div class="pcards">${ada.map(p => `
+    <div class="pcard">
+      <div class="pcard-h"><span class="nm">${esc(p.nama)}</span><span class="dv">${esc([kel(p.kelompok), p.divisi].filter(Boolean).join(" · "))}</span></div>
+      ${pfield("Paling bermanfaat", p.masukan?.m1)}
+      ${pfield("Masih membingungkan", p.masukan?.m2, "pain")}
+    </div>`).join("")}</div>`
+    : `<p class="empty">Belum ada masukan yang masuk.</p>`;
 }
 
 function wrapCell(v) {
@@ -318,6 +433,21 @@ $("csv-pretest").addEventListener("click", () => {
       .map(p => [p.nama, kelPlain(p.kelompok), p.divisi,
         p.nilai ?? "", p.benar ?? "", p.total ?? "",
         ...qks.map(q => p.jawaban?.[q] ?? "")]));
+});
+$("csv-posttest").addEventListener("click", () => {
+  const qks = [...new Set(posttest.flatMap(p => Object.keys(p.jawaban||{})))].sort();
+  unduhCSV("posttest.csv",
+    ["Nama","Kelompok","Divisi","Nilai","Benar","Total","Nilai pre-test","Selisih",
+     ...qks, "Paling bermanfaat","Masih membingungkan"],
+    [...posttest].sort((a,b) => (b.nilai ?? -1) - (a.nilai ?? -1))
+      .map(p => {
+        const pre = nilaiPreDari(p.nama);
+        const d = (pre == null || typeof p.nilai !== "number") ? "" : p.nilai - pre;
+        return [p.nama, kelPlain(p.kelompok), p.divisi,
+          p.nilai ?? "", p.benar ?? "", p.total ?? "", pre ?? "", d,
+          ...qks.map(q => p.jawaban?.[q] ?? ""),
+          p.masukan?.m1 ?? "", p.masukan?.m2 ?? ""];
+      }));
 });
 </script>
 </body>
