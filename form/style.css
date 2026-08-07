@@ -204,7 +204,8 @@ table.data .muted{color:var(--muted)}
 .tile.wide{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between;gap:14px;padding:16px 22px}
 .tile.wide .tw-l{display:flex;flex-direction:column;gap:2px}
 .tile.wide h3{margin:0}
-.tile.wide p{margin:0}
+.tile.wide p{margin:0;max-width:58ch}
+.tile.wide .go{margin-top:0;white-space:nowrap}
 
 @media (max-width:560px){ .roster{grid-template-columns:1fr} }
 
@@ -235,6 +236,9 @@ table.data .muted{color:var(--muted)}
   h1{font-size:32px}
   .menu{grid-template-columns:1fr}
   .card{padding:22px 18px}
+  /* tile lebar terlalu sempit kalau tetap berbaris di layar HP */
+  .tile.wide{flex-direction:column;align-items:flex-start;gap:8px;padding:20px 18px}
+  .tile.wide .go{margin-top:4px}
 }
 
 /* ============ Pre/Post-test: progres & nilai ============ */

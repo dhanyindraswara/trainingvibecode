@@ -210,7 +210,7 @@ svg.flow .out{font-family:var(--mono);font-size:12px;fill:var(--gold-ink);letter
 .bar{display:grid;grid-template-columns:112px 1fr 62px;gap:14px;align-items:center;margin-bottom:13px;font-size:14.5px}
 .bar .lbl{color:var(--ink);font-weight:500}
 .bar .track{height:11px;background:var(--panel-2);border-radius:2px;overflow:hidden}
-.bar .fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-ink),var(--gold-bright));border-radius:2px}
+.bar .fill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold-ink),var(--gold-bright));border-radius:2px}
 .bar .fill.t{background:linear-gradient(90deg,#0E5F56,#2AA294)}
 .bar .val{font-family:var(--mono);font-size:13px;color:var(--gold-ink);text-align:right;font-weight:600}
 
@@ -326,6 +326,49 @@ svg.flow .out{font-family:var(--mono);font-size:12px;fill:var(--gold-ink);letter
 .ov .t{font-size:13.5px;margin-top:5px;color:var(--ink-2);line-height:1.35}
 #help{position:fixed;right:20px;bottom:34px;z-index:41;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:#AEBAC5;text-transform:uppercase}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* ============ TOMBOL UNDUH PDF ============ */
+#pdfbtn{
+  position:fixed;right:20px;top:18px;z-index:42;cursor:pointer;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold-ink);background:rgba(255,255,255,.92);border:1px solid var(--line);
+  border-radius:3px;padding:7px 12px;display:flex;align-items:center;gap:7px;
+  transition:border-color .15s ease,background .15s ease,color .15s ease}
+#pdfbtn:hover{border-color:var(--gold);background:#fff;color:var(--ink)}
+#pdfbtn .ic{font-size:12px;line-height:1}
+#pdfhint{
+  position:fixed;inset:0;z-index:70;display:none;place-items:center;
+  background:rgba(237,241,244,.94);font-family:var(--mono);text-align:center;padding:24px}
+#pdfhint.on{display:grid}
+#pdfhint p{max-width:34em;margin:0;font-size:12px;line-height:1.9;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3)}
+#pdfhint b{color:var(--gold-ink);font-weight:500}
+
+/* ============ CETAK / SIMPAN SEBAGAI PDF ============
+   Saat dicetak semua slide dirender berurutan, satu slide satu halaman
+   landscape 1280×720. Animasi dimatikan dan elemen yang biasanya tumbuh
+   lewat animasi (bar, meter, timeline, garis SVG) dipaksa ke keadaan akhir
+   supaya tidak tercetak kosong. */
+@media print{
+  @page{ size:13.333in 7.5in; margin:0 }
+  html,body{height:auto;overflow:visible;background:#fff}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #hud,#help,#overview,#pdfbtn,#pdfhint{display:none!important}
+  #viewport{position:static;display:block;place-items:initial}
+  #stage{width:1280px;height:auto;transform:none!important;box-shadow:none}
+  .slide{
+    position:relative;inset:auto;display:flex!important;
+    width:1280px;height:720px;
+    break-inside:avoid;page-break-inside:avoid;
+    break-after:page;page-break-after:always}
+  .slide:last-child{break-after:auto;page-break-after:auto}
+  .slide [data-a],.slide .rule,.slide svg.flow .link,
+  .slide .bar .fill,.slide .meter i,.slide .tlprog,.slide .tlmark{animation:none!important}
+  .bar .fill,.meter i{width:var(--w)}
+  .tlprog{width:100%}
+  .tlmark{display:none} /* penanda yang bergerak hanya relevan saat dipresentasikan */
+  svg.flow .link{stroke-dashoffset:0!important}
+}
 </style>
 </head>
 <body>
@@ -3422,7 +3465,15 @@ atau tanda hubung "- ".</div>
     <span id="hudright"><b id="cur">1</b> / <span id="tot">52</span></span>
   </div>
 </nav>
-<div id="help">← → geser &nbsp;·&nbsp; O semua slide &nbsp;·&nbsp; F layar penuh</div>
+<button id="pdfbtn" type="button" title="Unduh seluruh materi sebagai PDF (tombol P)"><span class="ic">⬇</span>Unduh PDF</button>
+
+<div id="pdfhint" role="status">
+  <p>Menyiapkan seluruh slide untuk diunduh…<br><br>
+  Di dialog cetak yang muncul, pilih tujuan <b>Save as PDF</b>,<br>
+  layout <b>Landscape</b>, dan aktifkan <b>Background graphics</b>.</p>
+</div>
+
+<div id="help">← → geser &nbsp;·&nbsp; O semua slide &nbsp;·&nbsp; P unduh PDF &nbsp;·&nbsp; F layar penuh</div>
 
 <div id="overview" role="dialog" aria-label="Semua slide">
   <h4>Semua slide — klik untuk lompat</h4>
@@ -3493,9 +3544,33 @@ atau tanda hubung "- ".</div>
 
   function next(){show(i+1)} function prev(){show(i-1)}
 
+  // ---- Unduh PDF: seluruh slide dicetak lewat stylesheet @media print ----
+  var hint=document.getElementById('pdfhint');
+  var sedangCetak=false;
+  function unduhPdf(){
+    if(sedangCetak) return;
+    sedangCetak=true;
+    ov.classList.remove('on');
+    hint.classList.add('on');
+    var cetak=function(){
+      setTimeout(function(){
+        window.print();
+        hint.classList.remove('on');
+        sedangCetak=false;
+      },350);
+    };
+    // tunggu font selesai dimuat supaya teks tidak bergeser di halaman PDF
+    if(document.fonts&&document.fonts.ready){document.fonts.ready.then(cetak,cetak)}
+    else{cetak()}
+  }
+  document.getElementById('pdfbtn').addEventListener('click',function(e){
+    e.stopPropagation(); unduhPdf();
+  });
+
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'){ov.classList.remove('on');return}
     if(e.key==='o'||e.key==='O'){ov.classList.toggle('on');return}
+    if(e.key==='p'||e.key==='P'){e.preventDefault();unduhPdf();return}
     if(ov.classList.contains('on'))return;
     if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}
     else if(e.key==='ArrowLeft'||e.key==='PageUp'||e.key==='Backspace'){e.preventDefault();prev()}
@@ -3520,6 +3595,12 @@ atau tanda hubung "- ".</div>
   },{passive:true});
 
   show(0);
+
+  // Dibuka dari menu materi lewat ../?pdf=1 — langsung tawarkan unduhan.
+  if(/[?&]pdf=1(&|$)/.test(location.search)||location.hash==='#pdf'){
+    if(document.readyState==='complete'){unduhPdf()}
+    else{window.addEventListener('load',unduhPdf)}
+  }
 })();
 </script>
 </body>
